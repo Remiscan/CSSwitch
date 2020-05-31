@@ -1,0 +1,351 @@
+.nintendo-switch {
+  --width: 100vw;
+  width: var(--width);
+  height: calc(0.425 * var(--width));
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  position: relative;
+  --console-color: #2F3234;
+  --attache-color: #27292C;
+  transform: translateZ(0);
+}
+
+.joycon {
+  width: 13.9%;
+  height: 99%;
+  --border-radius: calc(0.6 * 0.138 * var(--width));
+  --margin: calc(0.014 * 0.139 * var(--width));
+  position: relative;
+  z-index: 4;
+  transform: translateZ(0);
+  transition: transform .1s linear;
+}
+.joycon.gauche {
+  --joycon-color: #FF5E52;
+  margin-right: var(--margin);
+}
+.joycon.droit {
+  --joycon-color: #00BFDF;
+  margin-left: var(--margin);
+}
+.joycon .interieur {
+  width: 100%;
+  height: 100%;
+  background-color: var(--joycon-color);
+  position: absolute;
+  z-index: 0;
+}
+.joycon.gauche .interieur {
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+.joycon.droit .interieur {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.console {
+  background-color: var(--console-color);
+  flex-grow: 1;
+  height: 99%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+  -webkit-mask-box-image: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiCiAgICAgYmFzZXByb2ZpbGU9IkZ1bGwiCiAgICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICAgIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIgogICAgIHhtbG5zOmV2PSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL3htbC1ldmVudHMiCiAgICAgd2lkdGg9IjQ1IgogICAgIGhlaWdodD0iNDUiCiAgICAgdmlld0JveD0iMCAwIDQ1IDQ1IgogICAgIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiCiAgICAgPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLDQ1LjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKICAgICBmaWxsPSIjMDAwMDAwIgogICAgIHN0cm9rZT0ibm9uZSIKICAgICA+CiAgICA8cGF0aCBkPSJNMTEwIDQwMCBjMCAtNjIgLTMxIC0xMDAgLTgwIC0xMDAgbC0zMCAwIDAgLTE1MCAwIC0xNTAgMjI1IDAgMjI1IDAgMCAxNTAgMCAxNTAgLTMwIDAgYy00OSAwIC04MCAzOCAtODAgMTAwIGwwIDUwIC0xMTUgMCAtMTE1IDAgMCAtNTB6Ii8+CiAgPC9nPgo8L3N2Zz4=') 33% / calc(0.02 * var(--width)) stretch;
+  mask-border: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiCiAgICAgYmFzZXByb2ZpbGU9IkZ1bGwiCiAgICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICAgIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIgogICAgIHhtbG5zOmV2PSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL3htbC1ldmVudHMiCiAgICAgd2lkdGg9IjQ1IgogICAgIGhlaWdodD0iNDUiCiAgICAgdmlld0JveD0iMCAwIDQ1IDQ1IgogICAgIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiCiAgICAgPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLDQ1LjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKICAgICBmaWxsPSIjMDAwMDAwIgogICAgIHN0cm9rZT0ibm9uZSIKICAgICA+CiAgICA8cGF0aCBkPSJNMTEwIDQwMCBjMCAtNjIgLTMxIC0xMDAgLTgwIC0xMDAgbC0zMCAwIDAgLTE1MCAwIC0xNTAgMjI1IDAgMjI1IDAgMCAxNTAgMCAxNTAgLTMwIDAgYy00OSAwIC04MCAzOCAtODAgMTAwIGwwIDUwIC0xMTUgMCAtMTE1IDAgMCAtNTB6Ii8+CiAgPC9nPgo8L3N2Zz4=') 33% / calc(0.02 * var(--width)) stretch;
+  transform: translateZ(0);
+}
+.screen-border {
+  background-color: black;
+  width: 94.4%;
+  height: 92.3%;
+  border-radius: calc(0.0138 * var(--width));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.trapeze {
+  -webkit-clip-path: polygon(17% 0%, 83% 0%, 100% 100%, 0% 100%);
+  clip-path: polygon(17% 0%, 83% 0%, 100% 100%, 0% 100%);
+  width: 5.97%;
+  height: 1%;
+  background-color: #111415;
+  position: absolute;
+  bottom: 0;
+  --size: 6.95%;
+}
+.trapeze.gauche {
+  left: var(--size);
+}
+.trapeze.droite {
+  right: var(--size);
+}
+.sensor {
+  width: 2.15%;
+  height: 4%;
+  position: absolute;
+  bottom: 0;
+  left: 31.6%;
+  background-color: #111415;
+  border-radius: 45% 45% 0 0;
+}
+
+.screen {
+  width: 84%;
+  height: 82%;
+  background-color: rgba(255, 255, 255, .08);
+}
+.jeu {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: grid;
+  opacity: 0;
+}
+.nintendo-switch.on .jeu {
+  opacity: 1;
+} 
+
+.start, .select {
+  --size: calc(0.192 * 0.139 * var(--width));
+  width: var(--size);
+  height: var(--size);
+  position: absolute;
+  top: 6.9%;
+  --side: 8.06%;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr;
+  grid-template-rows: 1.5fr 1fr 1.5fr;
+  background-color: var(--console-color);
+}
+.start {
+  left: var(--side);
+  -webkit-clip-path: polygon(0% 37.5%, 37.5% 37.5%, 37.5% 0%, 62.5% 0%, 62.5% 37.5%, 100% 37.5%, 100% 62.5%, 62.5% 62.5%, 62.5% 100%, 37.5% 100%, 37.5% 62.5%, 0% 62.5%);
+  clip-path: polygon(0% 37.5%, 37.5% 37.5%, 37.5% 0%, 62.5% 0%, 62.5% 37.5%, 100% 37.5%, 100% 62.5%, 62.5% 62.5%, 62.5% 100%, 37.5% 100%, 37.5% 62.5%, 0% 62.5%);
+}
+.select {
+  right: var(--side);
+  -webkit-clip-path: polygon(0% 37.5%, 100% 37.5%, 100% 62.5%, 0% 62.5%);
+  clip-path: polygon(0% 37.5%, 100% 37.5%, 100% 62.5%, 0% 62.5%);
+}
+
+.boutons {
+  --size: calc(0.69 * 0.139 * var(--width));
+  width: var(--size);
+  height: var(--size);
+  position: absolute;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  --side: 11.3%;
+}
+.boutons.gauche {
+  top: 41.6%;
+  right: var(--side);
+}
+.boutons.droite {
+  top: 13.8%;
+  left: var(--side);
+}
+.boutons .c {
+  background-color: var(--console-color);
+  border-radius: 50%;
+}
+
+.joystick {
+  --size: calc(0.468 * 0.139 * var(--width));
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background-color: var(--console-color);
+  position: absolute;
+  --side: 23.4%;
+  display: flex;
+}
+.joystick.gauche {
+  top: 17.5%;
+  right: var(--side);
+}
+.joystick.droite {
+  top: 45.1%;
+  left: var(--side);
+}
+.joystick .coeur {
+  width: 75%;
+  height: 75%;
+  margin: auto;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, .2);
+  /*box-shadow: inset 0 0 0 calc(3 * 0.74 * 0.468 * 0.139 * var(--width)) rgba(0, 0, 0, .2);*/
+}
+
+.capture {
+  border-radius: 8.7%;
+  --size: calc(0.185 * 0.139 * var(--width));
+  width: var(--size);
+  height: var(--size);
+  position: absolute;
+  top: 68.4%;
+  right: 20%;
+  background-color: var(--console-color);
+  display: flex;
+}
+.capture .coeur {
+  width: 65%;
+  height: 65%;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, .4);
+  margin: auto;
+}
+.home {
+  border-radius: 50%;
+  --size: calc(0.242 * 0.139 * var(--width));
+  width: var(--size);
+  height: var(--size);
+  position: absolute;
+  top: 67.4%;
+  left: 16.7%;
+  background-color: #959293;
+  box-shadow: none;
+  display: flex;
+}
+@keyframes home-sparkle {
+  0% { background-color: #959293; box-shadow: none; }
+  50% { background-color: #7EE5FF; box-shadow: 0 0 0 calc(0.002*var(--width)) rgba(0, 136, 170, .5); }
+  100% { background-color: #7EE5FF; box-shadow: 0 0 0 calc(0.002*var(--width)) rgba(0, 136, 170, .5); }
+}
+.home.on {
+  animation: home-sparkle 2s ease .5s infinite alternate;
+}
+.nintendo-switch.on .home {
+  background-color: #7EE5FF; box-shadow: 0 0 0 calc(0.002*var(--width)) rgba(0, 136, 170, .5);
+}
+.home:focus:not(:hover) {
+  background-color: #FFFFFF; box-shadow: 0 0 0 calc(0.002*var(--width)) #00BFDF;
+}
+.home .coeur {
+  width: 75%;
+  height: 75%;
+  border-radius: 50%;
+  background-color: var(--console-color);
+  margin: auto;
+  position: absolute;
+  top: 12.5%;
+  left: 12.5%;
+}
+
+.attache {
+  width: 10%;
+  height: 80%;
+  position: absolute;
+  top: 5%;
+  --side: -3.6%;
+  background-color: black;
+  z-index: -1;
+}
+.attache.gauche {
+  right: var(--side);
+}
+.attache.droite {
+  left: var(--side);
+}
+.attache2 {
+  width: 5.8%;
+  height: 85%;
+  position: absolute;
+  top: 5%;
+  --side: calc(-3.6% - 5.7%);
+  background-color: var(--attache-color);
+  z-index: -2;
+}
+.attache2.gauche {
+  right: var(--side);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 17.9%, 60% 19.7%, 60% 30%, 100% 31.8%, 100% 65.2%, 60% 67%, 60% 77.3%, 100% 79.1%, 100% 100%, 0% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 17.9%, 60% 19.7%, 60% 30%, 100% 31.8%, 100% 65.2%, 60% 67%, 60% 77.3%, 100% 79.1%, 100% 100%, 0% 100%);
+}
+.attache2.droite {
+  left: var(--side);
+  -webkit-clip-path: polygon(100% 0, 0 0, 0 17.9%, 40% 19.7%, 40% 30%, 0 31.8%, 0 65.2%, 40% 67%, 40% 77.3%, 0 79.1%, 0 100%, 100% 100%);
+  clip-path: polygon(100% 0, 0 0, 0 17.9%, 40% 19.7%, 40% 30%, 0 31.8%, 0 65.2%, 40% 67%, 40% 77.3%, 0 79.1%, 0 100%, 100% 100%);
+}
+.sidebuttons {
+  width: 5.8%;
+  height: 85%;
+  position: absolute;
+  top: 5%;
+  --side: calc(-3.6% - 5.8%);
+  z-index: -3;
+}
+.sidebuttons.gauche {
+  right: var(--side);
+}
+.sidebuttons.droite {
+  left: var(--side);
+}
+.sbutton {
+  height: 9.7%;
+  width: 100%;
+  position: absolute;
+  border-radius: calc(0.2 * 0.058 * 0.139 * var(--width));
+  background-color: var(--joycon-color);
+}
+.sbutton.b1 {
+  top: 20%;
+}
+.sbutton.b2 {
+  top: 67.3%;
+}
+
+.trigger {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -0.7%;
+  --side: -3%;
+  --border-radius: calc(0.8 * 0.8 * 0.139 * var(--width));
+  z-index: -1;
+  background-color: var(--console-color);
+}
+.trigger.gauche {
+  left: var(--side);
+  border-radius: var(--border-radius) 0 0 0;
+  -webkit-clip-path: polygon(0 0, 80% 0, 80% 15%, 0 15%);
+  clip-path: polygon(0 0, 80% 0, 80% 15%, 0 15%);
+}
+.trigger.droite {
+  right: var(--side);
+  border-radius: 0 var(--border-radius) 0 0;
+  -webkit-clip-path: polygon(20% 0, 100% 0, 100% 15%, 20% 15%);
+  clip-path: polygon(20% 0, 100% 0, 100% 15%, 20% 15%);
+}
+@supports not (clip-path: polygon(20% 0, 100% 0, 100% 15%, 20% 15%))
+{
+  .trigger {
+    height: 20%;
+  }
+}
+
+.volume {
+  width: 6.56%;
+  height: 1.4%;
+  position: absolute;
+  top: 0.3%;
+  left: calc(13.9% + 9.73%);
+  background-color: var(--attache-color);
+  -webkit-clip-path: polygon(0 0, 33% 0, 33% 25%, 67% 25%, 67% 0, 100% 0, 100% 100%, 0 100%);
+  clip-path: polygon(0 0, 33% 0, 33% 25%, 67% 25%, 67% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.trou {
+  width: 1.86%;
+  height: 4.51%;
+  position: absolute;
+  background-color: white;
+}
+.trou.haut-gauche {
+  top: 0;
+  left: 0;
+  border-radius: 0 0 30% 0;
+}
