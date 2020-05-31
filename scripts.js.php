@@ -1,15 +1,11 @@
-// ▼ ES module cache-busted grâce à PHP
-/*<?php
-// en commentaire rusé pour éviter l'erreur de syntaxe dans VS code due à la présence de PHP au milieu du JS
-echo '*'.'/';
-$commonDir = dirname(__DIR__, 1).'/_common';
-require_once $commonDir . '/php/version.php';
-$versionModule = version($commonDir.'/js', 'traduction.js');
-echo "\n";
-echo "import { traduire, getString, switchLangage, getLangage } from '../_common/js/traduction--".$versionModule.".js';";
-echo "\n";
-echo '/'.'*'; ?>*/
+// ▼ ES modules cache-busted grâce à PHP
+/*<?php ob_start();?>*/
 
+import { traduire, getString, switchLangage, getLangage } from '../_common/js/traduction.js';
+
+/*<?php $imports = ob_get_clean();
+require_once dirname(__DIR__, 1).'/_common/php/versionize-js-imports.php';
+echo versionizeImports($imports, __DIR__); ?>*/
 
 
 // Nom des éléments et variables
