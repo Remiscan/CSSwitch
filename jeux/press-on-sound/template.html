@@ -1,0 +1,114 @@
+<style>
+  .jeu-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    transform-origin: var(--x) var(--y);
+    background-color: rgb(36, 36, 75);
+    font-family: 'Press Start 2P', cursive;
+    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-columns: 1fr;
+    color: white;
+    font-size: .9vw;
+  }
+  .nintendo-switch.on.gaming .jeu-bg {
+    opacity: 1;
+    animation: allumage .2s var(--easing-decelerate);
+    pointer-events: auto;
+  }
+  .jeu-titre {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    font-size: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .jeu-score {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.15em;
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+  }
+  .jeu-bouton {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: transparent;
+    width: 20%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    --button-color: red;
+    --border-color: var(--button-color);
+    --shadow-color: darkred;
+    filter: drop-shadow(0 .5vw 0 var(--shadow-color));
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+  .jeu-bouton::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--button-color);
+    box-shadow: 0 .5vw 0 0 var(--border-color),
+                .5vw 0 0 0 var(--border-color),
+                -.5vw 0 0 0 var(--border-color),
+                0 -.5vw 0 0 var(--border-color);
+  }
+  .jeu-bouton:active {
+    transform: translate(-50%, calc(-50% + .5vw));
+    filter: none;
+  }
+  .jeu-bouton.on, .jeu-bouton.on:focus {
+    --button-color: lime;
+    --shadow-color: green;
+  }
+  .jeu-bouton:focus {
+    outline: 0;
+  }
+  .jeu-bouton:focus:not(:hover)
+  {
+    --border-color: #00BFDF;
+    --shadow-color: blue;
+  }
+  .jeu-bouton.cheating {
+    opacity: .5;
+    pointer-events: none;
+  }
+</style>
+
+<div class="jeu-bg">
+  <div class="jeu-titre" data-string="titre-jeu-press-on-sound"></div>
+  <button class="jeu-bouton" data-label="press-on-sound-bouton">
+    <div class="jeu-bouton-bouton"></div>
+  </button>
+  <div class="jeu-score">
+    <div class="jeu-score-record">
+      <span data-string="score-record"></span>
+      <span id="score-record">---</span>
+      <span>ms</span>
+    </div>
+    <div class="jeu-score-record">
+      <span data-string="score-dernier"></span>
+      <span id="score-dernier">---</span>
+      <span>ms</span>
+    </div>
+  </div>
+</div>
