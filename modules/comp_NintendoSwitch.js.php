@@ -4,8 +4,8 @@
 import './comp_MenuSwitch.js.php';
 
 /*<?php $imports = ob_get_clean();
-require_once dirname(__DIR__, 2).'/_common/php/versionize-js-imports.php';
-echo versionizeImports($imports, __DIR__); ?>*/
+require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
+echo versionizeFiles($imports, __DIR__); ?>*/
 
 
 
@@ -25,12 +25,14 @@ class NintendoSwitch extends HTMLElement {
   }
 
   turnOn() {
-    this.shadowRoot.querySelector('menu-switch').setAttribute('open', '');
-    this.shadowRoot.querySelector('menu-switch').shadowRoot.querySelector('#jeu-1').focus();
+    const menu = this.shadowRoot.querySelector('menu-switch');
+    menu.setAttribute('open', '');
+    menu.shadowRoot.querySelector('button.menu-icone-jeu:first-child').focus();
   }
 
   turnOff() {
-    this.shadowRoot.querySelector('menu-switch').removeAttribute('open');
+    const menu = this.shadowRoot.querySelector('menu-switch');
+    menu.removeAttribute('open');
     Array.from(this.shadowRoot.querySelectorAll('jeu-switch')).forEach(jeu => jeu.remove());
   }
 
