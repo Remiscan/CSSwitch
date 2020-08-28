@@ -30,12 +30,19 @@ $Textes = new Textes('csswitch');
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" media="print" onload="this.media='all'">
 
-    <link rel="preload" as="audio" href="console/switch.mp3">
-    <link rel="preload" as="fetch" href="/csswitch/strings--<?=version(__DIR__, 'strings.json')?>.json" crossorigin
-          id="strings" data-version="<?=version(__DIR__, 'strings.json')?>">
-    <link rel="modulepreload" href="../_common/js/traduction--<?=version($commonDir.'/js', 'traduction.js')?>.js">
+    <!-- ▼ Fichiers cache-busted grâce à PHP -->
+    <!--<?php ob_start();?>-->
 
-    <link rel="stylesheet" href="page--<?=version(__DIR__, 'page.css')?>.css">
+    <link rel="preload" as="audio" href="/csswitch/jeux/menu/switch.ogg">
+    <link rel="preload" as="fetch" href="/csswitch/strings.json" crossorigin
+          id="strings" data-version="<?=version(__DIR__, 'strings.json')?>">
+    <link rel="modulepreload" href="/_common/js/traduction.js">
+
+    <link rel="stylesheet" href="page.css">
+
+    <!--<?php $imports = ob_get_clean();
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
+    echo versionizeFiles($imports, __DIR__); ?>-->
   </head>
 
   <body>
@@ -86,11 +93,10 @@ $Textes = new Textes('csswitch');
       <?php include 'jeux/menu/template.php'; ?>
     </template>
 
-    <template id="jeu1">
-      <?php include 'jeux/jeu1/template.php'; ?>
-    </template>
+    <!-- ▼ Fichiers cache-busted grâce à PHP -->
+    <!--<?php ob_start();?>-->
 
-    <script src="/_common/js/test-support--<?=version($commonDir.'/js', 'test-support.js')?>.js" id="test-support-script"></script>
+    <script src="/_common/js/test-support.js" id="test-support-script"></script>
     <script id="test-support-script-exe">
       TestSupport.getSupportResults([
         { name: 'CSS custom properties', priority: 1 },
@@ -100,7 +106,11 @@ $Textes = new Textes('csswitch');
         { name: 'ES modules', priority: 1 }
       ]);
     </script>
-    <script type="module" src="scripts--<?=version(__DIR__, 'scripts.js.php')?>.js.php"></script>
+    <script type="module" src="scripts.js.php"></script>
+
+    <!--<?php $imports = ob_get_clean();
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
+    echo versionizeFiles($imports, __DIR__); ?>-->
 
   </body>
 </html>
