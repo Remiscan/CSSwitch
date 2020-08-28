@@ -1,4 +1,4 @@
-.nintendo-switch {
+:host {
   --width: 100vw;
   width: var(--width);
   height: calc(0.425 * var(--width));
@@ -13,6 +13,8 @@
 
 .joycon {
   width: 13.9%;
+  min-width: 13.9%;
+  max-width: 13.9%;
   height: 99%;
   --border-radius: calc(0.6 * 0.138 * var(--width));
   --margin: calc(0.014 * 0.139 * var(--width));
@@ -52,8 +54,8 @@
   align-items: center;
   position: relative;
   z-index: 5;
-  -webkit-mask-box-image: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiCiAgICAgYmFzZXByb2ZpbGU9IkZ1bGwiCiAgICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICAgIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIgogICAgIHhtbG5zOmV2PSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL3htbC1ldmVudHMiCiAgICAgd2lkdGg9IjQ1IgogICAgIGhlaWdodD0iNDUiCiAgICAgdmlld0JveD0iMCAwIDQ1IDQ1IgogICAgIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiCiAgICAgPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLDQ1LjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKICAgICBmaWxsPSIjMDAwMDAwIgogICAgIHN0cm9rZT0ibm9uZSIKICAgICA+CiAgICA8cGF0aCBkPSJNMTEwIDQwMCBjMCAtNjIgLTMxIC0xMDAgLTgwIC0xMDAgbC0zMCAwIDAgLTE1MCAwIC0xNTAgMjI1IDAgMjI1IDAgMCAxNTAgMCAxNTAgLTMwIDAgYy00OSAwIC04MCAzOCAtODAgMTAwIGwwIDUwIC0xMTUgMCAtMTE1IDAgMCAtNTB6Ii8+CiAgPC9nPgo8L3N2Zz4=') 33% / calc(0.02 * var(--width)) stretch;
-  mask-border: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiCiAgICAgYmFzZXByb2ZpbGU9IkZ1bGwiCiAgICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICAgIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIgogICAgIHhtbG5zOmV2PSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL3htbC1ldmVudHMiCiAgICAgd2lkdGg9IjQ1IgogICAgIGhlaWdodD0iNDUiCiAgICAgdmlld0JveD0iMCAwIDQ1IDQ1IgogICAgIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiCiAgICAgPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLDQ1LjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKICAgICBmaWxsPSIjMDAwMDAwIgogICAgIHN0cm9rZT0ibm9uZSIKICAgICA+CiAgICA8cGF0aCBkPSJNMTEwIDQwMCBjMCAtNjIgLTMxIC0xMDAgLTgwIC0xMDAgbC0zMCAwIDAgLTE1MCAwIC0xNTAgMjI1IDAgMjI1IDAgMCAxNTAgMCAxNTAgLTMwIDAgYy00OSAwIC04MCAzOCAtODAgMTAwIGwwIDUwIC0xMTUgMCAtMTE1IDAgMCAtNTB6Ii8+CiAgPC9nPgo8L3N2Zz4=') 33% / calc(0.02 * var(--width)) stretch;
+  /*-webkit-mask-box-image: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiCiAgICAgYmFzZXByb2ZpbGU9IkZ1bGwiCiAgICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICAgIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIgogICAgIHhtbG5zOmV2PSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL3htbC1ldmVudHMiCiAgICAgd2lkdGg9IjQ1IgogICAgIGhlaWdodD0iNDUiCiAgICAgdmlld0JveD0iMCAwIDQ1IDQ1IgogICAgIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiCiAgICAgPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLDQ1LjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKICAgICBmaWxsPSIjMDAwMDAwIgogICAgIHN0cm9rZT0ibm9uZSIKICAgICA+CiAgICA8cGF0aCBkPSJNMTEwIDQwMCBjMCAtNjIgLTMxIC0xMDAgLTgwIC0xMDAgbC0zMCAwIDAgLTE1MCAwIC0xNTAgMjI1IDAgMjI1IDAgMCAxNTAgMCAxNTAgLTMwIDAgYy00OSAwIC04MCAzOCAtODAgMTAwIGwwIDUwIC0xMTUgMCAtMTE1IDAgMCAtNTB6Ii8+CiAgPC9nPgo8L3N2Zz4=') 33% / calc(0.02 * var(--width)) stretch;
+  mask-border: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiCiAgICAgYmFzZXByb2ZpbGU9IkZ1bGwiCiAgICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICAgIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIgogICAgIHhtbG5zOmV2PSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL3htbC1ldmVudHMiCiAgICAgd2lkdGg9IjQ1IgogICAgIGhlaWdodD0iNDUiCiAgICAgdmlld0JveD0iMCAwIDQ1IDQ1IgogICAgIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiCiAgICAgPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLDQ1LjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKICAgICBmaWxsPSIjMDAwMDAwIgogICAgIHN0cm9rZT0ibm9uZSIKICAgICA+CiAgICA8cGF0aCBkPSJNMTEwIDQwMCBjMCAtNjIgLTMxIC0xMDAgLTgwIC0xMDAgbC0zMCAwIDAgLTE1MCAwIC0xNTAgMjI1IDAgMjI1IDAgMCAxNTAgMCAxNTAgLTMwIDAgYy00OSAwIC04MCAzOCAtODAgMTAwIGwwIDUwIC0xMTUgMCAtMTE1IDAgMCAtNTB6Ii8+CiAgPC9nPgo8L3N2Zz4=') 33% / calc(0.02 * var(--width)) stretch;*/
   transform: translateZ(0);
 }
 .screen-border {
@@ -100,9 +102,7 @@
 .jeu {
   width: 100%;
   height: 100%;
-  background-color: white;
   display: grid;
-  opacity: 0;
 }
 .nintendo-switch.on .jeu {
   opacity: 1;
@@ -131,6 +131,17 @@
   clip-path: polygon(0% 37.5%, 100% 37.5%, 100% 62.5%, 0% 62.5%);
 }
 
+button {
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: 0;
+  margin: 0;
+  border: 0;
+  background-color: var(--console-color);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 .boutons {
   --size: calc(0.69 * 0.139 * var(--width));
   width: var(--size);
@@ -149,10 +160,10 @@
   top: 13.8%;
   left: var(--side);
 }
-.boutons .c {
+/*.boutons .c {
   background-color: var(--console-color);
   border-radius: 50%;
-}
+}*/
 
 .joystick {
   --size: calc(0.468 * 0.139 * var(--width));

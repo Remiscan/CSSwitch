@@ -1,7 +1,8 @@
 // ▼ ES modules cache-busted grâce à PHP
 /*<?php ob_start();?>*/
 
-import { traduire, getString, switchLangage, getLangage } from '../_common/js/traduction.js';
+import { Traduction } from './modules/mod_traduction.js.php';
+import './modules/comp_NintendoSwitch.js.php';
 
 /*<?php $imports = ob_get_clean();
 require_once dirname(__DIR__, 1).'/_common/php/versionize-js-imports.php';
@@ -10,91 +11,14 @@ echo versionizeImports($imports, __DIR__); ?>*/
 
 // Nom des éléments et variables
 let doIrandomizeColors = false;
-let animationEnCours = false;
-const nintendoSwitch = document.querySelector('.nintendo-switch');
-const consoleSwitch = document.querySelector('.screen');
-const joyconG = document.getElementsByClassName('joycon')[0];
-const joyconD = document.getElementsByClassName('joycon')[1];
-const homeButton = document.querySelector('.home');
+
+
 const choix = document.querySelector('.choix');
 const conteneur = document.querySelector('main');
 const bruit = document.getElementById('clic-switch');
 function wait(time) { return new Promise(resolve => setTimeout(resolve, time)); }
 let takeoffHeight = 0;
 
-///////////////////////
-// Couleurs des joy-con
-//// Couleurs possibles pour les 2 Joy-Con
-const joyconColors = [
-  {
-    hex: '#6E757B',
-    hexOfficiel: '#828282',
-    id: 'gris'
-  }, {
-    hex: '#00BFDF',
-    hexOfficiel: '#0AB9E6',
-    id: 'bleu-neon'
-  }, {
-    hex: '#FF5E52',
-    hexOfficiel: '#FF3C28',
-    id: 'rouge-neon'
-  }, {
-    hex: '#D9EF64',
-    hexOfficiel: '#E6FF00',
-    id: 'jaune-neon'
-  }, {
-    hex: '#00E259',
-    hexOfficiel: '#1EDC00',
-    id: 'vert-neon'
-  }, {
-    hex: '#F85187',
-    hexOfficiel: '#FF3278',
-    id: 'rose-neon'
-  }, {
-    hex: '#EE2D37',
-    hexOfficiel: '#E10F00',
-    id: 'mario'
-  }, {
-    hex: '#D0A880',
-    hexOfficiel: '#D7AA73',
-    id: 'labo'
-  }
-];
-//// Couleurs propres au Joy-Con gauche
-const joyconGonlyColors = [
-  {
-    hex: '#CAA25A',
-    hexOfficiel: '#C88D32',
-    id: 'evoli'
-  }, {
-    hex: '#4456C2',
-    id: 'bleu'
-  }, {
-    hex: '#912FA8',
-    id: 'violet-neon'
-  }, {
-    hex: '#8DE6AF',
-    id: 'ac-vert'
-  }
-];
-//// Couleurs propres au Joy-Con droit
-const joyconDonlyColors = [
-  {
-    hex: '#F6D962',
-    hexOfficiel: '#FFDD00',
-    id: 'pikachu'
-  }, {
-    hex: '#F0BB37',
-    id: 'orange-neon'
-  }, {
-    hex: '#7DDCE2',
-    id: 'ac-bleu'
-  }
-];
-let typeCouleur = 'hex';
-const joyconGColors = [...joyconColors, ...joyconGonlyColors]; // Toutes les couleurs possibles du Joy-Con gauche
-const joyconDColors = [...joyconColors, ...joyconDonlyColors]; // Toutes les couleurs possibles du Joy-Con droit
-const allPossibleColors = [...joyconColors, ...joyconGonlyColors, ...joyconDonlyColors]; // Toutes les couleurs possibles
 
 function getCouleur(couleur, type = typeCouleur || 'hex') { return couleur[type] || couleur['hex']; }
 function changeType(type = false) {
@@ -130,41 +54,6 @@ boutonsOptions.forEach(b => {
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!!!! TEXTE ET TRADUCTION !!!!!!!!!!!!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-
-let langage;
-let Textes;
-///////////////////////////////////////////////////////
-// Place le texte français ou anglais aux bons endroits
-function textualiser()
-{
-  return traduire('csswitch')
-  .then(() => {
-    Array.from(document.querySelectorAll('.menu-liste button')).forEach(e => {
-      e.style.setProperty('--titre', '\'' + getString('titre-' + e.id) + '\'');
-    });
-
-    Array.from(document.querySelectorAll('button.menu-icone-jeu')).forEach(e => {
-      e.setAttribute('aria-label', getString('bouton-start-jeu') + ' ' + getString('titre-' + e.id));
-    });
-
-    document.title = 'CSSwitch - ' + getString('titre-page-description');
-
-    genererMenuChoix();
-    return;
-  })
-  .catch(error => console.error(error));
-}
-
-
-///////////////////////////////////////////
-// Active le bouton de changement de langue
-Array.from(document.querySelectorAll('[data-lang]')).forEach(bouton => {
-  bouton.addEventListener('click', () => {
-    switchLangage(bouton.dataset.lang)
-    .then(textualiser);
-  });
-});
 
 
 /////////////////////////////////////////////////
@@ -394,7 +283,7 @@ function bounceSwitch()
 
 
 // Change aléatoirement la couleur des Joy-Con si on clique sur la Switch pendant qu'elle est éteinte
-consoleSwitch.addEventListener('click', () => {
+/*consoleSwitch.addEventListener('click', () => {
   if (!nintendoSwitch.classList.contains('on') && !animationEnCours)
   {
     doIrandomizeColors = true;
@@ -405,7 +294,7 @@ consoleSwitch.addEventListener('click', () => {
     .then(landJoycons)
     .then(bounceSwitch);
   }
-});
+});*/
 
 
 //////////////////////////////////////////////////////
@@ -419,7 +308,7 @@ let cheating = true;
 let startTime;
 
 // Allume / éteint l'écran de la Switch
-homeButton.addEventListener('click', () => {
+/*homeButton.addEventListener('click', () => {
   homeButton.blur();
   if (nintendoSwitch.classList.contains('on'))
   {
@@ -437,7 +326,7 @@ homeButton.addEventListener('click', () => {
     document.querySelector('.jeu-bg button').tabIndex = -1;
     document.getElementById('jeu-1').focus();
   }
-});
+});*/
 
 
 // Lance un mini-jeu
@@ -562,12 +451,15 @@ function jouer(jeu, id)
 ///////////////////////
 // Au redimensionnement
 function onResize() {
-  takeoffHeight = Math.round(1.2 * nintendoSwitch.offsetHeight);
+  const nintendoSwitch = document.querySelector('nintendo-switch');
+  const screen = nintendoSwitch.shadowRoot.querySelector('.jeu');
+  //takeoffHeight = Math.round(1.2 * nintendoSwitch.offsetHeight);
+  nintendoSwitch.setAttribute('screen-size', Math.round(screen.getBoundingClientRect().width));
 }
 window.addEventListener('resize', onResize);
 window.addEventListener('orientationchange', onResize);
-window.addEventListener('load', () => {
-  changeJoyconColors(joyconColors[2], joyconColors[1], false);
+window.addEventListener('load', async () => {
+  /*changeJoyconColors(joyconColors[2], joyconColors[1], false);
 
   const menu = document.getElementById('menu-switch').content.cloneNode(true);
   document.querySelector('.jeu').appendChild(menu);
@@ -577,14 +469,13 @@ window.addEventListener('load', () => {
 
   Array.from(document.querySelectorAll('button.menu-icone-jeu')).forEach(e => {
     e.addEventListener('click', event => startGame(event));
-  });
+  });*/
 
   onResize();
-  return textualiser()
-  .then(() => {
-    document.documentElement.style.setProperty('--h-diff', 0);
-    document.querySelector('.ligne').classList.remove('off');
-    document.getElementById('choix-gauche').classList.remove('off');
-    document.getElementById('choix-droite').classList.remove('off');
-  });
+  await Traduction.traduire();
+
+  document.documentElement.style.setProperty('--h-diff', 0);
+  document.querySelector('.ligne').classList.remove('off');
+  document.getElementById('choix-gauche').classList.remove('off');
+  document.getElementById('choix-droite').classList.remove('off');
 });

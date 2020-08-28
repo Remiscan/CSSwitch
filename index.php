@@ -35,7 +35,6 @@ $Textes = new Textes('csswitch');
           id="strings" data-version="<?=version(__DIR__, 'strings.json')?>">
     <link rel="modulepreload" href="../_common/js/traduction--<?=version($commonDir.'/js', 'traduction.js')?>.js">
 
-    <link rel="stylesheet" href="console/switch--<?=version(__DIR__.'/console', 'switch.css')?>.css">
     <link rel="stylesheet" href="page--<?=version(__DIR__, 'page.css')?>.css">
   </head>
 
@@ -48,7 +47,7 @@ $Textes = new Textes('csswitch');
 
     <main id="conteneur">
       <div class="la-switch">
-        <?php include 'console/switch.html'; ?>
+        <nintendo-switch width="inherit"></nintendo-switch>
       </div>
 
       <div class="le-bouton gauche off" id="choix-gauche">
