@@ -27,8 +27,8 @@ $Textes = new Textes('csswitch');
     <link rel="manifest" href="/csswitch/manifest.json">
 
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" media="print" onload="this.media='all'">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P" media="print" onload="this.media='all'">
 
     <!-- ▼ Fichiers cache-busted grâce à PHP -->
     <!--<?php ob_start();?>-->
@@ -80,18 +80,13 @@ $Textes = new Textes('csswitch');
       </div>
     </main>
 
-    <audio id="clic-switch" preload="auto">
-      <source src="console/switch.mp3" type="audio/mpeg">
-    </audio>
-
     <div class="groupe-langages">
       <button class="bouton-langage" data-lang="fr" disabled>Français</button>
       <button class="bouton-langage" data-lang="en">English</button>
     </div>
 
-    <template id="menu-switch">
-      <?php include 'jeux/menu/template.php'; ?>
-    </template>
+    <!-- To preload the font -->
+    <span style="position: absolute; height: 30px; top: -40px; pointer-events: none; font-family: 'Press Start 2P', cursive;">Hello</span>
 
     <!-- ▼ Fichiers cache-busted grâce à PHP -->
     <!--<?php ob_start();?>-->
