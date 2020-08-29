@@ -35,6 +35,7 @@ class NintendoSwitch extends HTMLElement {
     const menu = this.shadowRoot.querySelector('menu-switch');
     menu.removeAttribute('open');
     Array.from(this.shadowRoot.querySelectorAll('jeu-switch')).forEach(jeu => jeu.remove());
+    this.removeAttribute('on');
   }
 
   get on() {
@@ -100,9 +101,17 @@ class NintendoSwitch extends HTMLElement {
 
     window.addEventListener('buttonclick', event => {
       // Turn on the console when the Home button is clicked
+      // or go back to the Home menu if it's already on
       if (event.detail.button.key == 'home') {
-        if (this.on) this.turnOff();
+        if (this.on) this.goHome();
         else this.turnOn();
+        return;
+      }
+
+      // Turn off the console when the Power button is clicked
+      if (event.detail.button.key == 'power') {
+        if (this.on) this.turnOff();
+        return;
       }
     })
   }
