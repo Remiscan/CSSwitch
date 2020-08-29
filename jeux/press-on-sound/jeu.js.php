@@ -11,6 +11,7 @@ echo versionizeFiles($imports, __DIR__); ?>*/
 
 const template = document.createElement('template');
 template.innerHTML = `
+  <style><?php include './styles.css'; ?></style>
   <?php include './template.html'; ?>
 `;
 
@@ -30,15 +31,7 @@ export default class PressOnSound extends Jeu {
     await super.start();
     console.log('Jeu démarré');
 
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-    let response = await fetch('/csswitch/jeux/menu/switch.ogg');
-    if (response.status != 200) throw 'Error while downloading sound file';
-    response = await response.arrayBuffer();
-    response = await audioCtx.decodeAudioData(response);
-
-    this.audioCtx = audioCtx;
-    this.bruitBuffer = response;
+    await this.prepareSound();
 
     const storedScore = localStorage.getItem('csswitch/best-score');
     const bestScore = (storedScore == null) ? '---' : storedScore;
@@ -133,10 +126,24 @@ export default class PressOnSound extends Jeu {
     });
   }
 
+  async prepareSound() {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    let response = await fetch('/csswitch/jeux/menu/switch.ogg');
+    if (response.status != 200) throw 'Error while downloading sound file';
+    response = await response.arrayBuffer();
+    response = await audioCtx.decodeAudioData(response);
+
+    this.audioCtx = audioCtx;
+    this.bruitBuffer = response;
+    return;
+  }
+
   async playSound() {
     const bruit = this.audioCtx.createBufferSource();
     bruit.buffer = this.bruitBuffer;
     bruit.connect(this.audioCtx.destination);
     bruit.start();
+    return;
   }
 }
