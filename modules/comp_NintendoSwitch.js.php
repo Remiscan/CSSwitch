@@ -43,7 +43,10 @@ class NintendoSwitch extends HTMLElement {
   }
 
   detectButtonPresses() {
-    const buttonElements = Array.from(this.shadowRoot.querySelectorAll('button'));
+    const buttonElements = [
+      ...Array.from(this.shadowRoot.querySelectorAll('button')),
+      ...Array.from(this.shadowRoot.querySelector('menu-switch').shadowRoot.querySelectorAll('button'))
+    ];
     this.buttons = buttonElements.map(buttonEl => {
       return { 
         key: buttonEl.dataset.key,
@@ -62,6 +65,8 @@ class NintendoSwitch extends HTMLElement {
 
   static dispatchButtonEvent(button, type, duration = 0) {
     const event = new CustomEvent(type, { 
+      bubbles: true,
+      composed: true,
       detail: { 
         button,
         time: Date.now(),
