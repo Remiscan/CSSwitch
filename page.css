@@ -35,7 +35,7 @@ main {
   z-index: 1;
   display: grid;
   grid-template-columns: 14fr 72fr 14fr;
-  grid-template-rows: calc(0.425 * var(--width)) 5rem;
+  /*grid-template-rows: calc(0.425 * var(--width)) 5rem;*/
   --width: 64vw;
 }
 .la-switch {

@@ -130,14 +130,14 @@ async function openChoice(side)
     document.getElementById('choix-droite').querySelector('button').tabIndex = 0;
   }
 }
-document.getElementById('choix-gauche').addEventListener('click', () => {
+/*document.getElementById('choix-gauche').addEventListener('click', () => {
   if (!animationEnCours)
     openChoice('gauche');
 });
 document.getElementById('choix-droite').addEventListener('click', () => {
   if (!animationEnCours)
     openChoice('droite');
-});
+});*/
 
 
 // Change la couleur des Joy-Con
@@ -297,157 +297,6 @@ function bounceSwitch()
 });*/
 
 
-//////////////////////////////////////////////////////
-// Contenu de l'écran de la Switch — menu et mini-jeux
-
-let boutonJeu;
-let idPartie;
-let idCheat;
-let hasCheated = false;
-let cheating = true;
-let startTime;
-
-// Allume / éteint l'écran de la Switch
-/*homeButton.addEventListener('click', () => {
-  homeButton.blur();
-  if (nintendoSwitch.classList.contains('on'))
-  {
-    // Fermer menu et jeux
-    nintendoSwitch.classList.remove('on');
-    nintendoSwitch.classList.remove('gaming');
-    document.querySelector('.menu-bg button').tabIndex = -1;
-    document.querySelector('.jeu-bg button').tabIndex = -1;
-  }
-  else
-  {
-    // Ouvrir menu
-    nintendoSwitch.classList.add('on');
-    document.querySelector('.menu-bg button').tabIndex = 0;
-    document.querySelector('.jeu-bg button').tabIndex = -1;
-    document.getElementById('jeu-1').focus();
-  }
-});*/
-
-
-// Lance un mini-jeu
-function startGame(event)
-{
-  nintendoSwitch.classList.add('gaming');
-  const id = event.currentTarget.id.replace('jeu-', '');
-  const cooEcran = document.querySelector('.jeu').getBoundingClientRect();
-  const cooIcone = event.currentTarget.getBoundingClientRect();
-  const clicX = Math.round(cooIcone.left + 0.5 * cooIcone.width - cooEcran.left);
-  const clicY = Math.round(cooIcone.top + 0.5 * cooIcone.height - cooEcran.top);
-  document.querySelector('.jeu').style.setProperty('--x', clicX + 'px');
-  document.querySelector('.jeu').style.setProperty('--y', clicY + 'px');
-  document.querySelector('.menu-bg button').tabIndex = -1;
-  document.querySelector('.jeu-bg button').tabIndex = 0;
-
-  // Mini-jeu : Press on Sound
-  if (id == 1)
-  {
-    const storedScore = localStorage.getItem('csswitch/best-score');
-    const bestScore = (storedScore == null) ? '---' : storedScore;
-    document.getElementById('score-record').innerHTML = bestScore;
-
-    boutonJeu = document.querySelector('.jeu-bouton');
-    boutonJeu.addEventListener('click', () => {
-      if (cheating)
-      {
-        const id = Date.now();
-        idCheat = id;
-        hasCheated = true;
-        boutonJeu.classList.add('cheating');
-        return wait(3000)
-        .then(() => {
-          if (idCheat == id)
-            boutonJeu.classList.remove('cheating');
-        });
-      }
-      else
-      {
-        if (!boutonJeu.classList.contains('cheating'))
-        {
-          const endTime = Date.now();
-          const lastScore = endTime - startTime;
-          document.getElementById('score-dernier').innerHTML = lastScore;
-          const storedScore = localStorage.getItem('csswitch/best-score');
-          const bestScore = (storedScore == null) ? lastScore : (storedScore > lastScore) ? lastScore : storedScore;
-          localStorage.setItem('csswitch/best-score', bestScore);
-          document.getElementById('score-record').innerHTML = bestScore;
-        }
-      }
-    });
-    boutonJeu.addEventListener('mouseout', () => boutonJeu.blur());
-    boutonJeu.addEventListener('touchend', () => boutonJeu.blur());
-
-    idPartie = Date.now();
-    return jouer('Press on Sound', idPartie);
-  }
-}
-
-
-// Lance une partie n°id d'un jeu
-function jouer(jeu, id)
-{
-  document.removeEventListener('visibilitychange', () => jouer(jeu, id));
-
-  return Promise.resolve()
-  .then(() => {
-
-    // Press on Sound
-    if (jeu == 'Press on Sound')
-    {
-      const delai = Math.round(5000 + 10000 * Math.random());
-
-      return wait(delai)
-      .then(() => {
-        if (idPartie != id)
-          throw 'Nouvelle partie commencée';
-        if (hasCheated)
-          throw 'Tentative de triche';
-        if (nintendoSwitch.classList.contains('gaming') && !document.hidden)
-        {
-          bruit.play();
-          cheating = false;
-          boutonJeu.classList.add('on');
-          startTime = Date.now();
-          return wait(900);
-        }
-        else if (nintendoSwitch.classList.contains('gaming') && document.hidden)
-          throw 'Page inactive';
-        else
-          throw 'Jeu fermé';
-      })
-      .then(() => {
-        boutonJeu.classList.remove('on');
-        cheating = true;
-        if (nintendoSwitch.classList.contains('gaming'))
-          return jouer(jeu, id);
-        else
-          throw 'Jeu fermé';
-      });
-    }
-    else
-      throw 'Jeu inexistant';
-
-  })
-  .catch(raison => {
-    //console.log('Partie ' + id + ' annulée :', raison);
-    if (raison == 'Tentative de triche')
-    {
-      hasCheated = false;
-      return jouer(jeu, id);
-    }
-    else if (raison == 'Page inactive')
-    {
-      idPartie = Date.now();
-      document.addEventListener('visibilitychange', () => jouer(jeu, idPartie));
-    }
-  });
-}
-
-
 ///////////////////////
 // Au redimensionnement
 function onResize() {
@@ -475,7 +324,7 @@ window.addEventListener('load', async () => {
   await Traduction.traduire();
 
   document.documentElement.style.setProperty('--h-diff', 0);
-  document.querySelector('.ligne').classList.remove('off');
+  /*document.querySelector('.ligne').classList.remove('off');
   document.getElementById('choix-gauche').classList.remove('off');
-  document.getElementById('choix-droite').classList.remove('off');
+  document.getElementById('choix-droite').classList.remove('off');*/
 });

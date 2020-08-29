@@ -57,7 +57,7 @@ $Textes = new Textes('csswitch');
         <nintendo-switch width="inherit"></nintendo-switch>
       </div>
 
-      <div class="le-bouton gauche off" id="choix-gauche">
+      <!--<div class="le-bouton gauche off" id="choix-gauche">
         <button data-string="bouton-choix-couleur-gauche"><?=$Textes->getString('bouton-choix-couleur-gauche')?></button>
       </div>
 
@@ -68,7 +68,7 @@ $Textes = new Textes('csswitch');
       <div class="indice">
         <div class="ligne off"></div>
         <div class="texte" data-string="instruction-choix-couleur"><?=$Textes->getString('instruction-choix-couleur')?></div>
-      </div>
+      </div>-->
 
       <div class="choix">
         <template id="template-couleur">
