@@ -70,6 +70,12 @@
   height: 0;
   padding-top: 13%;
 }
+button.menu-rond:hover,
+button.menu-rond:focus {
+  box-shadow: 0 0 0 .1em #0A253D,
+              0 0 0 .3em #1F99CD;
+  outline: none;
+}
 .menu-verybottom {
   display: flex;
   flex-direction: row;
@@ -153,12 +159,14 @@ button.menu-icone-jeu::after {
   font-family: 'Roboto', sans-serif;
   font-size: 1.1em;
 }
-button.menu-icone-jeu:hover, button.menu-icone-jeu:focus {
+button.menu-icone-jeu:hover,
+button.menu-icone-jeu:focus {
   box-shadow: 0 0 0 .2em #0A253D,
               0 0 0 .4em #1F99CD;
   outline: none;
 }
-button.menu-icone-jeu:hover::after, button.menu-icone-jeu:focus::after {
+button.menu-icone-jeu:hover::after,
+button.menu-icone-jeu:focus::after {
   display: block;
 }
 @keyframes allumage {

@@ -28,6 +28,7 @@ class NintendoSwitch extends HTMLElement {
     const menu = this.shadowRoot.querySelector('menu-switch');
     menu.setAttribute('open', '');
     menu.shadowRoot.querySelector('button.menu-icone-jeu:first-child').focus();
+    this.setAttribute('on', '');
   }
 
   turnOff() {

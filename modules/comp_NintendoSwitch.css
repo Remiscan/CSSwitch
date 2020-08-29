@@ -141,6 +141,15 @@ button {
   border-radius: 50%;
   cursor: pointer;
 }
+button.c:hover,
+button.c:focus {
+  box-shadow: 0 0 0 .2rem white;
+  outline: none;
+}
+button.c:active {
+  box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .8),
+              inset 0 0 0 50px rgba(0, 0, 0, .5);
+}
 
 .boutons {
   --size: calc(0.69 * 0.139 * var(--width));
@@ -230,11 +239,13 @@ button {
 .home.on {
   animation: home-sparkle 2s ease .5s infinite alternate;
 }
-.nintendo-switch.on .home {
-  background-color: #7EE5FF; box-shadow: 0 0 0 calc(0.002*var(--width)) rgba(0, 136, 170, .5);
+:host([on]) button.home {
+  background-color: #7EE5FF;
+  box-shadow: 0 0 0 calc(0.002*var(--width)) rgba(0, 136, 170, .5);
 }
-.home:focus:not(:hover) {
-  background-color: #FFFFFF; box-shadow: 0 0 0 calc(0.002*var(--width)) #00BFDF;
+button.home:focus:not(:hover) {
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 calc(0.002*var(--width)) #00BFDF;
 }
 .home .coeur {
   width: 75%;
