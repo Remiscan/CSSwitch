@@ -4,9 +4,9 @@
   <div class="select"></div>
 
   <div class="boutons gauche">
-    <div></div><button class="c" data-key="up">Up button</button><div></div>
-    <button class="c" data-key="left">Left button</button><div></div><button class="c" data-key="right">Right button</button>
-    <div></div><button class="c" data-key="down">Down button</button><div></div>
+    <div></div><button class="c" data-key="up" data-other-keys="KeyW,ArrowUp">Up button</button><div></div>
+    <button class="c" data-key="left" data-other-keys="KeyA,ArrowLeft">Left button</button><div></div><button class="c" data-key="right" data-other-keys="KeyD,ArrowRight">Right button</button>
+    <div></div><button class="c" data-key="down" data-other-keys="KeyS,ArrowDown">Down button</button><div></div>
   </div>
 
   <div class="joystick gauche">
@@ -48,9 +48,9 @@
   <div class="start"></div>
 
   <div class="boutons droite">
-    <div></div><button class="c" data-key="x">X button</button><div></div>
-    <button class="c" data-key="y">Y button</button><div></div><button class="c" data-key="a">A button</button>
-    <div></div><button class="c" data-key="b">B button</button><div></div>
+    <div></div><button class="c" data-key="x" data-other-keys="KeyE">X button</button><div></div>
+    <button class="c" data-key="y" data-other-keys="KeyF">Y button</button><div></div><button class="c" data-key="a" data-other-keys="ShiftLeft">A button</button>
+    <div></div><button class="c" data-key="b" data-other-keys="ControlLeft,Backspace">B button</button><div></div>
   </div>
 
   <div class="joystick droite">
@@ -59,7 +59,7 @@
 
   <!--<label for="homeButton">Switch Home button</label>
   <button class="home" id="homeButton" aria-label="Home">-->
-  <button class="home" data-key="home">
+  <button class="home" data-key="home" data-other-keys="Escape">
     Home button
     <div class="coeur"></div>
   </button>

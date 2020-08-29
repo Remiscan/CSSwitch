@@ -65,7 +65,8 @@ class NintendoSwitch extends HTMLElement {
         key: buttonEl.dataset.key,
         pressed: false,
         lastPress: 0,
-        element: buttonEl
+        element: buttonEl,
+        otherKeys: (buttonEl.dataset.otherKeys || '').split(',')
       }
     });
 
@@ -74,6 +75,19 @@ class NintendoSwitch extends HTMLElement {
       buttonEl.addEventListener('mousedown', () => NintendoSwitch.dispatchButtonEvent(button, 'buttonpress'));
       buttonEl.addEventListener('touchstart', () => NintendoSwitch.dispatchButtonEvent(button, 'buttonpress'));
     }
+
+    window.addEventListener('keydown', event => {
+      const switchButton = this.buttons.find(b => b.otherKeys.includes(event.code));
+      if (!switchButton) return;
+      switchButton.element.classList.add('active');
+      switchButton.element.dispatchEvent(new Event('mousedown'));
+    });
+    window.addEventListener('keyup', event => {
+      const switchButton = this.buttons.find(b => b.otherKeys.includes(event.code));
+      if (!switchButton) return;
+      switchButton.element.classList.remove('active');
+      switchButton.element.dispatchEvent(new Event('mouseup'));
+    });
   }
 
   static dispatchButtonEvent(button, type, duration = 0) {
@@ -146,6 +160,7 @@ customElements.define('nintendo-switch', NintendoSwitch);
 //////////////////////////////////////////////////
 // Let's dispatch events related to button presses
 
+const log = true;
 window.addEventListener('buttonpress', event => {
   const button = event.detail.button;
   if (button.pressed) return;
@@ -156,7 +171,7 @@ window.addEventListener('buttonpress', event => {
   buttonEl.addEventListener('mouseleave', () => NintendoSwitch.dispatchButtonEvent(button, 'buttonrelease'));
   buttonEl.addEventListener('touchend', () => NintendoSwitch.dispatchButtonEvent(button, 'buttonrelease'));
   buttonEl.addEventListener('touchcancel', () => NintendoSwitch.dispatchButtonEvent(button, 'buttonrelease'));
-  //console.log('Button press:', button.key, event.detail.time);
+  if (log) console.log('Button press:', button.key, event.detail.time);
 });
 
 window.addEventListener('buttonrelease', event => {
@@ -165,10 +180,10 @@ window.addEventListener('buttonrelease', event => {
   button.pressed = false;
   const duration = event.detail.time - button.lastPress;
   NintendoSwitch.dispatchButtonEvent(button, 'buttonclick', duration);
-  //console.log('Button release:', button.key, event.detail.time);
+  if (log) console.log('Button release:', button.key, event.detail.time);
 });
 
 window.addEventListener('buttonclick', event => {
   const button = event.detail.button;
-  //console.log('Button click:', button.key, event.detail.duration);
+  if (log) console.log('Button click:', button.key, event.detail.duration);
 });
