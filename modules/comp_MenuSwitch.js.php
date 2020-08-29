@@ -1,8 +1,12 @@
 // ▼ ES modules cache-busted grâce à PHP
 /*<?php ob_start();?>*/
 
+import '../jeux/menu/comp_joyconIcon.js';
+import '../jeux/menu/comp_settingsIcon.js';
+import '../jeux/menu/comp_powerIcon.js';
 import { Traduction, getString } from './mod_traduction.js.php';
 import PressOnSound from '../jeux/press-on-sound/jeu.js.php';
+import ControllerMenu from '../jeux/controller-menu/jeu.js.php';
 
 /*<?php $imports = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
@@ -71,6 +75,13 @@ class MenuSwitch extends HTMLElement {
       div.classList.add('menu-icone-jeu');
       iconList.appendChild(div);
     }
+
+    // Listen to the controller icon
+    window.addEventListener('buttonpress', event => {
+      if (event.detail.button.key == 'controllers') {
+        new ControllerMenu();
+      }
+    });
 
     this.traduire();
 

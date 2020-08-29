@@ -65,10 +65,13 @@
 }
 .menu-rond {
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, .1);
-  width: 13%;
-  height: 0;
-  padding-top: 13%;
+  --bouton-color: #414141;
+  background-color: var(--bouton-color);
+  width: calc(0.13 * 0.5 * var(--screen-size) * 1px);
+  height: calc(0.13 * 0.5 * var(--screen-size) * 1px);
+  position: relative;
+  display: grid;
+  place-items: center;
 }
 button.menu-rond:hover,
 button.menu-rond:focus {
