@@ -148,7 +148,7 @@ button.c:focus {
 }
 button.c:active {
   box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .8),
-              inset 0 0 0 50px rgba(0, 0, 0, .5);
+              inset 0 0 0 5rem rgba(0, 0, 0, .4);
 }
 
 .boutons {
@@ -243,9 +243,11 @@ button.c:active {
   background-color: #7EE5FF;
   box-shadow: 0 0 0 calc(0.002*var(--width)) rgba(0, 136, 170, .5);
 }
-button.home:focus:not(:hover) {
+button.home:focus,
+button.home:hover {
   background-color: #FFFFFF;
   box-shadow: 0 0 0 calc(0.002*var(--width)) #00BFDF;
+  outline: none;
 }
 .home .coeur {
   width: 75%;
@@ -256,6 +258,9 @@ button.home:focus:not(:hover) {
   position: absolute;
   top: 12.5%;
   left: 12.5%;
+}
+button.home:active>.coeur {
+  box-shadow: inset 0 0 0 5rem rgba(0, 0, 0, .5);
 }
 
 .attache {
