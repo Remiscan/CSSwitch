@@ -38,6 +38,19 @@ class NintendoSwitch extends HTMLElement {
     this.removeAttribute('on');
   }
 
+  goHome() {
+    Array.from(this.shadowRoot.querySelectorAll('jeu-switch')).forEach(jeu => {
+      const close = jeu.animate([
+        { opacity: '1', transform: 'scale(1)' },
+        { opacity: '0', transform: 'scale(.8)' }
+      ], {
+        duration: 100,
+        fill: 'forwards'
+      });
+      close.onfinish = () => jeu.remove();
+    });
+  }
+
   get on() {
     return this.shadowRoot.querySelector('menu-switch').getAttribute('open') !== null;
   }
