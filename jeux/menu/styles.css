@@ -9,6 +9,7 @@
   grid-row: 1;
   grid-column: 1;
   z-index: 1;
+  --button-focus-outline-color: #1F99CD;
 }
 :host([open]) {
   display: grid;
@@ -75,8 +76,7 @@
 }
 button.menu-rond:hover,
 button.menu-rond:focus {
-  box-shadow: 0 0 0 .1em #0A253D,
-              0 0 0 .3em #1F99CD;
+  animation: focusRing 1s linear infinite;
   outline: none;
 }
 .menu-verybottom {
@@ -164,15 +164,27 @@ button.menu-icone-jeu::after {
 }
 button.menu-icone-jeu:hover,
 button.menu-icone-jeu:focus {
-  box-shadow: 0 0 0 .2em #0A253D,
-              0 0 0 .4em #1F99CD;
+  animation: focusRing-jeu 1s linear infinite;
   outline: none;
 }
 button.menu-icone-jeu:hover::after,
 button.menu-icone-jeu:focus::after {
   display: block;
 }
+
 @keyframes allumage {
   0% { opacity: 0; transform: scale(.4); }
   100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes focusRing {
+  0% { box-shadow: 0 0 0 .2em #72EBF6; }
+  50% { box-shadow: 0 0 0 .2em #2996CE; }
+  100% { box-shadow: 0 0 0 .2em #72EBF6; }
+}
+
+@keyframes focusRing-jeu {
+  0% { box-shadow: 0 0 0 .2em #0A253D, 0 0 0 .4em #72EBF6; }
+  50% { box-shadow: 0 0 0 .2em #0A253D, 0 0 0 .4em #2996CE; }
+  100% { box-shadow: 0 0 0 .2em #0A253D, 0 0 0 .4em #72EBF6; }
 }
