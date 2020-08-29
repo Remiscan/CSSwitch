@@ -44,10 +44,10 @@ template.innerHTML = `
     :host([open]) {
       opacity: 1;
       pointer-events: auto;
-      animation: allumage .2s var(--easing-decelerate) -.1s;
+      animation: allumage .1s var(--easing-decelerate);
     }
     @keyframes allumage {
-      0% { opacity: 0; transform: scale(.4); }
+      0% { opacity: .5; transform: scale(.8); }
       100% { opacity: 1; transform: scale(1); }
     }
   </style>
