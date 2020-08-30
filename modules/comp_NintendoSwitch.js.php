@@ -55,6 +55,14 @@ class NintendoSwitch extends HTMLElement {
     return this.shadowRoot.querySelector('menu-switch').getAttribute('open') !== null;
   }
 
+  detectColorChanges() {
+    window.addEventListener('controllercolorchange', event => {
+      const side = (event.detail.side == 'right') ? 'droit' : 'gauche';
+      const joycon = this.shadowRoot.querySelector(`.joycon.${side}`);
+      joycon.style.setProperty('--joycon-color', event.detail.color);
+    });
+  }
+
   detectButtonPresses() {
     const buttonElements = [
       ...Array.from(this.shadowRoot.querySelectorAll('button')),
@@ -130,6 +138,7 @@ class NintendoSwitch extends HTMLElement {
     const homeButton = document.querySelector('.home');
     this.update();
     this.detectButtonPresses();
+    this.detectColorChanges();
 
     window.addEventListener('buttonclick', event => {
       // Turn on the console when the Home button is clicked
