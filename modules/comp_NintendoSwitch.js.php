@@ -63,6 +63,7 @@ class NintendoSwitch extends HTMLElement {
       joycon.style.setProperty('--joycon-color', Params.getColorHex(event.detail.color.id));
       joycon.dataset.color = event.detail.color.id;
       Params.currentColors[event.detail.section] = event.detail.color.id;
+      localStorage.setItem(`csswitch/joycon-${side}`, event.detail.color.id);
     });
 
     window.addEventListener('colorsetcolorchange', event => {
@@ -75,7 +76,7 @@ class NintendoSwitch extends HTMLElement {
   colorizeJoycons() {
     ['gauche', 'droit'].map(side => this.shadowRoot.querySelector(`.joycon.${side}`)).forEach(joycon => {
       const side = (joycon.classList.contains('gauche')) ? 'left' : 'right';
-      joycon.style.setProperty('--joycon-color', Params.getColorHex(joycon.dataset.color || Params.defaultColors[side]));
+      joycon.style.setProperty('--joycon-color', Params.getColorHex(joycon.dataset.color || Params.currentColors[side]));
     });
   }
 

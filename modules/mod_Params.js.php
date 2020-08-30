@@ -78,9 +78,9 @@ class Settings {
     };
 
     this.currentColors = {
-      left: 'rouge-neon',
-      right: 'bleu-neon',
-      theme: 'auto',
+      left: localStorage.getItem('csswitch/joycon-gauche') || 'rouge-neon',
+      right: localStorage.getItem('csswitch/joycon-droit') || 'bleu-neon',
+      theme: ['dark', 'light'].includes(localStorage.getItem('csswitch/theme')) ? localStorage.getItem('csswitch/theme') : 'auto',
       colorset: localStorage.getItem('csswitch/colorset') == 'photos' ? 'photos' : 'officiel'
     };
 
@@ -125,8 +125,8 @@ class Settings {
   }
 
   getColorHex(id, set = 'all', type = this.currentColors.colorset) {
-    const color = this.findColor(id, set);
-    return (type == 'officiel') ? (color.hexOfficiel || color.hex) : color.hex;
+    const color = this.findColor(id, set) || this.defaultColors['left'];
+    return ((type == 'officiel') ? (color.hexOfficiel || color.hex) : color.hex);
   }
 };
 
