@@ -7,6 +7,7 @@ import '../jeux/menu/comp_powerIcon.js';
 import { Traduction, getString } from './mod_traduction.js.php';
 import PressOnSound from '../jeux/press-on-sound/jeu.js.php';
 import ControllerMenu from '../jeux/controller-menu/jeu.js.php';
+import PageSettingsMenu from '../jeux/page-settings-menu/jeu.js.php';
 
 /*<?php $imports = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
@@ -24,7 +25,7 @@ template.innerHTML = `
   <?php include '../jeux/menu/template.html'; ?>
 `;
 
-class MenuSwitch extends HTMLElement {
+class MainMenu extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: 'open' });
@@ -46,7 +47,7 @@ class MenuSwitch extends HTMLElement {
     return;
   }
 
-  update(attributes = MenuSwitch.observedAttributes) {
+  update(attributes = MainMenu.observedAttributes) {
     if (!this.ready) return;
   }
 
@@ -81,6 +82,9 @@ class MenuSwitch extends HTMLElement {
       if (event.detail.button.key == 'controllers') {
         new ControllerMenu();
       }
+      else if (event.detail.button.key == 'settings') {
+        new PageSettingsMenu();
+      }
     });
 
     this.traduire();
@@ -92,4 +96,4 @@ class MenuSwitch extends HTMLElement {
     this.update([name]);
   }
 }
-customElements.define('menu-switch', MenuSwitch);
+customElements.define('main-menu', MainMenu);

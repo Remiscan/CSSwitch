@@ -10,27 +10,32 @@ echo versionizeFiles($imports, __DIR__); ?>*/
 
 
 
-export default class ControllerMenu extends SettingsMenu {
+const template = document.createElement('template');
+template.innerHTML = `
+  <style><?php include './styles.css'; ?></style>
+`;
+
+
+
+export default class PageSettingsMenu extends SettingsMenu {
   constructor() {
-    const sections = ['left', 'right'];
-    super(sections, ControllerMenu.id, 'joycon');
+    const sections = ['theme', 'language'];
+    super(sections, PageSettingsMenu.id);
     this.start();
   }
 
   static get id() {
-    return 'controller-menu';
+    return 'page-settings-menu';
   }
 
   async start() {
     await super.start();
 
     const conteneur = this.getElement('section');
-    this.sections.forEach(section => {
-      const choix = new ColorChoice();
-      choix.setAttribute('data-section', section);
-      choix.setAttribute('subject', 'controller');
-      conteneur.replaceChild(choix, this.getElement(`div[data-section='${section}']`));
-    });
+    const choix = new ColorChoice();
+    choix.setAttribute('data-section', 'theme');
+    choix.setAttribute('subject', 'theme');
+    conteneur.replaceChild(choix, this.getElement(`div[data-section='theme']`));
 
     console.log('Jeu démarré');
   }

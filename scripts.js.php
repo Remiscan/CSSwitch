@@ -310,7 +310,7 @@ window.addEventListener('orientationchange', onResize);
 window.addEventListener('load', async () => {
   /*changeJoyconColors(joyconColors[2], joyconColors[1], false);
 
-  const menu = document.getElementById('menu-switch').content.cloneNode(true);
+  const menu = document.getElementById('main-menu').content.cloneNode(true);
   document.querySelector('.jeu').appendChild(menu);
 
   const jeu = document.getElementById('jeu1').content.cloneNode(true);

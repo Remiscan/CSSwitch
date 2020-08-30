@@ -1,7 +1,8 @@
 // ▼ ES modules cache-busted grâce à PHP
 /*<?php ob_start();?>*/
 
-import './comp_MenuSwitch.js.php';
+import './comp_MainMenu.js.php';
+import { Params } from './mod_Params.js.php';
 
 /*<?php $imports = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
@@ -25,14 +26,14 @@ class NintendoSwitch extends HTMLElement {
   }
 
   turnOn() {
-    const menu = this.shadowRoot.querySelector('menu-switch');
+    const menu = this.shadowRoot.querySelector('main-menu');
     menu.setAttribute('open', '');
     menu.shadowRoot.querySelector('button.menu-icone-jeu:first-child').focus();
     this.setAttribute('on', '');
   }
 
   turnOff() {
-    const menu = this.shadowRoot.querySelector('menu-switch');
+    const menu = this.shadowRoot.querySelector('main-menu');
     menu.removeAttribute('open');
     Array.from(this.shadowRoot.querySelectorAll('jeu-switch')).forEach(jeu => jeu.remove());
     this.removeAttribute('on');
@@ -52,21 +53,23 @@ class NintendoSwitch extends HTMLElement {
   }
 
   get on() {
-    return this.shadowRoot.querySelector('menu-switch').getAttribute('open') !== null;
+    return this.shadowRoot.querySelector('main-menu').getAttribute('open') !== null;
   }
 
   detectColorChanges() {
     window.addEventListener('controllercolorchange', event => {
-      const side = (event.detail.side == 'right') ? 'droit' : 'gauche';
+      const side = (event.detail.section == 'right') ? 'droit' : 'gauche';
       const joycon = this.shadowRoot.querySelector(`.joycon.${side}`);
-      joycon.style.setProperty('--joycon-color', event.detail.color);
+      joycon.style.setProperty('--joycon-color', event.detail.color.hex);
+      joycon.dataset.color = event.detail.color.id;
+      Params.currentColors[event.detail.section] = event.detail.color.id;
     });
   }
 
   detectButtonPresses() {
     const buttonElements = [
       ...Array.from(this.shadowRoot.querySelectorAll('button')),
-      ...Array.from(this.shadowRoot.querySelector('menu-switch').shadowRoot.querySelectorAll('button'))
+      ...Array.from(this.shadowRoot.querySelector('main-menu').shadowRoot.querySelectorAll('button'))
     ];
     this.buttons = buttonElements.map(buttonEl => {
       return { 
@@ -131,14 +134,14 @@ class NintendoSwitch extends HTMLElement {
 
   connectedCallback() {
     this.ready = true;
-    const nintendoSwitch = document.querySelector('.nintendo-switch');
-    const consoleSwitch = document.querySelector('.screen');
-    const joyconG = document.getElementsByClassName('joycon')[0];
-    const joyconD = document.getElementsByClassName('joycon')[1];
-    const homeButton = document.querySelector('.home');
     this.update();
     this.detectButtonPresses();
     this.detectColorChanges();
+
+    const joyconG = this.shadowRoot.querySelector('.joycon.gauche');
+    const joyconD = this.shadowRoot.querySelector('.joycon.droit');
+    joyconG.style.setProperty('--joycon-color', Params.findColor(Params.defaultColors.left).hex);
+    joyconD.style.setProperty('--joycon-color', Params.findColor(Params.defaultColors.right).hex);
 
     window.addEventListener('buttonclick', event => {
       // Turn on the console when the Home button is clicked

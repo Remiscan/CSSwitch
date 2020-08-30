@@ -40,6 +40,8 @@ template.innerHTML = `
       grid-column: 1;
       z-index: 2;
       position: relative;
+      max-height: 100%;
+      overflow: hidden;
     }
     :host([open]) {
       opacity: 1;
