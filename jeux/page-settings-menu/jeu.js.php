@@ -19,7 +19,7 @@ template.innerHTML = `
 
 export default class PageSettingsMenu extends SettingsMenu {
   constructor() {
-    const sections = ['theme', 'language'];
+    const sections = ['theme', 'colorset', 'language'];
     super(sections, PageSettingsMenu.id);
     this.start();
   }
@@ -32,10 +32,18 @@ export default class PageSettingsMenu extends SettingsMenu {
     await super.start();
 
     const conteneur = this.getElement('section');
-    const choix = new ColorChoice();
-    choix.setAttribute('data-section', 'theme');
-    choix.setAttribute('subject', 'theme');
-    conteneur.replaceChild(choix, this.getElement(`div[data-section='theme']`));
+    {
+      const choix = new ColorChoice();
+      choix.setAttribute('data-section', 'theme');
+      choix.setAttribute('subject', 'theme');
+      conteneur.replaceChild(choix, this.getElement(`div[data-section='theme']`));
+    }
+    {
+      const choix = new ColorChoice();
+      choix.setAttribute('data-section', 'colorset');
+      choix.setAttribute('subject', 'colorset');
+      conteneur.replaceChild(choix, this.getElement(`div[data-section='colorset']`));
+    }
 
     console.log('Jeu démarré');
   }

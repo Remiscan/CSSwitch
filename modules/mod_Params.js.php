@@ -67,8 +67,6 @@ class Settings {
       ]
     };
 
-    this.colorType = 'hex';
-
     this.defaultColors = {
       left: 'rouge-neon',
       right: 'bleu-neon'
@@ -77,7 +75,8 @@ class Settings {
     this.currentColors = {
       left: 'rouge-neon',
       right: 'bleu-neon',
-      theme: 'auto'
+      theme: 'auto',
+      colorset: localStorage.getItem('csswitch/colorset') == 'officiel' ? 'officiel' : 'photos'
     };
 
     this.themes = [
@@ -92,6 +91,16 @@ class Settings {
         id: 'dark'
       }
     ];
+
+    this.colorSets = [
+      {
+        hex: 'linear-gradient(to right, #6E757B 0% 33%, #00BFDF 34% 66%, #FF5E5E 67% 100%)',
+        id: 'photos'
+      }, {
+        hex: 'linear-gradient(to right, #828282 0% 33%, #0AB9E6 34% 66%, #FF3C28 67% 100%)',
+        id: 'officiel'
+      }
+    ];
   }
 
   colors(side = 'all') {
@@ -99,11 +108,20 @@ class Settings {
       return [...this.joyconColors.both, ...this.joyconColors.left];
     if (['right', 'droit', 'droite'].includes(side))
       return [...this.joyconColors.both, ...this.joyconColors.right];
+    if (side == 'theme')
+      return [...this.themes];
+    if (side == 'colorset')
+      return [...this.colorSets];
     return [...this.joyconColors.both, ...this.joyconColors.left, ...this.joyconColors.right];
   }
 
-  findColor(id) {
-    return this.colors().find(c => c.id == id);
+  findColor(id, set = 'all') {
+    return this.colors(set).find(c => c.id == id);
+  }
+
+  getColorHex(id, set = 'all', type = this.currentColors.colorset) {
+    const color = this.findColor(id, set);
+    return (type == 'officiel') ? (color.hexOfficiel || color.hex) : color.hex;
   }
 };
 

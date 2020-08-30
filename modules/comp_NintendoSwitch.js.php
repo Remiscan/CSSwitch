@@ -60,9 +60,22 @@ class NintendoSwitch extends HTMLElement {
     window.addEventListener('controllercolorchange', event => {
       const side = (event.detail.section == 'right') ? 'droit' : 'gauche';
       const joycon = this.shadowRoot.querySelector(`.joycon.${side}`);
-      joycon.style.setProperty('--joycon-color', event.detail.color.hex);
+      joycon.style.setProperty('--joycon-color', Params.getColorHex(event.detail.color.id));
       joycon.dataset.color = event.detail.color.id;
       Params.currentColors[event.detail.section] = event.detail.color.id;
+    });
+
+    window.addEventListener('colorsetcolorchange', event => {
+      Params.currentColors[event.detail.section] = event.detail.color.id;
+      this.colorizeJoycons();
+      localStorage.setItem('csswitch/colorset', event.detail.color.id);
+    });
+  }
+
+  colorizeJoycons() {
+    ['gauche', 'droit'].map(side => this.shadowRoot.querySelector(`.joycon.${side}`)).forEach(joycon => {
+      const side = (joycon.classList.contains('gauche')) ? 'left' : 'right';
+      joycon.style.setProperty('--joycon-color', Params.getColorHex(joycon.dataset.color || Params.defaultColors[side]));
     });
   }
 
@@ -138,10 +151,7 @@ class NintendoSwitch extends HTMLElement {
     this.detectButtonPresses();
     this.detectColorChanges();
 
-    const joyconG = this.shadowRoot.querySelector('.joycon.gauche');
-    const joyconD = this.shadowRoot.querySelector('.joycon.droit');
-    joyconG.style.setProperty('--joycon-color', Params.findColor(Params.defaultColors.left).hex);
-    joyconD.style.setProperty('--joycon-color', Params.findColor(Params.defaultColors.right).hex);
+    this.colorizeJoycons();
 
     window.addEventListener('buttonclick', event => {
       // Turn on the console when the Home button is clicked

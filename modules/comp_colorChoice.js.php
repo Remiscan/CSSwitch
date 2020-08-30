@@ -34,7 +34,7 @@ export class ColorChoice extends HTMLElement {
       
       const button = buttonCont.querySelector('label');
       button.setAttribute('for', input.id);
-      button.style.setProperty('--color', color.hex);
+      button.style.setProperty('--color', Params.getColorHex(color.id, ['theme', 'colorset'].includes(this.section) ? this.section : 'all'));
       button.innerHTML = getString(`couleur-nom-${color.id}`);
 
       button.addEventListener('click', () => {
@@ -74,6 +74,8 @@ export class ColorChoice extends HTMLElement {
       this.colors = Params.colors(this.section);
     else if (this.subject == 'theme')
       this.colors = Params.themes;
+    else if (this.subject == 'colorset')
+      this.colors = Params.colorSets;
     this.update();
     this.makeMenu();
     this.traduire();
