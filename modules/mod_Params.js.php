@@ -43,12 +43,15 @@ class Settings {
           id: 'evoli'
         }, {
           hex: '#4456C2',
+          hexOfficiel: '#4655F5',
           id: 'bleu'
         }, {
           hex: '#912FA8',
+          hexOfficiel: '#B400E6',
           id: 'violet-neon'
         }, {
           hex: '#8DE6AF',
+          hexOfficiel: '#82FF96',
           id: 'ac-vert'
         }
       ],
@@ -59,9 +62,11 @@ class Settings {
           id: 'pikachu'
         }, {
           hex: '#F0BB37',
+          hexOfficiel: '#FAA005',
           id: 'orange-neon'
         }, {
           hex: '#7DDCE2',
+          hexOfficiel: '#96F5F5',
           id: 'ac-bleu'
         }
       ]
@@ -76,7 +81,7 @@ class Settings {
       left: 'rouge-neon',
       right: 'bleu-neon',
       theme: 'auto',
-      colorset: localStorage.getItem('csswitch/colorset') == 'officiel' ? 'officiel' : 'photos'
+      colorset: localStorage.getItem('csswitch/colorset') == 'photos' ? 'photos' : 'officiel'
     };
 
     this.themes = [
@@ -94,11 +99,11 @@ class Settings {
 
     this.colorSets = [
       {
-        hex: 'linear-gradient(to right, #6E757B 0% 33%, #00BFDF 34% 66%, #FF5E5E 67% 100%)',
-        id: 'photos'
-      }, {
         hex: 'linear-gradient(to right, #828282 0% 33%, #0AB9E6 34% 66%, #FF3C28 67% 100%)',
         id: 'officiel'
+      }, {
+        hex: 'linear-gradient(to right, #6E757B 0% 33%, #00BFDF 34% 66%, #FF5E5E 67% 100%)',
+        id: 'photos'
       }
     ];
   }
