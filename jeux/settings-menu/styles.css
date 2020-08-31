@@ -45,7 +45,6 @@ nav {
 }
 
 section {
-  padding: 1em 0;
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: thin;
@@ -152,6 +151,7 @@ input[type=radio]:checked + label::after {
 
 section>[data-section] {
   display: none;
+  padding: 1em 0;
 }
 
 footer {
