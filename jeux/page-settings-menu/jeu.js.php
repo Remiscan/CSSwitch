@@ -3,6 +3,8 @@
 
 import SettingsMenu from '../settings-menu/jeu.js.php';
 import { ColorChoice } from '../../modules/comp_colorChoice.js.php';
+import { Params } from '../../modules/mod_Params.js.php';
+import { Traduction } from '../../modules/mod_traduction.js.php';
 
 /*<?php $imports = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
