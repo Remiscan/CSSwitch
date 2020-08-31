@@ -181,12 +181,14 @@ button {
 }
 button.c:hover,
 button.c:focus {
-  box-shadow: 0 0 0 .2rem white;
+  box-shadow: 0 0 0 .2rem white,
+              0 0 0 .3rem rgba(0, 0, 0, .4);
   outline: none;
 }
 button.c:active,
 button.c.active {
   box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .8),
+              0 0 0 .3rem rgba(0, 0, 0, .4),
               inset 0 0 0 5rem rgba(0, 0, 0, .4);
 }
 
