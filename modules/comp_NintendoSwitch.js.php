@@ -3,6 +3,7 @@
 
 import './comp_MainMenu.js.php';
 import { Params } from './mod_Params.js.php';
+import { moveJoycon, bounce } from './mod_animateJoycons.js.php';
 
 /*<?php $imports = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
@@ -25,22 +26,31 @@ class NintendoSwitch extends HTMLElement {
     this.shadow.appendChild(template.content.cloneNode(true));
   }
 
+  getElement(selector) {
+    return this.shadowRoot.querySelector(selector);
+  }
+
+  getElements(selector) {
+    return Array.from(this.shadowRoot.querySelectorAll(selector));
+  }
+
   turnOn() {
-    const menu = this.shadowRoot.querySelector('main-menu');
+    if (!this.audioCtx) this.prepareSound();
+    const menu = this.getElement('main-menu');
     menu.setAttribute('open', '');
     menu.shadowRoot.querySelector('button.menu-icone-jeu:first-child').focus();
     this.setAttribute('on', '');
   }
 
   turnOff() {
-    const menu = this.shadowRoot.querySelector('main-menu');
+    const menu = this.getElement('main-menu');
     menu.removeAttribute('open');
-    Array.from(this.shadowRoot.querySelectorAll('jeu-switch')).forEach(jeu => jeu.remove());
+    this.getElements('jeu-switch').forEach(jeu => jeu.remove());
     this.removeAttribute('on');
   }
 
   goHome() {
-    Array.from(this.shadowRoot.querySelectorAll('jeu-switch')).forEach(jeu => {
+    this.getElements('jeu-switch').forEach(jeu => {
       const close = jeu.animate([
         { opacity: '1', transform: 'scale(1)' },
         { opacity: '0', transform: 'scale(.8)' }
@@ -53,17 +63,60 @@ class NintendoSwitch extends HTMLElement {
   }
 
   get on() {
-    return this.shadowRoot.querySelector('main-menu').getAttribute('open') !== null;
+    return this.getElement('main-menu').getAttribute('open') !== null;
   }
 
+  /*detectJoyconMoves() {
+    this.getElements('.joycon').forEach(joycon => {
+      let moving = false;
+      joycon.addEventListener('mousedown', event => {
+        const startY = event.clientY;
+        const maxHeight = Math.round(1.05 * joycon.getBoundingClientRect().height);
+        window.listener = event => {
+          moving = true;
+          const deltaY = Math.min(0, Math.max(event.clientY - startY, -1 * maxHeight));
+          joycon.style.transform = `translate3D(0, ${deltaY}px, 0)`;
+          requestAnimationFrame(() => moving = false);
+        };
+        window.addEventListener('mousemove', window.listener);
+        window.addEventListener('mouseup', () => window.removeEventListener('mousemove', window.listener));
+      });
+
+      joycon.addEventListener('touchstart', event => {
+        const startY = event.clientY;
+        const maxHeight = Math.round(1.05 * joycon.getBoundingClientRect().height);
+        window.listener = event => {
+          moving = true;
+          const deltaY = Math.min(0, Math.max(event.clientY - startY, -1 * maxHeight));
+          joycon.style.transform = `translate3D(0, ${deltaY}px, 0)`;
+          requestAnimationFrame(() => moving = false);
+        };
+        window.addEventListener('touchmove', window.listener);
+        window.addEventListener('touchend', () => window.removeEventListener('touchmove', window.listener));
+      });
+    });
+  }*/
+
   detectColorChanges() {
-    window.addEventListener('controllercolorchange', event => {
+    window.addEventListener('controllercolorchange', async event => {
+      if (!this.audioCtx) await this.prepareSound();
+
       const side = (event.detail.section == 'right') ? 'droit' : 'gauche';
-      const joycon = this.shadowRoot.querySelector(`.joycon.${side}`);
+      const joycon = this.getElement(`.joycon.${side}`);
+      await moveJoycon(side, 'up');
+      
       joycon.style.setProperty('--joycon-color', Params.getColorHex(event.detail.color.id));
       joycon.dataset.color = event.detail.color.id;
       Params.currentColors[event.detail.section] = event.detail.color.id;
       localStorage.setItem(`csswitch/joycon-${side}`, event.detail.color.id);
+
+      /*setTimeout(() => this.playSound(), Math.max(0, 250 - this.audioCtx.baseLatency));
+      await Promise.all(['gauche', 'droit'].map(s => moveJoycon(s, 'down')));
+      await bounce();*/
+      await moveJoycon(side, 'down');
+      this.playSound();
+      await new Promise(resolve => setTimeout(resolve, this.audioCtx.baseLatency));
+      await bounce();
     });
 
     window.addEventListener('colorsetcolorchange', event => {
@@ -81,7 +134,7 @@ class NintendoSwitch extends HTMLElement {
   }
 
   colorizeJoycons() {
-    ['gauche', 'droit'].map(side => this.shadowRoot.querySelector(`.joycon.${side}`)).forEach(joycon => {
+    ['gauche', 'droit'].map(side => this.getElement(`.joycon.${side}`)).forEach(joycon => {
       const side = (joycon.classList.contains('gauche')) ? 'left' : 'right';
       joycon.style.setProperty('--joycon-color', Params.getColorHex(joycon.dataset.color || Params.currentColors[side]));
     });
@@ -89,8 +142,8 @@ class NintendoSwitch extends HTMLElement {
 
   detectButtonPresses() {
     const buttonElements = [
-      ...Array.from(this.shadowRoot.querySelectorAll('button')),
-      ...Array.from(this.shadowRoot.querySelector('main-menu').shadowRoot.querySelectorAll('button'))
+      ...this.getElements('button'),
+      ...Array.from(this.getElement('main-menu').shadowRoot.querySelectorAll('button'))
     ];
     this.buttons = buttonElements.map(buttonEl => {
       return { 
@@ -135,6 +188,27 @@ class NintendoSwitch extends HTMLElement {
     return window.dispatchEvent(event);
   }
 
+  async prepareSound() {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    let response = await fetch('/csswitch/jeux/menu/switch.ogg');
+    if (response.status != 200) throw 'Error while downloading sound file';
+    response = await response.arrayBuffer();
+    response = await audioCtx.decodeAudioData(response);
+
+    this.audioCtx = audioCtx;
+    this.bruitBuffer = response;
+    return;
+  }
+
+  async playSound() {
+    const bruit = this.audioCtx.createBufferSource();
+    bruit.buffer = this.bruitBuffer;
+    bruit.connect(this.audioCtx.destination);
+    bruit.start();
+    return;
+  }
+
   static get observedAttributes() {
     return ['width', 'screen-size'];
   }
@@ -159,8 +233,8 @@ class NintendoSwitch extends HTMLElement {
     this.update();
     this.detectButtonPresses();
     this.detectColorChanges();
-
     this.colorizeJoycons();
+    //this.detectJoyconMoves();
 
     window.addEventListener('buttonclick', event => {
       // Turn on the console when the Home button is clicked
@@ -176,7 +250,7 @@ class NintendoSwitch extends HTMLElement {
         if (this.on) this.turnOff();
         return;
       }
-    })
+    });
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
