@@ -32,9 +32,12 @@ export default class SettingsMenu extends Jeu {
     this.icon = icon;
   }
 
-  getElement(selector, multiple = false) {
-    return (multiple) ? this.element.shadowRoot.querySelectorAll(selector)
-                      : this.element.shadowRoot.querySelector(selector);
+  getElement(selector) {
+    return this.element.shadowRoot.querySelector(selector);
+  }
+
+  getElements(selector) {
+    return Array.from(this.element.shadowRoot.querySelectorAll(selector));
   }
 
   async start() {
