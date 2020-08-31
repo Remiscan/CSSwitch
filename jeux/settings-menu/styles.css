@@ -25,6 +25,7 @@ header>joycon-icon,
 header>settings-icon {
   --size: 70%;
   place-self: center;
+  --bottom-button-icon: var(--menu-text);
 }
 
 header>span {
