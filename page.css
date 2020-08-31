@@ -6,14 +6,12 @@ html {
   font-weight: 400;
   color: var(--color-text);
   --h-diff: -1;
-  --color-bg: #fdfdfd;
+  --color-bg: #EBEBEB;
   --color-text: #111;
 }
-@media (prefers-color-scheme: dark) {
-  html {
-    --color-bg: #111;
-    --color-text: #eee;
-  }
+html[data-theme=dark] {
+  --color-bg: #2D2D2D;
+  --color-text: #eee;
 }
 
 html, body {
@@ -42,6 +40,10 @@ main {
   grid-column: 1 / 4;
   grid-row: 1 / 2;
   transform: translateZ(0);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .2));
+}
+html[data-theme=dark] .la-switch {
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, .05));
 }
 .nintendo-switch {
   --width: inherit;

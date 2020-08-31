@@ -13,12 +13,12 @@ style.innerHTML = `
     transform: rotate(var(--deg, 45deg));
   }
   path {
-    stroke: #DADADA;
+    stroke: var(--bottom-button-icon);
     fill: transparent;
     stroke-width: var(--stroke-width, 4);
   }
   circle {
-    fill: #DADADA;
+    fill: var(--bottom-button-icon);
   }
 </style>
 `;

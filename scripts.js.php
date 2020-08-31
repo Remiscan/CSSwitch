@@ -2,11 +2,20 @@
 /*<?php ob_start();?>*/
 
 import { Traduction } from './modules/mod_traduction.js.php';
+import { Params } from './modules/mod_Params.js.php';
 import './modules/comp_NintendoSwitch.js.php';
 
 /*<?php $imports = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
 echo versionizeFiles($imports, __DIR__); ?>*/
+
+
+
+document.documentElement.dataset.theme = Params.theme;
+
+
+
+
 
 
 // Nom des éléments et variables

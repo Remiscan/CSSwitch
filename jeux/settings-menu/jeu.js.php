@@ -71,7 +71,7 @@ export default class SettingsMenu extends Jeu {
     const stylesheet = this.element.shadow.styleSheets[1];
     stylesheet.insertRule(`
       ${this.sections.map(s => `:host([data-section=${s}])>nav>button[data-section=${s}]`).join(',')} {
-        color: var(--text-focus-color);
+        color: var(--settings-menu-highlight);
       }
     `);
     stylesheet.insertRule(`
@@ -81,7 +81,7 @@ export default class SettingsMenu extends Jeu {
         display: block;
         width: 100%;
         height: 80%;
-        background-color: var(--text-focus-color);
+        background-color: var(--settings-menu-highlight);
         place-self: center;
       }
     `);

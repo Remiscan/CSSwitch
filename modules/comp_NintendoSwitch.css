@@ -11,6 +11,44 @@
   transform: translateZ(0);
 }
 
+:host([theme=dark]) {
+  --main-menu-background: #2D2D2D;
+  --profile-picture-background: rgba(255, 255, 255, .2);
+  --profile-picture-border: rgba(255, 255, 255, .2);
+  --bottom-button-background: #505050;
+  --bottom-button-icon: #DDDDDD;
+  --menu-text: #FFFFFF;
+  --game-icon-background: #303030;
+  --game-icon-border: #3B3B3B;
+  --hightlight-dark: #2996CE;
+  --hightlight-light: #72EBF6;
+  --game-title: #23BAF9;
+  --settings-menu-nav-background: #323232;
+  --settings-menu-hover-background: #3B3F42;
+  --settings-menu-active-background: #3B565A;
+  --settings-menu-highlight: #00FFC9;
+  --checkmark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M 7 21 L 14 28 L 32 11' fill='transparent' stroke='%232D2D2D' stroke-width='3'/%3E%3C/svg%3E");
+}
+
+:host([theme=light]) {
+  --main-menu-background: #EBEBEB;
+  --profile-picture-background: rgba(0, 0, 0, .1);/**/
+  --profile-picture-border: #FFFFFF;
+  --bottom-button-background: #FEFFFF;
+  --bottom-button-icon: #6E7678;
+  --menu-text: #2D2D2D;
+  --game-icon-background: #EEEEEE;
+  --game-icon-border: #F6F6F6;
+  --hightlight-dark: #00BDCF;
+  --hightlight-light: #3EFFDC;
+  --game-title: #00BDCF;
+  --settings-menu-nav-background: #F1F1F1;
+  --settings-menu-hover-background: #FCFCFC;
+  --settings-menu-active-background: #DDFBFD;
+  --settings-menu-highlight: #3250EC;
+  --checkmark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M 7 21 L 14 28 L 32 11' fill='transparent' stroke='%23EBEBEB' stroke-width='3'/%3E%3C/svg%3E");
+}
+
 .joycon {
   width: 13.9%;
   min-width: 13.9%;

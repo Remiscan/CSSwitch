@@ -128,6 +128,15 @@ class Settings {
     const color = this.findColor(id, set) || this.defaultColors['left'];
     return ((type == 'officiel') ? (color.hexOfficiel || color.hex) : color.hex);
   }
+
+  get theme() {
+    const theme = this.currentColors.theme;
+    if (theme != 'auto') return theme;
+
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+    else if (window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+    else return 'light';
+  }
 };
 
 export const Params = new Settings();

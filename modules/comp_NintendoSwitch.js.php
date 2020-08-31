@@ -68,8 +68,15 @@ class NintendoSwitch extends HTMLElement {
 
     window.addEventListener('colorsetcolorchange', event => {
       Params.currentColors[event.detail.section] = event.detail.color.id;
-      this.colorizeJoycons();
       localStorage.setItem('csswitch/colorset', event.detail.color.id);
+      this.colorizeJoycons();
+    });
+
+    window.addEventListener('themecolorchange', event => {
+      Params.currentColors[event.detail.section] = event.detail.color.id;
+      localStorage.setItem('csswitch/theme', event.detail.color.id);
+      this.setAttribute('theme', Params.theme);
+      document.documentElement.dataset.theme = Params.theme;
     });
   }
 
@@ -147,6 +154,7 @@ class NintendoSwitch extends HTMLElement {
   }
 
   connectedCallback() {
+    this.setAttribute('theme', Params.theme);
     this.ready = true;
     this.update();
     this.detectButtonPresses();

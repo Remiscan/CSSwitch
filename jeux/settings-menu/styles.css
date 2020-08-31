@@ -4,7 +4,7 @@
   grid-template-columns: 1fr 2fr;
   width: 100%;
   height: 100%;
-  background-color: #464646;
+  background-color: var(--main-menu-background);
   padding: 1% 2.5% 0;
   box-sizing: border-box;
   max-height: 100%;
@@ -17,7 +17,7 @@ header {
   display: grid;
   grid-template-columns: 6% 1fr;
   align-items: center;
-  border-bottom: .1em solid #A5A5A5;
+  border-bottom: .1em solid var(--menu-text);
   padding-left: .5em;
 }
 
@@ -34,7 +34,7 @@ header>span {
 }
 
 nav {
-  background: linear-gradient(to left, #4B4B4B, #464646);
+  background: linear-gradient(to left, var(--settings-menu-nav-background), var(--main-menu-background));
   display: grid;
   gap: 1em 0;
   padding-top: 1em;
@@ -61,9 +61,7 @@ button {
   font-family: inherit;
   font-size: 1em;
   font-weight: 600;
-  --text-color: #FCFCFC;
-  --text-focus-color: #04FCC8;
-  color: var(--text-color);
+  color: var(--menu-text);
   cursor: pointer;
   place-self: center;
   display: grid;
@@ -88,7 +86,7 @@ input[type=radio] {
 
 input[type=radio] + label:hover,
 button:hover {
-  background: #3B3F42;
+  background: var(--settings-menu-hover-background);
 }
 input[type=radio] + label:hover,
 input[type=radio]:focus + label,
@@ -96,12 +94,12 @@ button:hover,
 button:focus {
   outline: 0;
   animation: focusRing 1s linear infinite;
-  color: var(--text-focus-color);
+  color: var(--settings-menu-highlight);
 }
 input[type=radio]:active + label,
 input[type=radio] + label:active,
 button:active {
-  background: #3B565A;
+  background: var(--settings-menu-active-background);
 }
 
 nav>button {
@@ -136,18 +134,18 @@ input[type=radio] + label::before {
 
 input[type=radio]:checked + label::after {
   grid-column: 3;
-  content: '';
+  content: var(--checkmark);
   display: block;
   width: 1.5em;
   height: 1.5em;
   border-radius: 50%;
-  background-color: var(--text-focus-color);
+  background-color: var(--settings-menu-highlight);
 }
 
 @keyframes focusRing {
-  0% { box-shadow: 0 0 0 .2rem #72EBF6; }
-  50% { box-shadow: 0 0 0 .2rem #2996CE; }
-  100% { box-shadow: 0 0 0 .2rem #72EBF6; }
+  0% { box-shadow: 0 0 0 .2rem var(--hightlight-light); }
+  50% { box-shadow: 0 0 0 .2rem var(--hightlight-dark); }
+  100% { box-shadow: 0 0 0 .2rem var(--hightlight-light); }
 }
 
 section>[data-section] {
@@ -165,7 +163,7 @@ footer {
   width: 100%;
   position: relative;
   box-sizing: border-box;
-  border-top: .1em solid #A5A5A5;
+  border-top: .1em solid var(--menu-text);
   padding-right: 1.8em;
 }
 

@@ -12,10 +12,10 @@ template.innerHTML = `
     font-size: 200%;
   }
   svg {
-    fill: #DADADA;
+    fill: var(--bottom-button-icon);
   }
   circle {
-    stroke: #DADADA;
+    stroke: var(--bottom-button-icon);
     fill: transparent;
   }
 </style>
