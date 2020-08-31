@@ -36,8 +36,9 @@ export class ColorChoice extends HTMLElement {
       button.setAttribute('for', input.id);
       button.style.setProperty('--color', Params.getColorHex(color.id, ['theme', 'colorset'].includes(this.section) ? this.section : 'all'));
       button.innerHTML = getString(`couleur-nom-${color.id}`);
+      button.dataset.string = `couleur-nom-${color.id}`;
 
-      button.addEventListener('click', () => {
+      input.addEventListener('change', () => {
         window.dispatchEvent(new CustomEvent(`${this.subject}colorchange`, { detail: { section: this.section, color: color } }));
       });
 
@@ -47,11 +48,6 @@ export class ColorChoice extends HTMLElement {
 
   static get observedAttributes() {
     return ['open'];
-  }
-
-  async traduire() {
-    //await Traduction.traduire(this.shadowRoot);
-    return;
   }
 
   update(attributes = ColorChoice.observedAttributes) {
@@ -78,7 +74,6 @@ export class ColorChoice extends HTMLElement {
       this.colors = Params.colorSets;
     this.update();
     this.makeMenu();
-    this.traduire();
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

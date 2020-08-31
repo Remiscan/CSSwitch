@@ -46,11 +46,12 @@ export default class SettingsMenu extends Jeu {
 
     const title = document.createElement('span');
     title.innerHTML = getString(`settings-${this.id}-title`);
+    title.dataset.string = `settings-${this.id}-title`;
     header.appendChild(title);
 
     // Populate footer
     const footer = this.getElement('footer');
-    footer.innerHTML += `<span>${getString(`settings-${this.id}-footer`)}</span>`;
+    footer.innerHTML += `<span data-string="settings-${this.id}-footer">${getString(`settings-${this.id}-footer`)}</span>`;
 
     // Populate side nav menu
     const nav = this.getElement('nav');
@@ -59,7 +60,7 @@ export default class SettingsMenu extends Jeu {
     for (const section of this.sections) {
       const button = document.createElement('button');
       button.dataset.section = section;
-      button.innerHTML = `<span>${getString(`settings-${this.id}-section-${section}`)}</span>`;
+      button.innerHTML = `<span data-string="settings-${this.id}-section-${section}">${getString(`settings-${this.id}-section-${section}`)}</span>`;
       nav.appendChild(button);
 
       const div = document.createElement('div');
@@ -90,17 +91,6 @@ export default class SettingsMenu extends Jeu {
         display: grid;
       }
     `);
-    /*const style = this.getElement('style');
-    style.innerHTML = style.innerHTML.replace(
-      '{{buttons}}',
-      this.sections.map(s => `:host([data-section=${s}])>nav>button[data-section=${s}]`).join(',')
-    ).replace(
-      '{{buttonsBefore}}',
-      this.sections.map(s => `:host([data-section=${s}])>nav>button[data-section=${s}]::before`).join(',')
-    ).replace(
-      '{{sections}}',
-      this.sections.map(s => `:host([data-section=${s}])>section>[data-section=${s}]`).join(',')
-    );*/
 
     // Enable clicks on nav buttons
     for (const section of this.sections) {

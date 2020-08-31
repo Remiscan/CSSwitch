@@ -88,7 +88,7 @@ class MainMenu extends HTMLElement {
     });
 
     this.traduire();
-
+    window.addEventListener('translate', () => this.traduire());
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

@@ -77,13 +77,6 @@ class Settings {
       right: 'bleu-neon'
     };
 
-    this.currentColors = {
-      left: localStorage.getItem('csswitch/joycon-gauche') || 'rouge-neon',
-      right: localStorage.getItem('csswitch/joycon-droit') || 'bleu-neon',
-      theme: ['dark', 'light'].includes(localStorage.getItem('csswitch/theme')) ? localStorage.getItem('csswitch/theme') : 'auto',
-      colorset: localStorage.getItem('csswitch/colorset') == 'photos' ? 'photos' : 'officiel'
-    };
-
     this.themes = [
       {
         hex: 'linear-gradient(to bottom right, white 0% 49%, black 51% 100%)',
@@ -106,6 +99,15 @@ class Settings {
         id: 'photos'
       }
     ];
+
+    this.languages = ['en', 'fr'];
+
+    this.currentColors = {
+      left: localStorage.getItem('csswitch/joycon-gauche') || 'rouge-neon',
+      right: localStorage.getItem('csswitch/joycon-droit') || 'bleu-neon',
+      theme: ['dark', 'light'].includes(localStorage.getItem('csswitch/theme')) ? localStorage.getItem('csswitch/theme') : 'auto',
+      colorset: localStorage.getItem('csswitch/colorset') == 'photos' ? 'photos' : 'officiel'
+    };
   }
 
   colors(side = 'all') {

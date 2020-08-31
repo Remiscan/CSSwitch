@@ -32,17 +32,44 @@ export default class PageSettingsMenu extends SettingsMenu {
     await super.start();
 
     const conteneur = this.getElement('section');
-    {
+    theme: {
       const choix = new ColorChoice();
       choix.setAttribute('data-section', 'theme');
       choix.setAttribute('subject', 'theme');
       conteneur.replaceChild(choix, this.getElement(`div[data-section='theme']`));
     }
-    {
+    colorset: {
       const choix = new ColorChoice();
       choix.setAttribute('data-section', 'colorset');
       choix.setAttribute('subject', 'colorset');
       conteneur.replaceChild(choix, this.getElement(`div[data-section='colorset']`));
+    }
+    language: {
+      const section = conteneur.querySelector(`[data-section='language']`);
+      const languages = Params.languages;
+      section.style.setProperty('--total', languages.length);
+
+      for (const lang of languages) {
+        const templateLang = document.createElement('template');
+        templateLang.innerHTML = `
+          <input type="radio" id="language-switch-${lang}" name="language-switch">
+          <label for="language-switch-${lang}">${
+            (lang == 'fr') ? 'Français' :
+            (lang == 'en') ? 'English' :
+            'unknown'
+          }</label>
+        `;
+        
+        const button = templateLang.content.cloneNode(true);
+        const input = button.querySelector('input');
+        input.addEventListener('change', async () => {
+          await Traduction.switchLanguage(lang);
+          Traduction.traduire();
+          window.dispatchEvent(new Event('translate'));
+        });
+
+        section.appendChild(button);
+      }
     }
 
     console.log('Jeu démarré');

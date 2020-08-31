@@ -1,7 +1,7 @@
 // ▼ ES modules cache-busted grâce à PHP
 /*<?php ob_start();?>*/
 
-import { Traduction, getString } from './mod_traduction.js.php';
+import { Traduction } from './mod_traduction.js.php';
 
 /*<?php $imports = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
@@ -87,6 +87,7 @@ export class JeuSwitch extends HTMLElement {
     this.ready = true;
     this.update();
     this.traduire();
+    window.addEventListener('translate', () => this.traduire());
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
