@@ -265,7 +265,7 @@ customElements.define('nintendo-switch', NintendoSwitch);
 //////////////////////////////////////////////////
 // Let's dispatch events related to button presses
 
-const log = true;
+const log = !true;
 window.addEventListener('buttonpress', event => {
   const button = event.detail.button;
   if (button.pressed) return;
