@@ -96,4 +96,4 @@ class MainMenu extends HTMLElement {
     this.update([name]);
   }
 }
-customElements.define('main-menu', MainMenu);
+if (!customElements.get('main-menu')) customElements.define('main-menu', MainMenu);

@@ -60,4 +60,4 @@ class JoyconIcon extends HTMLElement {
     this.shadow.appendChild(template.content.cloneNode(true));
   }
 }
-customElements.define('joycon-icon', JoyconIcon);
+if (!customElements.get('joycon-icon')) customElements.define('joycon-icon', JoyconIcon);

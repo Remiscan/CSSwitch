@@ -37,4 +37,4 @@ class PowerIcon extends HTMLElement {
     this.shadow.appendChild(template.content.cloneNode(true));
   }
 }
-customElements.define('power-icon', PowerIcon);
+if (!customElements.get('power-icon')) customElements.define('power-icon', PowerIcon);

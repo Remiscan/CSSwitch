@@ -95,4 +95,4 @@ export class JeuSwitch extends HTMLElement {
     this.update([name]);
   }
 }
-customElements.define('jeu-switch', JeuSwitch);
+if (!customElements.get('jeu-switch')) customElements.define('jeu-switch', JeuSwitch);

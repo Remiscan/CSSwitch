@@ -40,4 +40,4 @@ class SettingsIcon extends HTMLElement {
     this.shadow.appendChild(template.content.cloneNode(true));
   }
 }
-customElements.define('settings-icon', SettingsIcon);
+if (!customElements.get('settings-icon')) customElements.define('settings-icon', SettingsIcon);

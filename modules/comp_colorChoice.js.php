@@ -81,4 +81,4 @@ export class ColorChoice extends HTMLElement {
     this.update([name]);
   }
 }
-customElements.define('color-choice', ColorChoice);
+if (!customElements.get('color-choice')) customElements.define('color-choice', ColorChoice);

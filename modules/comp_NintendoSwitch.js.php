@@ -104,7 +104,7 @@ class NintendoSwitch extends HTMLElement {
       const side = (event.detail.section == 'right') ? 'droit' : 'gauche';
       const joycon = this.getElement(`.joycon.${side}`);
       await moveJoycon(side, 'up');
-      
+
       joycon.style.setProperty('--joycon-color', Params.getColorHex(event.detail.color.id));
       joycon.dataset.color = event.detail.color.id;
       Params.currentColors[event.detail.section] = event.detail.color.id;
@@ -258,7 +258,7 @@ class NintendoSwitch extends HTMLElement {
     this.update([name]);
   }
 }
-customElements.define('nintendo-switch', NintendoSwitch);
+if (!customElements.get('nintendo-switch')) customElements.define('nintendo-switch', NintendoSwitch);
 
 
 
