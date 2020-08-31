@@ -169,6 +169,6 @@ footer {
 }
 
 footer>span {
-  color: #E8E6E7;
+  color: var(--menu-text);
   font-weight: 500;
 }
