@@ -70,6 +70,7 @@ button {
   grid-template-columns: .3em .3em .3em 1fr;
   border-radius: .025em;
   text-transform: capitalize;
+  backface-visibility: hidden;
 }
 
 button>span {
