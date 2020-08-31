@@ -12,17 +12,18 @@ echo versionizeFiles($imports, __DIR__); ?>*/
 
 
 
-const template = document.createElement('template');
-template.innerHTML = `
-  <style><?php include './styles.css'; ?></style>
-`;
-
-
-
 export default class PageSettingsMenu extends SettingsMenu {
   constructor() {
     const sections = ['theme', 'colorset', 'language'];
     super(sections, PageSettingsMenu.id);
+
+    const stylesheet = this.element.shadowRoot.styleSheets[0];
+    stylesheet.insertRule(`
+      input[type=radio] + label[for^=language-switch] {
+        grid-template-columns: 0 1fr auto;
+      }
+    `);
+
     this.start();
   }
 
@@ -64,8 +65,11 @@ export default class PageSettingsMenu extends SettingsMenu {
         
         const button = templateLang.content.cloneNode(true);
         const input = button.querySelector('input');
+        if (lang == Params.currentLanguage) input.checked = true;
+        
         input.addEventListener('change', async () => {
           await Traduction.switchLanguage(lang);
+          Params.currentLanguage = lang;
           Traduction.traduire();
           window.dispatchEvent(new Event('translate'));
         });
