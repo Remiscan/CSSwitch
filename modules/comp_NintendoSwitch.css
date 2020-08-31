@@ -92,8 +92,11 @@
   align-items: center;
   position: relative;
   z-index: 5;
-  /*-webkit-mask-box-image: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiCiAgICAgYmFzZXByb2ZpbGU9IkZ1bGwiCiAgICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICAgIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIgogICAgIHhtbG5zOmV2PSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL3htbC1ldmVudHMiCiAgICAgd2lkdGg9IjQ1IgogICAgIGhlaWdodD0iNDUiCiAgICAgdmlld0JveD0iMCAwIDQ1IDQ1IgogICAgIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiCiAgICAgPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLDQ1LjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKICAgICBmaWxsPSIjMDAwMDAwIgogICAgIHN0cm9rZT0ibm9uZSIKICAgICA+CiAgICA8cGF0aCBkPSJNMTEwIDQwMCBjMCAtNjIgLTMxIC0xMDAgLTgwIC0xMDAgbC0zMCAwIDAgLTE1MCAwIC0xNTAgMjI1IDAgMjI1IDAgMCAxNTAgMCAxNTAgLTMwIDAgYy00OSAwIC04MCAzOCAtODAgMTAwIGwwIDUwIC0xMTUgMCAtMTE1IDAgMCAtNTB6Ii8+CiAgPC9nPgo8L3N2Zz4=') 33% / calc(0.02 * var(--width)) stretch;
-  mask-border: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiCiAgICAgYmFzZXByb2ZpbGU9IkZ1bGwiCiAgICAgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICAgIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIgogICAgIHhtbG5zOmV2PSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL3htbC1ldmVudHMiCiAgICAgd2lkdGg9IjQ1IgogICAgIGhlaWdodD0iNDUiCiAgICAgdmlld0JveD0iMCAwIDQ1IDQ1IgogICAgIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiCiAgICAgPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAuMDAwMDAwLDQ1LjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKICAgICBmaWxsPSIjMDAwMDAwIgogICAgIHN0cm9rZT0ibm9uZSIKICAgICA+CiAgICA8cGF0aCBkPSJNMTEwIDQwMCBjMCAtNjIgLTMxIC0xMDAgLTgwIC0xMDAgbC0zMCAwIDAgLTE1MCAwIC0xNTAgMjI1IDAgMjI1IDAgMCAxNTAgMCAxNTAgLTMwIDAgYy00OSAwIC04MCAzOCAtODAgMTAwIGwwIDUwIC0xMTUgMCAtMTE1IDAgMCAtNTB6Ii8+CiAgPC9nPgo8L3N2Zz4=') 33% / calc(0.02 * var(--width)) stretch;*/
+  --mask: url("data:image/svg+xml,%3Csvg viewBox='0 0 684 400' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 11 0 L 672 0 Q 672 15, 684 17 L 684 400 L 0 400 L 0 17 Q 11 15, 11 0' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask: var(--mask);
+  -webkit-mask-size: 100% 100%;
+  mask: var(--mask);
+  mask-size: 100% 100%;
   transform: translateZ(0);
 }
 .screen-border {
