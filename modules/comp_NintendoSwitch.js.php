@@ -112,6 +112,7 @@ class NintendoSwitch extends HTMLElement {
       await bounce();
 
       colorMenu.enable();
+      colorMenu.shadowRoot.querySelector('input:checked').focus();
     });
 
     window.addEventListener('colorsetcolorchange', event => {

@@ -98,7 +98,11 @@ export default class SettingsMenu extends Jeu {
     // Enable clicks on nav buttons
     for (const section of this.sections) {
       const button = this.getElement(`button[data-section='${section}']`);
-      button.addEventListener('click', () => this.element.dataset.section = section);
+      button.addEventListener('click', () => {
+        this.element.dataset.section = section;
+        const div = this.element.shadowRoot.querySelector(`div[data-section='${section}'], color-choice[data-section='${section}']`);
+        div.querySelector('input:checked + label').scrollIntoView({block:'nearest'});
+      });
     }
 
     this.element.dataset.section = this.sections[0];

@@ -40,6 +40,7 @@ export class ColorChoice extends HTMLElement {
 
       input.addEventListener('change', () => {
         window.dispatchEvent(new CustomEvent(`${this.subject}colorchange`, { detail: { section: this.section, color: color } }));
+        button.scrollIntoView({block:'nearest'});
       });
 
       this.appendChild(buttonCont);
@@ -74,6 +75,7 @@ export class ColorChoice extends HTMLElement {
       this.colors = Params.colorSets;
     this.update();
     this.makeMenu();
+    this.querySelector('input:checked + label').scrollIntoView({block:'center'});
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
