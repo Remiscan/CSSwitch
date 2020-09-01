@@ -34,6 +34,8 @@ export default class PageSettingsMenu extends SettingsMenu {
   async start() {
     await super.start();
 
+    this.element.dataset.menu = 'settings';
+
     const conteneur = this.getElement('section');
     theme: {
       const choix = new ColorChoice();
@@ -78,8 +80,11 @@ export default class PageSettingsMenu extends SettingsMenu {
       }
     }
 
+    this.element.addEventListener('animationend', event => {
+      if (event.target != this.element) return;
+      this.element.shadowRoot.querySelector('button, input').focus();
+    });
     this.element.setAttribute('open', '');
-    setTimeout(() => this.element.shadowRoot.querySelector('button, input').focus(), 250);
 
     console.log('Jeu démarré');
   }

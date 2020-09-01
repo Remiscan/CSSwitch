@@ -29,6 +29,8 @@ export default class PressOnSound extends Jeu {
 
   async start() {
     await super.start();
+    this.element.dataset.jeu = PressOnSound.id;
+    this.element.setAttribute('open', '');
     console.log('Jeu démarré');
 
     await this.prepareSound();

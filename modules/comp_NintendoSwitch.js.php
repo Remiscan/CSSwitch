@@ -37,8 +37,11 @@ class NintendoSwitch extends HTMLElement {
   turnOn() {
     if (!this.audioCtx) this.prepareSound();
     const menu = this.getElement('main-menu');
+    menu.addEventListener('animationend', event => {
+      if (event.target != menu) return;
+      menu.shadowRoot.querySelector('button, input').focus();
+    });
     menu.setAttribute('open', '');
-    menu.shadowRoot.querySelector('button.menu-icone-jeu:first-child').focus();
     this.setAttribute('on', '');
   }
 
@@ -50,7 +53,10 @@ class NintendoSwitch extends HTMLElement {
   }
 
   goHome() {
+    let iconToFocus = null;
+    const menu = this.getElement('main-menu');
     this.getElements('jeu-switch').forEach(jeu => {
+      iconToFocus = jeu.dataset.menu || jeu.dataset.jeu;
       const close = jeu.animate([
         { opacity: '1', transform: 'scale(1)' },
         { opacity: '0', transform: 'scale(.8)' }
@@ -58,9 +64,14 @@ class NintendoSwitch extends HTMLElement {
         duration: 100,
         fill: 'forwards'
       });
-      close.onfinish = () => jeu.remove();
+      close.onfinish = () => {
+        jeu.remove();
+        if (iconToFocus) iconToFocus = menu.shadowRoot.querySelector(`[data-key=${iconToFocus}]`)
+                                    || menu.shadowRoot.querySelector(`button[data-jeu=${iconToFocus}]`);
+        else iconToFocus = menu.shadowRoot.querySelector('button, input');
+        iconToFocus.focus();
+      }
     });
-    const menu = this.getElement('main-menu');
     menu.enable();
   }
 
@@ -256,7 +267,7 @@ if (!customElements.get('nintendo-switch')) customElements.define('nintendo-swit
 //////////////////////////////////////////////////
 // Let's dispatch events related to button presses
 
-const log = true;
+const log = !true;
 window.addEventListener('buttonpress', event => {
   const button = event.detail.button;
   if (button.pressed) return;

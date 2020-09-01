@@ -24,6 +24,8 @@ export default class ControllerMenu extends SettingsMenu {
   async start() {
     await super.start();
 
+    this.element.dataset.menu = 'controllers';
+
     const conteneur = this.getElement('section');
     this.sections.forEach(section => {
       const choix = new ColorChoice();
@@ -32,8 +34,11 @@ export default class ControllerMenu extends SettingsMenu {
       conteneur.replaceChild(choix, this.getElement(`div[data-section='${section}']`));
     });
 
+    this.element.addEventListener('animationend', event => {
+      if (event.target != this.element) return;
+      this.element.shadowRoot.querySelector('button, input').focus();
+    });
     this.element.setAttribute('open', '');
-    setTimeout(() => this.element.shadowRoot.querySelector('button, input').focus(), 250);
 
     console.log('Jeu démarré');
   }
