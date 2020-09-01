@@ -1,14 +1,3 @@
-// ▼ ES modules cache-busted grâce à PHP
-/*<?php ob_start();?>*/
-
-
-
-/*<?php $imports = ob_get_clean();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
-echo versionizeFiles($imports, __DIR__); ?>*/
-
-
-
 const easingStandard = 'cubic-bezier(0.4, 0.0, 0.2, 1)';
 const easingDecelerate = 'cubic-bezier(0.0, 0.0, 0.2, 1)';
 const easingAccelerate = 'cubic-bezier(0.4, 0.0, 1, 1)';
