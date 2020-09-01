@@ -2,7 +2,8 @@
   display: none;
   grid-template-rows: 1.2fr 3fr 2fr .8fr;
   overflow: hidden;
-  font-size: .8vw;
+  font-size: var(--font-size);
+  /*font-size: .8vw;*/
   background-color: var(--main-menu-background);
   pointer-events: none;
   opacity: 0;
@@ -94,6 +95,7 @@ button.menu-rond:focus {
 .menu-clue {
   color: var(--menu-text);
   font-weight: 500;
+  font-size: 1.3em;
 }
 .menu-liste {
   display: flex;
@@ -160,7 +162,7 @@ button.menu-icone-jeu::after {
   color: var(--game-title);
   font-weight: 500;
   font-family: 'Roboto', sans-serif;
-  font-size: 1.1em;
+  font-size: 1.4em;
 }
 button.menu-icone-jeu:hover,
 button.menu-icone-jeu:focus {

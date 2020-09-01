@@ -9,6 +9,7 @@
   box-sizing: border-box;
   max-height: 100%;
   overflow: hidden;
+  font-size: calc(1.3 * var(--font-size));
 }
 
 header {

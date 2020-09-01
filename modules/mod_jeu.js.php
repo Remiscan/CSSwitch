@@ -44,6 +44,7 @@ template.innerHTML = `
       position: relative;
       max-height: 100%;
       overflow: hidden;
+      font-size: calc(1.3 * var(--font-size));
     }
     :host([open]) {
       opacity: 1;

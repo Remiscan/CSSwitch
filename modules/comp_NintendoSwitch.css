@@ -9,6 +9,8 @@
   --console-color: #2F3234;
   --attache-color: #27292C;
   transform: translateZ(0);
+  --font-size: calc(0.01 * var(--width));
+  font-size: var(--font-size);
 }
 
 :host([theme=dark]) {
