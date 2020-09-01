@@ -224,11 +224,19 @@ class NintendoSwitch extends HTMLElement {
       inputs.forEach(input => { input.disabled = false; });
     }
 
+    // Detect clicks on home button
     this.shadowRoot.querySelector('button[data-key=home]')
         .addEventListener('click', () => {
       if (this.on) this.goHome();
       else this.turnOn();
     });
+    // Detect alternative buttons for home
+    window.addEventListener('buttonclick', event => {
+      if (event.detail.button.key != 'home') return;
+      if (this.on) this.goHome();
+      else this.turnOn();
+    });
+    // Detect clicks on power button
     this.shadowRoot.querySelector('main-menu')
         .shadowRoot.querySelector('button[data-key=power]')
         .addEventListener('click', () => {
