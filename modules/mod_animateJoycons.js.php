@@ -21,7 +21,7 @@ let bouncing = false;
 
 
 
-export function moveJoycon(side = 'gauche', direction = 'up') {
+export async function moveJoycon(side = 'gauche', direction = 'up') {
   if (bouncing) return;
   if (isUp[side] == (direction == 'up')) return;
 
@@ -38,7 +38,7 @@ export function moveJoycon(side = 'gauche', direction = 'up') {
   const i0 = (direction == 'up') ? 0 : 1;
   const i1 = (direction == 'up') ? 1 : 0;
 
-  return new Promise(resolve => {
+  return await new Promise(resolve => {
     const animation = joycon.animate([keyframes[i0], keyframes[i1]], options);
     isUp[side] = (direction == 'up');
     animations.push(animation);

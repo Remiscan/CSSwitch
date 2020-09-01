@@ -154,3 +154,5 @@ class Settings {
 };
 
 export const Params = new Settings();
+
+export const wait = time => new Promise(resolve => setTimeout(resolve, time));
