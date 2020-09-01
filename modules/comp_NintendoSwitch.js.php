@@ -52,6 +52,16 @@ class NintendoSwitch extends HTMLElement {
     this.removeAttribute('on');
   }
 
+  enableButtons() {
+    const buttons = Array.from(this.shadowRoot.querySelectorAll('button.c[data-key]'));
+    buttons.forEach(b => { b.disabled = false; b.tabIndex = 0; });
+  }
+
+  disableButtons() {
+    const buttons = Array.from(this.shadowRoot.querySelectorAll('button.c[data-key]'));
+    buttons.forEach(b => { b.disabled = true; b.tabIndex = -1; });
+  }
+
   goHome() {
     let iconToFocus = null;
     const menu = this.getElement('main-menu');
@@ -73,6 +83,7 @@ class NintendoSwitch extends HTMLElement {
       }
     });
     menu.enable();
+    this.disableButtons();
   }
 
   get on() {
@@ -157,6 +168,9 @@ class NintendoSwitch extends HTMLElement {
       switchButton.element.classList.remove('active');
       switchButton.element.dispatchEvent(new Event('mouseup'));
     });
+
+    // Enable buttons when a game opens
+    window.addEventListener('gameopen', event => this.enableButtons());
   }
 
   static dispatchButtonEvent(button, type, duration = 0) {
@@ -215,6 +229,7 @@ class NintendoSwitch extends HTMLElement {
     this.setAttribute('theme', Params.theme);
     this.ready = true;
     this.update();
+    this.disableButtons();
     this.detectButtonPresses();
     this.detectColorChanges();
     this.colorizeJoycons();

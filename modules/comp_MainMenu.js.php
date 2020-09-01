@@ -67,6 +67,7 @@ class MainMenu extends HTMLElement {
 
       button.addEventListener('click', () => {
         new Jeu();
+        window.dispatchEvent(new Event('gameopen'));
       });
 
       iconList.appendChild(button);

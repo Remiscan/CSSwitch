@@ -186,13 +186,16 @@ button {
   border-radius: 50%;
   cursor: pointer;
 }
-button.c:hover,
+button:disabled {
+  cursor: auto;
+}
+button.c:not(:disabled):hover,
 button.c:focus {
   box-shadow: 0 0 0 .2rem white,
               0 0 0 .3rem rgba(0, 0, 0, .4);
   outline: none;
 }
-button.c:active,
+button.c:not(:disabled):active,
 button.c.active {
   box-shadow: 0 0 0 .2rem rgba(255, 255, 255, .8),
               0 0 0 .3rem rgba(0, 0, 0, .4),
