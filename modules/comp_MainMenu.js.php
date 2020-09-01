@@ -79,8 +79,20 @@ class MainMenu extends HTMLElement {
     }
 
     // Listen to the bottom icons
-    this.shadowRoot.querySelector('button[data-key=controllers]').addEventListener('click', () => new ControllerMenu());
-    this.shadowRoot.querySelector('button[data-key=settings]').addEventListener('click', () => new PageSettingsMenu());
+    controllers: {
+      const button = this.shadowRoot.querySelector('button[data-key=controllers]');
+      button.addEventListener('click', () => {
+        button.blur();
+        new ControllerMenu();
+      });
+    }
+    settings: {
+      const button = this.shadowRoot.querySelector('button[data-key=settings]');
+      button.addEventListener('click', () => {
+        button.blur();
+        new PageSettingsMenu();
+      });
+    }
 
     this.traduire();
     window.addEventListener('translate', () => this.traduire());

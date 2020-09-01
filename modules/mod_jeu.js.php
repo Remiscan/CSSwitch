@@ -15,6 +15,9 @@ export class Jeu {
     const screen = document.querySelector('nintendo-switch').shadowRoot.querySelector('.jeu');
     // Remove other open games
     Array.from(screen.querySelectorAll('jeu-switch')).forEach(jeu => jeu.remove());
+    // Disable main menu
+    const menu = document.querySelector('nintendo-switch').shadowRoot.querySelector('main-menu');
+    menu.disable();
     // Open new game
     this.element = new JeuSwitch();
     screen.appendChild(this.element);
@@ -23,8 +26,6 @@ export class Jeu {
   async start() {
     this.element.shadow.appendChild(this.template.content.cloneNode(true));
     await Traduction.traduire(this.element.shadowRoot);
-    const menu = document.querySelector('nintendo-switch').shadowRoot.querySelector('main-menu');
-    menu.disable();
   }
 }
 
