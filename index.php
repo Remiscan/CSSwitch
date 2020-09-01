@@ -47,43 +47,11 @@ $Textes = new Textes('csswitch');
 
   <body>
 
-    <div class="groupe-langages options">
-      <button class="bouton-langage" data-string="option-couleurs-photos" disabled><?=$Textes->getString('option-couleurs-photos')?></button>
-      <button class="bouton-langage" data-string="option-couleurs-officielles"><?=$Textes->getString('option-couleurs-officielles')?></button>
-    </div>
-
     <main id="conteneur">
       <div class="la-switch">
         <nintendo-switch width="inherit"></nintendo-switch>
       </div>
-
-      <!--<div class="le-bouton gauche off" id="choix-gauche">
-        <button data-string="bouton-choix-couleur-gauche"><?=$Textes->getString('bouton-choix-couleur-gauche')?></button>
-      </div>
-
-      <div class="le-bouton droite off" id="choix-droite">
-        <button data-string="bouton-choix-couleur-droite"><?=$Textes->getString('bouton-choix-couleur-droite')?></button>
-      </div>
-
-      <div class="indice">
-        <div class="ligne off"></div>
-        <div class="texte" data-string="instruction-choix-couleur"><?=$Textes->getString('instruction-choix-couleur')?></div>
-      </div>-->
-
-      <div class="choix">
-        <template id="template-couleur">
-          <button class="couleur">
-            <div class="hex"></div>
-            <div class="nom"></div>
-          </button>
-        </template>
-      </div>
     </main>
-
-    <div class="groupe-langages">
-      <button class="bouton-langage" data-lang="fr" disabled>Français</button>
-      <button class="bouton-langage" data-lang="en">English</button>
-    </div>
 
     <!-- To preload the font -->
     <span style="position: absolute; height: 30px; top: -40px; pointer-events: none; font-family: 'Press Start 2P', cursive;">Hello</span>
