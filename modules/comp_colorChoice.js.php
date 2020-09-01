@@ -2,7 +2,7 @@
 /*<?php ob_start();?>*/
 
 import { Traduction, getString } from './mod_traduction.js.php';
-import { Params } from './mod_Params.js.php';
+import { Params, wait } from './mod_Params.js.php';
 
 /*<?php $imports = ob_get_clean();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
@@ -38,10 +38,12 @@ export class ColorChoice extends HTMLElement {
       button.innerHTML = getString(`couleur-nom-${color.id}`);
       button.dataset.string = `couleur-nom-${color.id}`;
 
-      input.addEventListener('change', () => {
+      input.addEventListener('change', async () => {
+        await wait(300);
+        if (!input.checked) return;
         window.dispatchEvent(new CustomEvent(`${this.subject}colorchange`, { detail: { section: this.section, color: color } }));
-        button.scrollIntoView({block:'nearest'});
       });
+      input.addEventListener('focus', () => button.scrollIntoView({block:'nearest'}));
 
       this.appendChild(buttonCont);
     }
