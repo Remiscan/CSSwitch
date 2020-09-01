@@ -60,42 +60,13 @@ class NintendoSwitch extends HTMLElement {
       });
       close.onfinish = () => jeu.remove();
     });
+    const menu = this.getElement('main-menu');
+    menu.enableButtons();
   }
 
   get on() {
     return this.getElement('main-menu').getAttribute('open') !== null;
   }
-
-  /*detectJoyconMoves() {
-    this.getElements('.joycon').forEach(joycon => {
-      let moving = false;
-      joycon.addEventListener('mousedown', event => {
-        const startY = event.clientY;
-        const maxHeight = Math.round(1.05 * joycon.getBoundingClientRect().height);
-        window.listener = event => {
-          moving = true;
-          const deltaY = Math.min(0, Math.max(event.clientY - startY, -1 * maxHeight));
-          joycon.style.transform = `translate3D(0, ${deltaY}px, 0)`;
-          requestAnimationFrame(() => moving = false);
-        };
-        window.addEventListener('mousemove', window.listener);
-        window.addEventListener('mouseup', () => window.removeEventListener('mousemove', window.listener));
-      });
-
-      joycon.addEventListener('touchstart', event => {
-        const startY = event.clientY;
-        const maxHeight = Math.round(1.05 * joycon.getBoundingClientRect().height);
-        window.listener = event => {
-          moving = true;
-          const deltaY = Math.min(0, Math.max(event.clientY - startY, -1 * maxHeight));
-          joycon.style.transform = `translate3D(0, ${deltaY}px, 0)`;
-          requestAnimationFrame(() => moving = false);
-        };
-        window.addEventListener('touchmove', window.listener);
-        window.addEventListener('touchend', () => window.removeEventListener('touchmove', window.listener));
-      });
-    });
-  }*/
 
   detectColorChanges() {
     window.addEventListener('controllercolorchange', async event => {
@@ -110,9 +81,6 @@ class NintendoSwitch extends HTMLElement {
       Params.currentColors[event.detail.section] = event.detail.color.id;
       localStorage.setItem(`csswitch/joycon-${side}`, event.detail.color.id);
 
-      /*setTimeout(() => this.playSound(), Math.max(0, 250 - this.audioCtx.baseLatency));
-      await Promise.all(['gauche', 'droit'].map(s => moveJoycon(s, 'down')));
-      await bounce();*/
       await moveJoycon(side, 'down');
       this.playSound();
       await new Promise(resolve => setTimeout(resolve, this.audioCtx.baseLatency));
@@ -234,22 +202,28 @@ class NintendoSwitch extends HTMLElement {
     this.detectButtonPresses();
     this.detectColorChanges();
     this.colorizeJoycons();
-    //this.detectJoyconMoves();
 
-    window.addEventListener('buttonclick', event => {
-      // Turn on the console when the Home button is clicked
-      // or go back to the Home menu if it's already on
-      if (event.detail.button.key == 'home') {
-        if (this.on) this.goHome();
-        else this.turnOn();
-        return;
-      }
+    Element.prototype.disableButtons = function() {
+      const el = this.shadowRoot || this;
+      const buttons = Array.from(el.querySelectorAll('button'));
+      buttons.forEach(button => { button.disabled = true; button.tabIndex = -1; });
+    }
+  
+    Element.prototype.enableButtons = function() {
+      const el = this.shadowRoot || this;
+      const buttons = Array.from(el.querySelectorAll('button'));
+      buttons.forEach(button => { button.disabled = false; button.tabIndex = 0; });
+    }
 
-      // Turn off the console when the Power button is clicked
-      if (event.detail.button.key == 'power') {
+    this.shadowRoot.querySelector('button[data-key=home]')
+        .addEventListener('click', () => {
+      if (this.on) this.goHome();
+      else this.turnOn();
+    });
+    this.shadowRoot.querySelector('main-menu')
+        .shadowRoot.querySelector('button[data-key=power]')
+        .addEventListener('click', () => {
         if (this.on) this.turnOff();
-        return;
-      }
     });
   }
 
@@ -265,7 +239,7 @@ if (!customElements.get('nintendo-switch')) customElements.define('nintendo-swit
 //////////////////////////////////////////////////
 // Let's dispatch events related to button presses
 
-const log = !true;
+const log = true;
 window.addEventListener('buttonpress', event => {
   const button = event.detail.button;
   if (button.pressed) return;

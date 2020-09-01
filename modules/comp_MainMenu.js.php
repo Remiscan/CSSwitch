@@ -77,15 +77,9 @@ class MainMenu extends HTMLElement {
       iconList.appendChild(div);
     }
 
-    // Listen to the controller icon
-    window.addEventListener('buttonpress', event => {
-      if (event.detail.button.key == 'controllers') {
-        new ControllerMenu();
-      }
-      else if (event.detail.button.key == 'settings') {
-        new PageSettingsMenu();
-      }
-    });
+    // Listen to the bottom icons
+    this.shadowRoot.querySelector('button[data-key=controllers]').addEventListener('click', () => new ControllerMenu());
+    this.shadowRoot.querySelector('button[data-key=settings]').addEventListener('click', () => new PageSettingsMenu());
 
     this.traduire();
     window.addEventListener('translate', () => this.traduire());
