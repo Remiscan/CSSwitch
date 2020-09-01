@@ -6,11 +6,15 @@ html {
   font-weight: 400;
   color: var(--color-text);
   --h-diff: -1;
-  --color-bg: #EBEBEB;
+  --color-bg: #111;
+  --color-text: #eee;
+}
+html[data-theme=light] {
+  --color-bg: #EEE;
   --color-text: #111;
 }
 html[data-theme=dark] {
-  --color-bg: #2D2D2D;
+  --color-bg: #111;
   --color-text: #eee;
 }
 
