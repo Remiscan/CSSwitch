@@ -40,6 +40,17 @@ export default class PressOnSound extends Jeu {
     const lastScoreElement = this.element.shadowRoot.querySelector('#score-dernier');
     bestScoreElement.innerHTML = bestScore;
 
+    const boutonJeu = this.element.shadowRoot.querySelector('.jeu-bouton');
+    window.addEventListener('buttonpress', event => {
+      if (!['up', 'down', 'left', 'right', 'a', 'b', 'x', 'y'].includes(event.detail.button.key)) return;
+      boutonJeu.dispatchEvent(new Event('click'));
+      boutonJeu.classList.add('active');
+    });
+    window.addEventListener('buttonrelease', event => {
+      if (!['up', 'down', 'left', 'right', 'a', 'b', 'x', 'y'].includes(event.detail.button.key)) return;
+      boutonJeu.classList.remove('active');
+    });
+
     const newRound = async () => {
       if (this.element.isConnected === false) return;
       document.removeEventListener('visibilitychange', newRound);
