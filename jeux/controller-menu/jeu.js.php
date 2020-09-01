@@ -32,6 +32,9 @@ export default class ControllerMenu extends SettingsMenu {
       conteneur.replaceChild(choix, this.getElement(`div[data-section='${section}']`));
     });
 
+    this.element.setAttribute('open', '');
+    setTimeout(() => this.element.shadowRoot.querySelector('button, input').focus(), 250);
+
     console.log('Jeu démarré');
   }
 }

@@ -78,6 +78,9 @@ export default class PageSettingsMenu extends SettingsMenu {
       }
     }
 
+    this.element.setAttribute('open', '');
+    setTimeout(() => this.element.shadowRoot.querySelector('button, input').focus(), 250);
+
     console.log('Jeu démarré');
   }
 }
