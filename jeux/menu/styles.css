@@ -73,10 +73,12 @@
   position: relative;
   display: grid;
   place-items: center;
+  font-size: inherit;
 }
 button.menu-rond:hover,
 button.menu-rond:focus {
   animation: focusRing 1s linear infinite;
+  box-shadow: 0 0 0 .2em var(--highlight-medium);
   outline: none;
 }
 .menu-verybottom {
@@ -167,6 +169,8 @@ button.menu-icone-jeu::after {
 button.menu-icone-jeu:hover,
 button.menu-icone-jeu:focus {
   animation: focusRing-jeu 1s linear infinite;
+  box-shadow: 0 0 0 .1em var(--main-menu-background), 
+              0 0 0 .3em var(--highlight-medium);
   outline: none;
 }
 button.menu-icone-jeu:hover::after,
@@ -180,13 +184,13 @@ button.menu-icone-jeu:focus::after {
 }
 
 @keyframes focusRing {
-  0% { box-shadow: 0 0 0 .2em var(--hightlight-light); }
-  50% { box-shadow: 0 0 0 .2em var(--hightlight-dark); }
-  100% { box-shadow: 0 0 0 .2em var(--hightlight-light); }
+  0% { box-shadow: 0 0 0 .2em var(--highlight-light); }
+  50% { box-shadow: 0 0 0 .2em var(--highlight-dark); }
+  100% { box-shadow: 0 0 0 .2em var(--highlight-light); }
 }
 
 @keyframes focusRing-jeu {
-  0% { box-shadow: 0 0 0 .1em var(--main-menu-background), 0 0 0 .3em var(--hightlight-light); }
-  50% { box-shadow: 0 0 0 .1em var(--main-menu-background), 0 0 0 .3em var(--hightlight-dark); }
-  100% { box-shadow: 0 0 0 .1em var(--main-menu-background), 0 0 0 .3em var(--hightlight-light); }
+  0% { box-shadow: 0 0 0 .1em var(--main-menu-background), 0 0 0 .3em var(--highlight-light); }
+  50% { box-shadow: 0 0 0 .1em var(--main-menu-background), 0 0 0 .3em var(--highlight-dark); }
+  100% { box-shadow: 0 0 0 .1em var(--main-menu-background), 0 0 0 .3em var(--highlight-light); }
 }

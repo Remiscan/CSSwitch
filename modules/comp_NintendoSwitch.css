@@ -22,9 +22,10 @@
   --menu-text: #FFFFFF;
   --game-icon-background: #303030;
   --game-icon-border: #3B3B3B;
-  --hightlight-dark: #2996CE;
-  --hightlight-light: #72EBF6;
-  --game-title: #23BAF9;
+  --highlight-dark: #2996CE;
+  --highlight-light: #72EBF6;
+  --highlight-medium: #4dc0e1;
+  --game-title: var(--highlight-medium);
   --settings-menu-nav-background: #323232;
   --settings-menu-hover-background: #3B3F42;
   --settings-menu-active-background: #3B565A;
@@ -41,9 +42,10 @@
   --menu-text: #2D2D2D;
   --game-icon-background: #EEEEEE;
   --game-icon-border: #F6F6F6;
-  --hightlight-dark: #00BDCF;
-  --hightlight-light: #3EFFDC;
-  --game-title: #00BDCF;
+  --highlight-dark: #00BDCF;
+  --highlight-light: #3EFFDC;
+  --highlight-medium: #1fdfd7;
+  --game-title: var(--highlight-dark);
   --settings-menu-nav-background: #F1F1F1;
   --settings-menu-hover-background: #FCFCFC;
   --settings-menu-active-background: #DDFBFD;

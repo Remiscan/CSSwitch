@@ -95,6 +95,7 @@ button:hover,
 button:focus {
   outline: 0;
   animation: focusRing 1s linear infinite;
+  box-shadow: 0 0 0 .2em var(--highlight-medium);
   color: var(--settings-menu-highlight);
 }
 input[type=radio]:active + label,
@@ -151,9 +152,9 @@ input[type=radio]:disabled:not(:checked) + label {
 }
 
 @keyframes focusRing {
-  0% { box-shadow: 0 0 0 .2rem var(--hightlight-light); }
-  50% { box-shadow: 0 0 0 .2rem var(--hightlight-dark); }
-  100% { box-shadow: 0 0 0 .2rem var(--hightlight-light); }
+  0% { box-shadow: 0 0 0 .2em var(--highlight-light); }
+  50% { box-shadow: 0 0 0 .2em var(--highlight-dark); }
+  100% { box-shadow: 0 0 0 .2em var(--highlight-light); }
 }
 
 section>[data-section] {
