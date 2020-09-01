@@ -25,7 +25,7 @@ export class Jeu {
     await Traduction.traduire(this.element.shadowRoot);
     this.element.setAttribute('open', '');
     const menu = document.querySelector('nintendo-switch').shadowRoot.querySelector('main-menu');
-    menu.disableButtons();
+    menu.disable();
   }
 }
 

@@ -142,6 +142,13 @@ input[type=radio]:checked + label::after {
   background-color: var(--settings-menu-highlight);
 }
 
+input[type=radio]:disabled,
+input[type=radio]:disabled:not(:checked) + label {
+  opacity: .7;
+  filter: grayscale(.5);
+  pointer-events: none;
+}
+
 @keyframes focusRing {
   0% { box-shadow: 0 0 0 .2rem var(--hightlight-light); }
   50% { box-shadow: 0 0 0 .2rem var(--hightlight-dark); }

@@ -61,7 +61,7 @@ class NintendoSwitch extends HTMLElement {
       close.onfinish = () => jeu.remove();
     });
     const menu = this.getElement('main-menu');
-    menu.enableButtons();
+    menu.enable();
   }
 
   get on() {
@@ -70,6 +70,9 @@ class NintendoSwitch extends HTMLElement {
 
   detectColorChanges() {
     window.addEventListener('controllercolorchange', async event => {
+      const colorMenu = this.shadowRoot.querySelector('jeu-switch');
+      colorMenu.disable();
+
       if (!this.audioCtx) await this.prepareSound();
 
       const side = (event.detail.section == 'right') ? 'droit' : 'gauche';
@@ -85,6 +88,8 @@ class NintendoSwitch extends HTMLElement {
       this.playSound();
       await new Promise(resolve => setTimeout(resolve, this.audioCtx.baseLatency));
       await bounce();
+
+      colorMenu.enable();
     });
 
     window.addEventListener('colorsetcolorchange', event => {
@@ -203,16 +208,20 @@ class NintendoSwitch extends HTMLElement {
     this.detectColorChanges();
     this.colorizeJoycons();
 
-    Element.prototype.disableButtons = function() {
+    Element.prototype.disable = function() {
       const el = this.shadowRoot || this;
       const buttons = Array.from(el.querySelectorAll('button'));
       buttons.forEach(button => { button.disabled = true; button.tabIndex = -1; });
+      const inputs = Array.from(el.querySelectorAll('input'));
+      inputs.forEach(input => { input.disabled = true; });
     }
   
-    Element.prototype.enableButtons = function() {
+    Element.prototype.enable = function() {
       const el = this.shadowRoot || this;
       const buttons = Array.from(el.querySelectorAll('button'));
       buttons.forEach(button => { button.disabled = false; button.tabIndex = 0; });
+      const inputs = Array.from(el.querySelectorAll('input'));
+      inputs.forEach(input => { input.disabled = false; });
     }
 
     this.shadowRoot.querySelector('button[data-key=home]')
