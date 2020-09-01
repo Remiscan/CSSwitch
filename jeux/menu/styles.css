@@ -186,7 +186,7 @@ button.menu-icone-jeu:focus::after {
 }
 
 @keyframes focusRing-jeu {
-  0% { box-shadow: 0 0 0 .2em #0A253D, 0 0 0 .4em var(--hightlight-light); }
-  50% { box-shadow: 0 0 0 .2em #0A253D, 0 0 0 .4em var(--hightlight-dark); }
-  100% { box-shadow: 0 0 0 .2em #0A253D, 0 0 0 .4em var(--hightlight-light); }
+  0% { box-shadow: 0 0 0 .1em var(--main-menu-background), 0 0 0 .3em var(--hightlight-light); }
+  50% { box-shadow: 0 0 0 .1em var(--main-menu-background), 0 0 0 .3em var(--hightlight-dark); }
+  100% { box-shadow: 0 0 0 .1em var(--main-menu-background), 0 0 0 .3em var(--hightlight-light); }
 }
