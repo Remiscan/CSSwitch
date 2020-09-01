@@ -80,7 +80,6 @@ button>span {
 input[type=radio] {
   height: 0;
   width: 0;
-  visibility: hidden;
   position: absolute;
   margin: 0;
 }
