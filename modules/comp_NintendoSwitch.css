@@ -148,10 +148,16 @@
   width: 100%;
   height: 100%;
   display: grid;
+  position: relative;
 }
 .nintendo-switch.on .jeu {
   opacity: 1;
 } 
+.jeu>* {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
 
 .start, .select {
   --size: calc(0.192 * 0.139 * var(--width));
