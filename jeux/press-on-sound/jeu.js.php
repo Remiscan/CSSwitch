@@ -9,6 +9,10 @@ echo versionizeFiles($imports, __DIR__); ?>*/
 
 
 
+const wait = time => new Promise(resolve => setTimeout(resolve, time));
+
+
+
 const template = document.createElement('template');
 template.innerHTML = `
   <style><?php include './styles.css'; ?></style>
@@ -45,8 +49,10 @@ export default class PressOnSound extends Jeu {
     const boutonJeu = this.element.shadowRoot.querySelector('.jeu-bouton');
     window.addEventListener('buttonpress', event => {
       if (!['up', 'down', 'left', 'right', 'a', 'b', 'x', 'y'].includes(event.detail.button.key)) return;
-      boutonJeu.dispatchEvent(new Event('click'));
-      boutonJeu.classList.add('active');
+      if (!boutonJeu.disabled) {
+        boutonJeu.dispatchEvent(new Event('click'));
+        boutonJeu.classList.add('active');
+      }
     });
     window.addEventListener('buttonrelease', event => {
       if (!['up', 'down', 'left', 'right', 'a', 'b', 'x', 'y'].includes(event.detail.button.key)) return;
@@ -68,31 +74,42 @@ export default class PressOnSound extends Jeu {
       }
       catch(error) {
         console.log(error);
+        if (error == 'Tentative de triche') return;
+        if (error == 'Nouvelle partie commencée') return;
+        if (error == 'Jeu fermé') return;
       }
 
       if (!document.hidden) return newRound();
       else document.addEventListener('visibilitychange', newRound);
     }
+
+    boutonJeu.addEventListener('cheat', async () => {
+      console.log('Tentative de triche');
+      await wait(3000);
+      newRound();
+    });
+
     return newRound();
   }
 
   async round(id = Date.now()) {
     this.lastGame = id;
 
-    const wait = time => new Promise(resolve => setTimeout(resolve, time));
     const boutonJeu = this.element.shadowRoot.querySelector('.jeu-bouton');
     boutonJeu.classList.remove('on');
-    boutonJeu.classList.remove('cheating');
+    boutonJeu.disabled = false;
     let startTime;
 
+    let clicked = false;
     boutonJeu.addEventListener('click', async () => {
       if (id != this.lastGame) return;
+      if (clicked) return;
+
+      clicked = true;
 
       if (startTime == null) {
-        boutonJeu.classList.add('cheating');
-        await wait(3000);
-        boutonJeu.classList.remove('cheating');
-        return;
+        boutonJeu.disabled = true;
+        return boutonJeu.dispatchEvent(new Event('cheat'));
       }
 
       const endTime = Date.now();
@@ -114,7 +131,7 @@ export default class PressOnSound extends Jeu {
     if (document.hidden)
       throw 'Page inactive';
 
-    if (boutonJeu.classList.contains('cheating'))
+    if (boutonJeu.disabled)
       throw 'Tentative de triche';
 
     this.playSound();

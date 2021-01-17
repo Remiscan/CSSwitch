@@ -83,7 +83,7 @@
   --border-color: #00BFDF;
   --shadow-color: blue;
 }
-.jeu-bouton.cheating {
+.jeu-bouton:disabled {
   opacity: .5;
   pointer-events: none;
 }
