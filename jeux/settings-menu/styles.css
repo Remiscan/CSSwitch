@@ -83,6 +83,8 @@ input[type=radio] {
   width: 0;
   position: absolute;
   margin: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 input[type=radio] + label:hover,
