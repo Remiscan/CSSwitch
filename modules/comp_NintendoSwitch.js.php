@@ -158,14 +158,14 @@ class NintendoSwitch extends HTMLElement {
     }
 
     window.addEventListener('keydown', event => {
-      const switchButton = this.buttons.find(b => b.otherKeys.includes(event.code));
+      const switchButton = this.buttons.find(b => b.otherKeys.includes(event.code || event.key));
       if (!switchButton) return;
       if (!switchButton.element.disabled)
         switchButton.element.classList.add('active');
       switchButton.element.dispatchEvent(new Event('mousedown'));
     });
     window.addEventListener('keyup', event => {
-      const switchButton = this.buttons.find(b => b.otherKeys.includes(event.code));
+      const switchButton = this.buttons.find(b => b.otherKeys.includes(event.code || event.key));
       if (!switchButton) return;
       switchButton.element.classList.remove('active');
       switchButton.element.dispatchEvent(new Event('mouseup'));
