@@ -3,7 +3,9 @@ $commonDir = '../_common';
 require_once $commonDir.'/php/version.php';
 require_once $commonDir.'/php/httpLanguage.php';
 require_once $commonDir.'/php/getStrings.php';
-$Textes = new Textes('csswitch');
+
+$lang = $_COOKIE['lang'] ?? httpLanguage() ?? 'en';
+$Textes = new Textes('csswitch', $lang);
 ?>
 <!doctype html>
 <html lang="fr" data-version="<?=version(__DIR__)?>" data-http-lang="<?=httpLanguage()?>">
