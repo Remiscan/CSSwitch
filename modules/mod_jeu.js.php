@@ -90,7 +90,7 @@ export class JeuSwitch extends HTMLElement {
     this.ready = true;
     this.update();
     this.traduire();
-    window.addEventListener('translate', () => this.traduire());
+    window.addEventListener('translation-request', () => this.traduire());
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

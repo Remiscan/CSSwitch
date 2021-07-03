@@ -37,9 +37,9 @@ class MainMenu extends HTMLElement {
   }
 
   async traduire() {
-    await Traduction.traduire(this.shadowRoot);
+    await Traduction.traduire(this.shadow);
 
-    Array.from(this.shadowRoot.querySelectorAll('.menu-liste button')).forEach(e => {
+    Array.from(this.shadow.querySelectorAll('.menu-liste button')).forEach(e => {
       e.dataset.titre = getString('titre-jeu-' + e.dataset.jeu);
       e.setAttribute('aria-label', getString('bouton-start-jeu') + ' ' + getString('titre-jeu-' + e.dataset.jeu));
     });
@@ -95,7 +95,7 @@ class MainMenu extends HTMLElement {
     }
 
     this.traduire();
-    window.addEventListener('translate', () => this.traduire());
+    window.addEventListener('translation-request', () => this.traduire());
   }
 
   attributeChangedCallback(name, oldValue, newValue) {

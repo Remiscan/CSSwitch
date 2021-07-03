@@ -18,7 +18,6 @@ class ExtTraduction extends DefTraduction {
 
   async traduire(element = document) {
     await super.traduire(element);
-    await this.initLanguageButtons();
 
     document.title = 'CSSwitch - ' + this.getString('titre-page-description');
     return;

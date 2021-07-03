@@ -73,7 +73,7 @@ export default class PageSettingsMenu extends SettingsMenu {
           await Traduction.switchLanguage(lang);
           Params.currentLanguage = lang;
           Traduction.traduire();
-          window.dispatchEvent(new Event('translate'));
+          window.dispatchEvent(new Event('translation-request'));
         });
 
         section.appendChild(button);
