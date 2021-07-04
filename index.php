@@ -4,11 +4,11 @@ require_once $commonDir.'/php/version.php';
 require_once $commonDir.'/php/httpLanguage.php';
 require_once $commonDir.'/php/getStrings.php';
 
-$lang = $_COOKIE['lang'] ?? httpLanguage() ?? 'en';
+$lang = httpLanguage() ?? 'en';
 $Textes = new Textes('csswitch', $lang);
 ?>
 <!doctype html>
-<html lang="fr" data-version="<?=version(__DIR__)?>" data-http-lang="<?=httpLanguage()?>">
+<html data-version="<?=version(__DIR__)?>" data-http-lang="<?=httpLanguage()?>">
   <head>
     <meta charset="utf-8">
     <title>CSSwitch - <?=$Textes->getString('titre-page-description')?></title>

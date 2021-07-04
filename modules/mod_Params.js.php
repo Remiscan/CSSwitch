@@ -112,7 +112,6 @@ class Settings {
     ];
 
     this.languages = ['en', 'fr'];
-    this.currentLanguage = Traduction.language;
 
     this.currentColors = {
       left: localStorage.getItem('csswitch/joycon-gauche') || 'rouge-neon',
@@ -121,6 +120,8 @@ class Settings {
       colorset: localStorage.getItem('csswitch/colorset') == 'photos' ? 'photos' : 'officiel'
     };
   }
+
+  get currentLanguage() { return Traduction.language; }
 
   colors(side = 'all') {
     if (['left', 'gauche'].includes(side))

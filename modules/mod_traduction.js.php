@@ -13,7 +13,7 @@ class ExtTraduction extends DefTraduction {
   constructor() {
     const version = document.querySelector('link#strings').dataset.version || document.documentElement.dataset.version || 0;
     const path = `/csswitch/strings--${version}.json`;
-    super('csswitch', path, 'fr');
+    super('csswitch', path, 'en');
   }
 
   async traduire(element = document) {

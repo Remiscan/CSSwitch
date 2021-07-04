@@ -27,5 +27,6 @@ window.addEventListener('orientationchange', onResize);
 window.addEventListener('load', async () => {
   onResize();
   document.documentElement.style.setProperty('--h-diff', 0);
-  await Traduction.traduire();
+  const lang = localStorage.getItem('csswitch/lang') || document.documentElement.dataset.httpLang;
+  await Traduction.traduire(document, lang);
 });

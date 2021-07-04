@@ -70,10 +70,14 @@ export default class PageSettingsMenu extends SettingsMenu {
         if (lang == Params.currentLanguage) input.checked = true;
         
         input.addEventListener('change', async () => {
-          await Traduction.switchLanguage(lang);
-          Params.currentLanguage = lang;
+          Traduction.changeLanguage(lang);
           Traduction.traduire();
+          localStorage.setItem('csswitch/langage', lang);
           window.dispatchEvent(new Event('translation-request'));
+        });
+
+        window.addEventListener('languagechange', event => {
+          if (event.detail.lang == lang) input.checked = true;
         });
 
         section.appendChild(button);
