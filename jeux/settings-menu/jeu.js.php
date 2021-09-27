@@ -1,14 +1,7 @@
-// ▼ ES modules cache-busted grâce à PHP
-/*<?php ob_start();?>*/
-
-import { Jeu } from '../../modules/mod_jeu.js.php';
-import { Traduction, getString } from '../../modules/mod_traduction.js.php';
-import '../menu/comp_joyconIcon.js';
-import '../menu/comp_settingsIcon.js';
-
-/*<?php $imports = ob_get_clean();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
-echo versionizeFiles($imports, __DIR__); ?>*/
+import { Jeu } from 'jeu';
+import { getString } from 'traduction';
+import 'component-joyconIcon';
+import 'component-settingsIcon';
 
 
 

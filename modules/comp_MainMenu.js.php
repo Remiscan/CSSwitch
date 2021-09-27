@@ -1,17 +1,10 @@
-// ▼ ES modules cache-busted grâce à PHP
-/*<?php ob_start();?>*/
-
-import '../jeux/menu/comp_joyconIcon.js';
-import '../jeux/menu/comp_settingsIcon.js';
-import '../jeux/menu/comp_powerIcon.js';
-import { Traduction, getString } from './mod_traduction.js.php';
-import PressOnSound from '../jeux/press-on-sound/jeu.js.php';
-import ControllerMenu from '../jeux/controller-menu/jeu.js.php';
-import PageSettingsMenu from '../jeux/page-settings-menu/jeu.js.php';
-
-/*<?php $imports = ob_get_clean();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
-echo versionizeFiles($imports, __DIR__); ?>*/
+import 'component-joyconIcon';
+import 'component-settingsIcon';
+import 'component-powerIcon';
+import { Traduction, getString } from 'traduction';
+import PressOnSound from 'press-on-sound';
+import ControllerMenu from 'controller-menu';
+import PageSettingsMenu from 'page-settings-menu';
 
 
 
