@@ -43,30 +43,7 @@ $Textes = new Textes('csswitch', $lang);
 
     <!-- Import map -->
     <script defer src="/_common/polyfills/es-module-shims.js"></script>
-    <script type="importmap">
-      {
-        "imports": {
-          "component-colorChoice": "./modules/comp_colorChoice.js",
-          "component-mainMenu": "./modules/comp_mainMenu.js.php",
-          "component-nintendoSwitch": "./modules/comp_nintendoSwitch.js.php",
-          "animateJoycons": "./modules/mod_animateJoycons.js",
-          "jeu": "./modules/mod_jeu.js",
-          "Params": "./modules/mod_Params.js",
-          "traduction": "./modules/mod_traduction.js",
-
-          "component-joyconIcon": "./jeux/menu/comp_joyconIcon.js",
-          "component-settingsIcon": "./jeux/menu/comp_settingsIcon.js",
-          "component-powerIcon": "./jeux/menu/comp_powerIcon.js",
-
-          "controller-menu": "./jeux/controller-menu/jeu.js",
-          "page-settings-menu": "./jeux/page-settings-menu/jeu.js",
-          "press-on-sound": "./jeux/press-on-sound/jeu.js.php",
-          "settings-menu": "./jeux/settings-menu/jeu.js.php",
-
-          "default-traduction": "/_common/js/traduction.js"
-        }
-      }
-    </script>
+    <script type="importmap"><?php include 'importMap.json'; ?></script>
 
     <script type="module" src="scripts.js"></script>
 
