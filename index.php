@@ -24,7 +24,7 @@ $Textes = new Textes('csswitch', $lang);
     <meta property="og:url" content="https://remiscan.fr/csswitch/">
     <meta property="og:image" content="https://remiscan.fr/mon-portfolio/projets/csswitch/og-preview.png">
 
-    <link rel="icon" type="image/svg+xml" href="/csswitch/icons/icon.svg">
+    <link rel="icon" type="image/svg+xml" href="/csswitch/icons/favicon.svg">
     <link rel="apple-touch-icon" href="/csswitch/icons/apple-touch-icon.png">
     <link rel="manifest" href="/csswitch/manifest.json">
 
