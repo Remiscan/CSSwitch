@@ -1,6 +1,6 @@
+import { bounce, moveJoycon } from 'animateJoycons';
 import 'component-mainMenu';
 import { Params } from 'Params';
-import { moveJoycon, bounce } from 'animateJoycons';
 
 
 
@@ -207,8 +207,6 @@ class NintendoSwitch extends HTMLElement {
   }
 
   update(attributes = NintendoSwitch.observedAttributes) {
-    if (!this.ready) return;
-
     width: {
       if (!attributes.includes('width')) break width;
       this.style.setProperty('--width', this.getAttribute('width'));
@@ -222,8 +220,6 @@ class NintendoSwitch extends HTMLElement {
 
   connectedCallback() {
     this.setAttribute('theme', Params.theme);
-    this.ready = true;
-    this.update();
     this.disableButtons();
     this.detectButtonPresses();
     this.detectColorChanges();
