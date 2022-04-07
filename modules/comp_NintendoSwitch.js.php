@@ -203,7 +203,7 @@ class NintendoSwitch extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['width', 'screen-size'];
+    return ['width', 'screen-size', 'model'];
   }
 
   update(attributes = NintendoSwitch.observedAttributes) {
@@ -215,6 +215,11 @@ class NintendoSwitch extends HTMLElement {
     screenSize: {
       if (!attributes.includes('screen-size')) break screenSize;
       this.style.setProperty('--screen-size', this.getAttribute('screen-size'));
+    }
+
+    model: {
+      if (!attributes.includes('model')) break model;
+      this.setAttribute('screen-size', Math.round(this.shadow.querySelector('.screen').getBoundingClientRect().width));
     }
   }
 

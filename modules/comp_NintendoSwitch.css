@@ -13,6 +13,11 @@
   font-size: var(--font-size);
 }
 
+:host([model=oled]) {
+  /*--console-color: #0C0C0D;*/
+  --font-size: calc(0.01119 * var(--width));
+}
+
 :host([theme=dark]) {
   --main-menu-background: #2D2D2D;
   --profile-picture-background: rgba(255, 255, 255, .2);
@@ -103,6 +108,7 @@
   mask-size: 100% 100%;
   transform: translateZ(0);
 }
+
 .screen-border {
   background-color: black;
   width: 94.4%;
@@ -113,6 +119,12 @@
   align-items: center;
   position: relative;
 }
+
+:host([model=oled]) .screen-border {
+  height: 93.4%;
+  border-radius: calc(0.004 * var(--width));
+}
+
 .trapeze {
   -webkit-clip-path: polygon(17% 0%, 83% 0%, 100% 100%, 0% 100%);
   clip-path: polygon(17% 0%, 83% 0%, 100% 100%, 0% 100%);
@@ -139,11 +151,23 @@
   border-radius: 45% 45% 0 0;
 }
 
+:host([model=oled]) .trapeze,
+:host([model=oled]) .sensor {
+  display: none;
+}
+
 .screen {
   width: 84%;
   height: 82%;
   background-color: rgba(255, 255, 255, .08);
 }
+
+:host([model=oled]) .screen {
+  width: 93.4%;
+  height: 91.18%;
+}
+
+
 .jeu {
   width: 100%;
   height: 100%;

@@ -4,77 +4,120 @@ import { Traduction } from 'traduction';
 
 class Settings {
   constructor() {
-    this.joyconColors = {
-      both: [
-        {
-          hex: '#6E757B',
-          hexOfficiel: '#828282',
-          id: 'gris'
-        }, {
-          hex: '#00BFDF',
-          hexOfficiel: '#0AB9E6',
-          id: 'bleu-neon'
-        }, {
-          hex: '#FF5E52',
-          hexOfficiel: '#FF3C28',
-          id: 'rouge-neon'
-        }, {
-          hex: '#D9EF64',
-          hexOfficiel: '#E6FF00',
-          id: 'jaune-neon'
-        }, {
-          hex: '#00E259',
-          hexOfficiel: '#1EDC00',
-          id: 'vert-neon'
-        }, {
-          hex: '#F85187',
-          hexOfficiel: '#FF3278',
-          id: 'rose-neon'
-        }, {
-          hex: '#EE2D37',
-          hexOfficiel: '#E10F00',
-          id: 'mario'
-        }, {
-          hex: '#D0A880',
-          hexOfficiel: '#D7AA73',
-          id: 'labo'
-        }
-      ],
-      left: [
-        {
-          hex: '#CAA25A',
-          hexOfficiel: '#C88D32',
-          id: 'evoli'
-        }, {
-          hex: '#4456C2',
-          hexOfficiel: '#4655F5',
-          id: 'bleu'
-        }, {
-          hex: '#912FA8',
-          hexOfficiel: '#B400E6',
-          id: 'violet-neon'
-        }, {
-          hex: '#8DE6AF',
-          hexOfficiel: '#82FF96',
-          id: 'ac-vert'
-        }
-      ],
-      right: [
-        {
-          hex: '#F6D962',
-          hexOfficiel: '#FFDD00',
-          id: 'pikachu'
-        }, {
-          hex: '#F0BB37',
-          hexOfficiel: '#FAA005',
-          id: 'orange-neon'
-        }, {
-          hex: '#7DDCE2',
-          hexOfficiel: '#96F5F5',
-          id: 'ac-bleu'
-        }
-      ]
-    };
+    // Official hex codes from here: https://switchbrew.org/wiki/Joy-Con
+    this.joyconColors = [
+      {
+        hex: '#828282',
+        id: 'gris',
+        left: true,
+        right: true
+      }, {
+        hex: '#0AB9E6',
+        id: 'bleu-neon',
+        left: true,
+        right: true
+      }, {
+        hex: '#FF3C28',
+        id: 'rouge-neon',
+        left: true,
+        right: true
+      }, {
+        hex: '#E6FF00',
+        id: 'jaune-neon',
+        left: true,
+        right: true
+      }, {
+        hex: '#1EDC00',
+        id: 'vert-neon',
+        left: true,
+        right: true
+      }, {
+        hex: '#FF3278',
+        id: 'rose-neon',
+        left: true,
+        right: true
+      }, {
+        hex: '#E10F00',
+        id: 'mario',
+        left: true,
+        right: true
+      }, {
+        hex: '#C88D32',
+        id: 'evoli',
+        left: true,
+        right: false
+      }, {
+        hex: '#FFDD00',
+        id: 'pikachu',
+        left: false,
+        right: true
+      }, {
+        hex: '#D7AA73',
+        id: 'labo',
+        left: true,
+        right: true
+      }, {
+        hex: '#1473FA',
+        id: 'dq-bleu',
+        left: true,
+        right: true
+      }, {
+        hex: '#4655F5',
+        id: 'bleu',
+        left: true,
+        right: false
+      }, {
+        hex: '#B400E6',
+        id: 'violet-neon',
+        left: true,
+        right: false
+      }, {
+        hex: '#FAA005',
+        id: 'orange-neon',
+        left: false,
+        right: true
+      }, {
+        hex: '#82FF96',
+        id: 'ac-vert',
+        left: true,
+        right: false
+      }, {
+        hex: '#96F5F5',
+        id: 'ac-bleu',
+        left: false,
+        right: true
+      }, {
+        hex: '#FFCC00',
+        id: 'fortnite-jaune',
+        left: true,
+        right: true
+      }, {
+        hex: '#0084FF',
+        id: 'fortnite-bleu',
+        left: true,
+        right: true
+      }, {
+        hex: '#F04614',
+        id: 'mario-switch-rouge',
+        left: true,
+        right: true
+      }, {
+        hex: '#2D50F0',
+        id: 'zelda-ss-bleu',
+        left: true,
+        right: false
+      }, {
+        hex: '#500FC8',
+        id: 'zelda-ss-violet',
+        left: false,
+        right: true
+      }, {
+        hex: '#E6E6E6',
+        id: 'blanc',
+        left: true,
+        right: true
+      }
+    ];
 
     this.defaultColors = {
       left: 'rouge-neon',
@@ -94,47 +137,37 @@ class Settings {
       }
     ];
 
-    this.colorSets = [
-      {
-        hex: 'linear-gradient(to right, #828282 0% 33%, #0AB9E6 34% 66%, #FF3C28 67% 100%)',
-        id: 'officiel'
-      }, {
-        hex: 'linear-gradient(to right, #6E757B 0% 33%, #00BFDF 34% 66%, #FF5E5E 67% 100%)',
-        id: 'photos'
-      }
-    ];
-
     this.languages = ['en', 'fr'];
+
+    this.models = ['release', 'oled'];
 
     this.currentColors = {
       left: localStorage.getItem('csswitch/joycon-gauche') || 'rouge-neon',
       right: localStorage.getItem('csswitch/joycon-droit') || 'bleu-neon',
-      theme: ['dark', 'light'].includes(localStorage.getItem('csswitch/theme')) ? localStorage.getItem('csswitch/theme') : 'auto',
-      colorset: localStorage.getItem('csswitch/colorset') == 'photos' ? 'photos' : 'officiel'
+      theme: ['dark', 'light'].includes(localStorage.getItem('csswitch/theme')) ? localStorage.getItem('csswitch/theme') : 'auto'
     };
   }
 
   get currentLanguage() { return Traduction.language; }
+  get currentModel() { return localStorage.getItem('csswitch/model') || 'oled'; }
 
   colors(side = 'all') {
     if (['left', 'gauche'].includes(side))
-      return [...this.joyconColors.both, ...this.joyconColors.left];
+      return this.joyconColors.filter(c => c.left);
     if (['right', 'droit', 'droite'].includes(side))
-      return [...this.joyconColors.both, ...this.joyconColors.right];
+      return this.joyconColors.filter(c => c.right);
     if (side == 'theme')
       return [...this.themes];
-    if (side == 'colorset')
-      return [...this.colorSets];
-    return [...this.joyconColors.both, ...this.joyconColors.left, ...this.joyconColors.right];
+    return this.joyconColors;
   }
 
   findColor(id, set = 'all') {
     return this.colors(set).find(c => c.id == id);
   }
 
-  getColorHex(id, set = 'all', type = this.currentColors.colorset) {
+  getColorHex(id, set = 'all') {
     const color = this.findColor(id, set) || this.defaultColors['left'];
-    return ((type == 'officiel') ? (color.hexOfficiel || color.hex) : color.hex);
+    return color.hex;
   }
 
   get theme() {

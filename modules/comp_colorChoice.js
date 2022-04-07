@@ -1,5 +1,5 @@
-import { getString } from 'traduction';
 import { Params, wait } from 'Params';
+import { getString } from 'traduction';
 
 
 
@@ -27,7 +27,7 @@ export class ColorChoice extends HTMLElement {
       
       const button = buttonCont.querySelector('label');
       button.setAttribute('for', input.id);
-      button.style.setProperty('--color', Params.getColorHex(color.id, ['theme', 'colorset'].includes(this.section) ? this.section : 'all'));
+      button.style.setProperty('--color', Params.getColorHex(color.id, ['theme'].includes(this.section) ? this.section : 'all'));
       button.innerHTML = getString(`couleur-nom-${color.id}`);
       button.dataset.string = `couleur-nom-${color.id}`;
 

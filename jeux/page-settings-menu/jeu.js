@@ -1,18 +1,19 @@
-import SettingsMenu from 'settings-menu';
 import { ColorChoice } from 'component-colorChoice';
 import { Params } from 'Params';
-import { Traduction } from 'traduction';
+import SettingsMenu from 'settings-menu';
+import { getString, Traduction } from 'traduction';
 
 
 
 export default class PageSettingsMenu extends SettingsMenu {
   constructor() {
-    const sections = ['theme', 'colorset', 'language'];
+    const sections = ['theme', 'language', 'model'];
     super(sections, PageSettingsMenu.id);
 
     const stylesheet = this.element.shadowRoot.styleSheets[0];
     stylesheet.insertRule(`
-      input[type=radio] + label[for^=language-switch] {
+      input[type=radio] + label[for^=language-switch],
+      input[type=radio] + label[for^=model-switch] {
         grid-template-columns: 0 1fr auto;
       }
     `);
@@ -28,20 +29,15 @@ export default class PageSettingsMenu extends SettingsMenu {
     await super.start();
 
     this.element.dataset.menu = 'settings';
-
     const conteneur = this.getElement('section');
+    
     theme: {
       const choix = new ColorChoice();
       choix.setAttribute('data-section', 'theme');
       choix.setAttribute('subject', 'theme');
       conteneur.replaceChild(choix, this.getElement(`div[data-section='theme']`));
     }
-    colorset: {
-      const choix = new ColorChoice();
-      choix.setAttribute('data-section', 'colorset');
-      choix.setAttribute('subject', 'colorset');
-      conteneur.replaceChild(choix, this.getElement(`div[data-section='colorset']`));
-    }
+
     language: {
       const section = conteneur.querySelector(`[data-section='language']`);
       const languages = Params.languages;
@@ -71,6 +67,31 @@ export default class PageSettingsMenu extends SettingsMenu {
 
         window.addEventListener('languagechange', event => {
           if (event.detail.lang == lang) input.checked = true;
+        });
+
+        section.appendChild(button);
+      }
+    }
+
+    model: {
+      const section = conteneur.querySelector(`[data-section='model']`);
+      const models = Params.models;
+      section.style.setProperty('--total', models.length);
+
+      for (const model of models) {
+        const templateModel = document.createElement('template');
+        templateModel.innerHTML = `
+          <input type="radio" id="model-switch-${model}" name="model-switch">
+          <label for="model-switch-${model}" data-string="model-${model}">${getString(`model-${model}`)}</label>
+        `;
+
+        const button = templateModel.content.cloneNode(true);
+        const input = button.querySelector('input');
+        if (model == Params.currentModel) input.checked = true;
+
+        input.addEventListener('change', async () => {
+          document.querySelector('nintendo-switch').setAttribute('model', model);
+          localStorage.setItem('csswitch/model', model);
         });
 
         section.appendChild(button);
