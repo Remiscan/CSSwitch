@@ -32,8 +32,8 @@ $Textes = new Textes('csswitch', $lang);
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P" media="print" onload="this.media='all'">
 
-    <!-- ▼ Fichiers cache-busted grâce à PHP -->
-    <!--<?php ob_start();?>-->
+    <!-- ▼ Cache-busted files -->
+    <!--<?php versionizeStart(); ?>-->
 
     <link rel="preload" as="audio" href="/csswitch/jeux/menu/switch.ogg">
     <link rel="preload" as="fetch" href="/csswitch/strings.json" crossorigin
@@ -47,9 +47,7 @@ $Textes = new Textes('csswitch', $lang);
 
     <script type="module" src="scripts.js"></script>
 
-    <!--<?php $imports = ob_get_clean();
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/_common/php/versionize-files.php';
-    echo versionizeFiles($imports, __DIR__); ?>-->
+    <!--<?php versionizeEnd(__DIR__); ?>-->
   </head>
 
   <body>
