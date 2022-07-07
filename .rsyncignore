@@ -1,6 +1,7 @@
 .git
 .gitattributes
 .gitignore
+.vscode
 .rsyncignore
 .deploy
 test
