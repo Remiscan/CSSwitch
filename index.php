@@ -1,6 +1,5 @@
 <?php
 $commonDir = '../_common';
-require_once $commonDir.'/php/version.php';
 require_once $commonDir.'/php/Translation.php';
 
 $translation = new Translation(__DIR__.'/strings.json');
