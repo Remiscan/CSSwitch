@@ -6,7 +6,7 @@ $translation = new Translation(__DIR__.'/strings.json');
 $httpLanguage = $translation->getLanguage();
 ?>
 <!doctype html>
-<html data-version="<?=version(__DIR__)?>" data-http-lang="<?=$httpLanguage?>">
+<html data-version="<?=version([__DIR__])?>" data-http-lang="<?=$httpLanguage?>">
   <head>
     <meta charset="utf-8">
     <title>CSSwitch - <?=$translation->get('titre-page-description')?></title>
@@ -35,7 +35,7 @@ $httpLanguage = $translation->getLanguage();
 
     <link rel="preload" as="audio" href="/csswitch/jeux/menu/switch.ogg">
     <link rel="preload" as="fetch" href="/csswitch/strings.json" crossorigin
-          id="strings" data-version="<?=version(__DIR__, 'strings.json')?>">
+          id="strings" data-version="<?=version([__DIR__.'/strings.json'])?>">
 
     <link rel="stylesheet" href="page.css">
 
