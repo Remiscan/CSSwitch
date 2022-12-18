@@ -116,6 +116,26 @@ class Settings {
         id: 'blanc',
         left: true,
         right: true
+      }, {
+        hex: '#6455F5',
+        id: 'splatoon-3-bleu',
+        left: true,
+        right: false
+      }, {
+        hex: '#C3FA05',
+        id: 'splatoon-3-jaune',
+        left: false,
+        right: true
+      }, {
+        hex: '#F07341',
+        id: 'pokemon-ecarlate',
+        left: true,
+        right: false
+      }, {
+        hex: '#9650AA',
+        id: 'pokemon-violet',
+        left: false,
+        right: true
       }
     ];
 
