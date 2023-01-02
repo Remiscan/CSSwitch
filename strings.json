@@ -2,11 +2,11 @@
   "fr": {
     "titre-page-description": "Une Switch en CSS",
     "description-site": "Une Nintendo Switch entièrement en CSS dont les Joy-Con peuvent changer de couleur. Inclut 1 mini-jeu.",
-    "instruction-choix-couleur": "Clique pour choisir la couleur",
-    "instruction-choix-jeu": "Choisis un jeu",
+    "instruction-choix-couleur": "Cliquez pour choisir la couleur",
+    "instruction-choix-jeu": "Choisissez un jeu",
     "titre-jeu-press-on-sound": "Appuie au Son",
-    "score-record": "Record:",
-    "score-dernier": "Dernier:",
+    "score-record": "Record :",
+    "score-dernier": "Dernier :",
     "settings-controller-menu-title": "Personnalisez les manettes",
     "settings-controller-menu-section-left": "Joy-Con gauche",
     "settings-controller-menu-section-right": "Joy-Con droit",
@@ -50,7 +50,7 @@
     "model-release": "Nintendo Switch",
     "model-oled": "Nintendo Switch modèle OLED",
     "bouton-start-jeu": "Lancer le jeu",
-    "press-on-sound-bouton": "Appuie ici"
+    "press-on-sound-bouton": "Appuyez ici"
   },
   "en": {
     "titre-page-description": "A Switch in CSS",
