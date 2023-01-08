@@ -1,5 +1,5 @@
-import { ColorChoice } from 'component-colorChoice';
 import { Params } from 'Params';
+import { ColorChoice } from 'component-colorChoice';
 import SettingsMenu from 'settings-menu';
 import { getString, Traduction } from 'traduction';
 
@@ -10,13 +10,14 @@ export default class PageSettingsMenu extends SettingsMenu {
     const sections = ['theme', 'language', 'model'];
     super(sections, PageSettingsMenu.id);
 
-    const stylesheet = this.element.shadowRoot.styleSheets[0];
-    stylesheet.insertRule(`
+    const stylesheet = new CSSStyleSheet();
+    stylesheet.replaceSync(`
       input[type=radio] + label[for^=language-switch],
       input[type=radio] + label[for^=model-switch] {
         grid-template-columns: 0 1fr auto;
       }
     `);
+    this.element.shadow.adoptedStyleSheets = [...this.element.shadow.adoptedStyleSheets, stylesheet];
 
     this.start();
   }

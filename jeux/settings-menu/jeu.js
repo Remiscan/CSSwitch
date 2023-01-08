@@ -1,16 +1,13 @@
-import { Jeu } from 'jeu';
-import { getString } from 'traduction';
 import 'component-joyconIcon';
 import 'component-settingsIcon';
+import { Jeu } from 'jeu';
+import sheet from 'settings-menu-styles' assert { type: 'css' };
+import { getString } from 'traduction';
 
 
 
 const template = document.createElement('template');
-template.innerHTML = `
-  <style>
-    <?php include './styles.css'; ?>
-  </style>
-  
+template.innerHTML = ` 
   <header></header>
   <nav></nav>
   <section></section>
@@ -20,6 +17,7 @@ template.innerHTML = `
 export default class SettingsMenu extends Jeu {
   constructor(sections, screenName, icon = 'settings') {
     super(template);
+    this.element.shadow.adoptedStyleSheets = [sheet];
     this.sections = sections;
     this.id = screenName;
     this.icon = icon;
@@ -65,7 +63,7 @@ export default class SettingsMenu extends Jeu {
     }
 
     // Prepare button / section styling
-    const stylesheet = this.element.shadow.styleSheets[1];
+    const stylesheet = new CSSStyleSheet();
     stylesheet.insertRule(`
       ${this.sections.map(s => `:host([data-section=${s}])>nav>button[data-section=${s}]`).join(',')} {
         color: var(--settings-menu-highlight);
@@ -87,6 +85,7 @@ export default class SettingsMenu extends Jeu {
         display: grid;
       }
     `);
+    this.element.shadow.adoptedStyleSheets = [...this.element.shadow.adoptedStyleSheets, stylesheet];
 
     // Enable clicks on nav buttons
     for (const section of this.sections) {

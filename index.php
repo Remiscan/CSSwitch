@@ -6,7 +6,7 @@ $translation = new Translation(__DIR__.'/strings.json');
 $httpLanguage = $translation->getLanguage();
 ?>
 <!doctype html>
-<html data-version="<?=version([__DIR__])?>" data-http-lang="<?=$httpLanguage?>">
+<html data-http-lang="<?=$httpLanguage?>">
   <head>
     <meta charset="utf-8">
     <title>CSSwitch - <?=$translation->get('titre-page-description')?></title>

@@ -1,8 +1,12 @@
 {
   "imports": {
     "component-colorChoice": "./modules/comp_colorChoice.js",
-    "component-mainMenu": "./modules/comp_MainMenu.js.php",
-    "component-nintendoSwitch": "./modules/comp_NintendoSwitch.js.php",
+    "component-mainMenu": "./modules/comp_MainMenu.js",
+    "main-menu-styles": "./jeux/menu/styles.css",
+    "main-menu-template": "./jeux/menu/template.js",
+    "component-nintendoSwitch": "./modules/comp_NintendoSwitch.js",
+    "component-nintendoSwitch-styles": "./modules/comp_NintendoSwitch.css",
+    "component-nintendoSwitch-template": "./modules/comp_NintendoSwitch.template.js",
     "animateJoycons": "./modules/mod_animateJoycons.js",
     "jeu": "./modules/mod_jeu.js",
     "Params": "./modules/mod_Params.js",
@@ -14,8 +18,11 @@
 
     "controller-menu": "./jeux/controller-menu/jeu.js",
     "page-settings-menu": "./jeux/page-settings-menu/jeu.js",
-    "press-on-sound": "./jeux/press-on-sound/jeu.js.php",
-    "settings-menu": "./jeux/settings-menu/jeu.js.php",
+    "press-on-sound": "./jeux/press-on-sound/jeu.js",
+    "press-on-sound-styles": "./jeux/press-on-sound/styles.css",
+    "press-on-sound-template": "./jeux/press-on-sound/template.js",
+    "settings-menu": "./jeux/settings-menu/jeu.js",
+    "settings-menu-styles": "./jeux/settings-menu/styles.css",
 
     "default-traduction": "/_common/js/traduction.js"
   }

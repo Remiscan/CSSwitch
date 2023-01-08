@@ -1,3 +1,5 @@
+const template = document.createElement('template');
+template.innerHTML = /*html*/`
 <div class="jeu-bg">
   <div class="jeu-titre" data-string="titre-jeu-press-on-sound"></div>
   <button type="button" class="jeu-bouton" data-label="press-on-sound-bouton">
@@ -16,3 +18,6 @@
     </div>
   </div>
 </div>
+`;
+
+export default template;

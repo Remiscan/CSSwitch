@@ -1,3 +1,5 @@
+const template = document.createElement('template');
+template.innerHTML = /*html*/`
 <header>
   <joycon-icon style="--size: 60%"></joycon-icon>
   <span>Personnalisez les manettes</span>
@@ -13,3 +15,6 @@
 </nav>
 
 <section></section>
+`;
+
+export default template;

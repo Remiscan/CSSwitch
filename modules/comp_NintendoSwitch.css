@@ -458,3 +458,25 @@ button.home.active>.coeur {
   left: 0;
   border-radius: 0 0 30% 0;
 }
+
+@keyframes appear {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.clue {
+  width: auto;
+  height: auto;
+  position: absolute;
+  right: 1ch;
+  top: calc(67.4% * (100 / 93.4));
+  font-size: 1.2em;
+  opacity: 0;
+  animation: appear 2s ease;
+  animation-delay: 5s;
+  animation-fill-mode: forwards;
+}
+
+:host([data-was-open]) .clue {
+  display: none;
+}

@@ -1,5 +1,5 @@
-import 'component-nintendoSwitch';
 import { Params } from 'Params';
+import 'component-nintendoSwitch';
 import { Traduction } from 'traduction';
 
 
@@ -7,6 +7,12 @@ import { Traduction } from 'traduction';
 document.documentElement.dataset.theme = Params.theme;
 const nintendoSwitch = document.querySelector('nintendo-switch');
 nintendoSwitch.setAttribute('model', localStorage.getItem('csswitch/model') || 'oled');
+
+
+
+window.addEventListener('translation-request', event => {
+  Traduction.traduire(document.querySelector('nintendo-switch').shadowRoot);
+});
 
 
 

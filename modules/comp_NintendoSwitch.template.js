@@ -1,3 +1,5 @@
+const template = document.createElement('template');
+template.innerHTML = /*html*/`
 <div class="joycon gauche">
   <div class="interieur"></div>
 
@@ -40,6 +42,7 @@
   <div class="screen-border">
     <div class="screen">
       <div class="jeu">
+        <span class="clue" data-string="clue"></span>
         <main-menu></main-menu>
       </div>
     </div>
@@ -88,3 +91,6 @@
   </div>
   <div class="trigger droite"></div>
 </div>
+`;
+
+export default template;

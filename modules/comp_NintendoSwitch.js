@@ -1,14 +1,11 @@
+import { Params } from 'Params';
 import { bounce, moveJoycon } from 'animateJoycons';
 import 'component-mainMenu';
-import { Params } from 'Params';
+import sheet from 'component-nintendoSwitch-styles' assert { type: 'css' };
+import template from 'component-nintendoSwitch-template';
+import { Traduction } from 'traduction';
 
 
-
-const template = document.createElement('template');
-template.innerHTML = `
-  <style><?php include './comp_NintendoSwitch.css'; ?></style>
-  <?php include './comp_NintendoSwitch.html'; ?>
-`;
 
 let animationEnCours = false;
 
@@ -17,6 +14,7 @@ class NintendoSwitch extends HTMLElement {
     super();
     this.shadow = this.attachShadow({ mode: 'open' });
     this.shadow.appendChild(template.content.cloneNode(true));
+    this.shadow.adoptedStyleSheets = [sheet];
   }
 
   getElement(selector) {
@@ -36,6 +34,7 @@ class NintendoSwitch extends HTMLElement {
     });
     menu.setAttribute('open', '');
     this.setAttribute('on', '');
+    this.setAttribute('data-was-open', '');
   }
 
   turnOff() {
@@ -223,12 +222,18 @@ class NintendoSwitch extends HTMLElement {
     }
   }
 
+  async traduire() {
+    await Traduction.traduire(this.shadowRoot);
+    return;
+  }
+
   connectedCallback() {
     this.setAttribute('theme', Params.theme);
     this.disableButtons();
     this.detectButtonPresses();
     this.detectColorChanges();
     this.colorizeJoycons();
+    this.traduire();
 
     Element.prototype.disable = function() {
       const el = this.shadowRoot || this;

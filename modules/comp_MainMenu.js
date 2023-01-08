@@ -1,10 +1,12 @@
 import 'component-joyconIcon';
-import 'component-settingsIcon';
 import 'component-powerIcon';
-import { Traduction, getString } from 'traduction';
-import PressOnSound from 'press-on-sound';
+import 'component-settingsIcon';
 import ControllerMenu from 'controller-menu';
+import sheet from 'main-menu-styles' assert { type: 'css' };
+import template from 'main-menu-template';
 import PageSettingsMenu from 'page-settings-menu';
+import PressOnSound from 'press-on-sound';
+import { Traduction, getString } from 'traduction';
 
 
 
@@ -12,17 +14,12 @@ const jeux = [PressOnSound];
 
 
 
-const template = document.createElement('template');
-template.innerHTML = `
-  <style><?php include '../jeux/menu/styles.css'; ?></style>
-  <?php include '../jeux/menu/template.html'; ?>
-`;
-
 class MainMenu extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: 'open' });
     this.shadow.appendChild(template.content.cloneNode(true));
+    this.shadow.adoptedStyleSheets = [sheet];
   }
 
   static get observedAttributes() {

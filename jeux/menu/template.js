@@ -1,3 +1,5 @@
+const template = document.createElement('template');
+template.innerHTML = /*html*/`
 <div class="menu-top">
   <div class="menu-profile"></div>
   <div class="menu-battery"></div>
@@ -26,3 +28,6 @@
 <div class="menu-verybottom">
   <div class="menu-clue" data-string="instruction-choix-jeu"></div>
 </div>
+`;
+
+export default template;

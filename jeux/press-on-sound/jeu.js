@@ -1,4 +1,6 @@
 import { Jeu } from 'jeu';
+import sheet from 'press-on-sound-styles' assert { type: 'css' };
+import template from 'press-on-sound-template';
 
 
 
@@ -6,15 +8,10 @@ const wait = time => new Promise(resolve => setTimeout(resolve, time));
 
 
 
-const template = document.createElement('template');
-template.innerHTML = `
-  <style><?php include './styles.css'; ?></style>
-  <?php include './template.html'; ?>
-`;
-
 export default class PressOnSound extends Jeu {
   constructor() {
     super(template);
+    this.element.shadow.adoptedStyleSheets = [sheet];
     this.lastGame = Date.now();
     this.bestScore = localStorage.getItem('csswitch/best-score');
     this.start();
