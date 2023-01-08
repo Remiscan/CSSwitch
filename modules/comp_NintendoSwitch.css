@@ -471,10 +471,10 @@ button.home.active>.coeur {
   right: 1ch;
   top: calc(67.4% * (100 / 93.4));
   font-size: 1.2em;
-  opacity: 0;
+  opacity: 1;
   animation: appear 2s ease;
   animation-delay: 5s;
-  animation-fill-mode: forwards;
+  animation-fill-mode: backwards;
 }
 
 :host([data-was-open]) .clue {
