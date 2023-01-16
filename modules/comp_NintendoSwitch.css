@@ -475,6 +475,7 @@ button.home.active>.coeur {
   animation: appear 2s ease;
   animation-delay: 5s;
   animation-fill-mode: backwards;
+  color: white;
 }
 
 :host([data-was-open]) .clue {
