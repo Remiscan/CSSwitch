@@ -136,6 +136,11 @@ class Settings {
         id: 'pokemon-violet',
         left: false,
         right: true
+      }, {
+        hex: '#D2BE69',
+        id: 'zelda-totk-or',
+        left: true,
+        right: true
       }
     ];
 
