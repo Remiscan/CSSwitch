@@ -5,3 +5,4 @@
 .rsyncignore
 .deploy
 test
+README.md
