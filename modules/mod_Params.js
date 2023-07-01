@@ -141,6 +141,26 @@ class Settings {
         id: 'zelda-totk-or',
         left: true,
         right: true
+      }, {
+        hex: '#FFAFAF',
+        id: 'rose-pastel',
+        left: true,
+        right: false
+      }, {
+        hex: '#F5FF82',
+        id: 'jaune-pastel',
+        left: false,
+        right: true
+      }, {
+        hex: '#F0CBEB',
+        id: 'violet-pastel',
+        left: true,
+        right: false
+      }, {
+        hex: '#BCFFC8',
+        id: 'vert-pastel',
+        left: false,
+        right: true
       }
     ];
 
