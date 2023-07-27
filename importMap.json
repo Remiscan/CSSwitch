@@ -24,6 +24,6 @@
     "settings-menu": "./jeux/settings-menu/jeu.js",
     "settings-menu-styles": "./jeux/settings-menu/styles.css",
 
-    "default-traduction": "/_common/js/traduction.js"
+    "default-traduction": "/_common/js/traduction/mod.js"
   }
 }
