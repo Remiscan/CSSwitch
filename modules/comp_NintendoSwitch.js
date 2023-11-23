@@ -202,7 +202,7 @@ class NintendoSwitch extends HTMLElement {
   }
 
   static get observedAttributes() {
-    return ['width', 'screen-size', 'model'];
+    return ['width', 'screen-size', 'screen-width', 'screen-height', 'model'];
   }
 
   update(attributes = NintendoSwitch.observedAttributes) {
@@ -214,6 +214,16 @@ class NintendoSwitch extends HTMLElement {
     screenSize: {
       if (!attributes.includes('screen-size')) break screenSize;
       this.style.setProperty('--screen-size', this.getAttribute('screen-size'));
+    }
+
+    screenWidth: {
+      if (!attributes.includes('screen-width')) break screenWidth;
+      this.style.setProperty('--screen-width', this.getAttribute('screen-width'));
+    }
+
+    screenHeight: {
+      if (!attributes.includes('screen-height')) break screenHeight;
+      this.style.setProperty('--screen-height', this.getAttribute('screen-height'));
     }
 
     model: {

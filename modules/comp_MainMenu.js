@@ -1,3 +1,4 @@
+import BooleAndTheBoulders from 'boole-and-the-boulders';
 import 'component-joyconIcon';
 import 'component-powerIcon';
 import 'component-settingsIcon';
@@ -6,11 +7,12 @@ import sheet from 'main-menu-styles' assert { type: 'css' };
 import template from 'main-menu-template';
 import PageSettingsMenu from 'page-settings-menu';
 import PressOnSound from 'press-on-sound';
+import Solaire from 'solaire';
 import { Traduction, getString } from 'traduction';
 
 
 
-const jeux = [PressOnSound];
+const jeux = [BooleAndTheBoulders, Solaire, PressOnSound];
 
 
 

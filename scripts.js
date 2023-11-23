@@ -21,7 +21,10 @@ window.addEventListener('translation-request', event => {
 function onResize() {
   const nintendoSwitch = document.querySelector('nintendo-switch');
   const screen = nintendoSwitch.shadowRoot.querySelector('.jeu');
-  nintendoSwitch.setAttribute('screen-size', Math.round(screen.getBoundingClientRect().width));
+  const screenRect = screen.getBoundingClientRect();
+  nintendoSwitch.setAttribute('screen-size', Math.round(screenRect.width));
+  nintendoSwitch.setAttribute('screen-width', Math.round(screenRect.width));
+  nintendoSwitch.setAttribute('screen-height', Math.round(screenRect.height));
 }
 window.addEventListener('resize', onResize);
 window.addEventListener('orientationchange', onResize);

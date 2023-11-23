@@ -18,11 +18,20 @@
 
     "controller-menu": "./jeux/controller-menu/jeu.js",
     "page-settings-menu": "./jeux/page-settings-menu/jeu.js",
+    "settings-menu": "./jeux/settings-menu/jeu.js",
+    "settings-menu-styles": "./jeux/settings-menu/styles.css",
+
     "press-on-sound": "./jeux/press-on-sound/jeu.js",
     "press-on-sound-styles": "./jeux/press-on-sound/styles.css",
     "press-on-sound-template": "./jeux/press-on-sound/template.js",
-    "settings-menu": "./jeux/settings-menu/jeu.js",
-    "settings-menu-styles": "./jeux/settings-menu/styles.css",
+
+    "solaire": "./jeux/solaire/jeu.js",
+    "solaire-styles": "./jeux/solaire/styles.css",
+    "solaire-template": "./jeux/solaire/template.js",
+
+    "boole-and-the-boulders": "./jeux/boole-and-the-boulders/jeu.js",
+    "boole-and-the-boulders-styles": "./jeux/boole-and-the-boulders/styles.css",
+    "boole-and-the-boulders-template": "./jeux/boole-and-the-boulders/template.js",
 
     "default-traduction": "/_common/js/traduction/mod.js"
   }

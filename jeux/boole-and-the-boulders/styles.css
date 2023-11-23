@@ -1,0 +1,20 @@
+:host {
+  background: black;
+  display: grid;
+  place-items: center;
+}
+
+iframe {
+  border: none;
+  --width: 832;
+  --height: 608;
+  width: calc(var(--width) * 1px);
+  height: calc(var(--height) * 1px);
+  overflow: hidden;
+  --horiz-coeff: calc(var(--screen-width) / var(--width));
+  --verti-coeff: calc(var(--screen-height) / var(--height));
+  transform: scale(min(var(--horiz-coeff), var(--verti-coeff)));
+  margin-inline: calc(-.5 * var(--horiz-coeff) * var(--width) * 1px);
+  margin-block: calc(-.5 * var(--verti-coeff) * var(--height) * 1px);
+  position: absolute;
+}
