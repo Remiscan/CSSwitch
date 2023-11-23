@@ -3,8 +3,8 @@
   <rect x="128" y="179.84" width="256" height="152.32" fill="#2F3234"/>
   <rect x="134.4" y="185.856" width="243.2" height="140.288" fill="#000000" rx="5" ry="5"/>
   <rect x="153.6" y="198.4" width="204.8" height="115.2" fill="#141414"/>
-  <rect x="74.24" y="179.84" width="51.2" height="152.32" fill="#FF5E52" rx="20" ry="20"/>
-  <rect x="99.84" y="179.84" width="25.6" height="152.32" fill="#FF5E52"/>
-  <rect x="386.56" y="179.84" width="51.2" height="152.32" fill="#00BFDF" rx="20" ry="20"/>
-  <rect x="386.56" y="179.84" width="25.6" height="152.32" fill="#00BFDF"/>
+  <rect x="70.24" y="179.84" width="51.2" height="152.32" fill="#FF5E52" rx="20" ry="20"/>
+  <rect x="95.84" y="179.84" width="25.6" height="152.32" fill="#FF5E52"/>
+  <rect x="390.56" y="179.84" width="51.2" height="152.32" fill="#00BFDF" rx="20" ry="20"/>
+  <rect x="390.56" y="179.84" width="25.6" height="152.32" fill="#00BFDF"/>
 </svg>
