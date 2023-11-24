@@ -58,7 +58,8 @@
     "model-oled": "Nintendo Switch modèle OLED",
     "bouton-start-jeu": "Lancer le jeu",
     "press-on-sound-bouton": "Appuyez ici",
-    "clue": "Accéder au menu de la console ➔"
+    "clue": "Accéder au menu de la console ➔",
+    "warning": "⚠️ La résolution de votre écran est probablement trop petite pour que le contenu de l'écran de cette Nintendo Switch reste lisible. C'est parce que ce projet essaie de reproduire à l'échelle l'écran de la console."
   },
   "en": {
     "titre-page-description": "A Switch in CSS",
@@ -120,6 +121,7 @@
     "model-oled": "Nintendo Switch OLED model",
     "bouton-start-jeu": "Start the game",
     "press-on-sound-bouton": "Press here",
-    "clue": "Go to the console's main menu ➔"
+    "clue": "Go to the console's main menu ➔",
+    "warning": "⚠️ Your screen resolution is probably too small for the contents of this Nintendo Switch's screen to be legible. This is because this project tries to reproduce the console's screen to scale."
   }
 }
