@@ -66,8 +66,10 @@ class MainMenu extends HTMLElement {
         new Jeu();
         window.dispatchEvent(new Event('gameopen'));
       });
-
-      iconList.appendChild(button);
+      button?.addEventListener('mouseenter', () => {
+        button.focus();
+      });
+      iconList.appendChild(contents);
     }
     for (let i = 0; i < Math.max(minIcons - jeux.length, 0); i++) {
       const div = document.createElement('div');
