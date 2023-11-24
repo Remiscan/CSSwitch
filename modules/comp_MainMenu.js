@@ -32,7 +32,7 @@ class MainMenu extends HTMLElement {
     await Traduction.traduire(this.shadow);
 
     Array.from(this.shadow.querySelectorAll('.menu-liste button')).forEach(e => {
-      e.dataset.titre = getString('titre-jeu-' + e.dataset.jeu);
+      e.querySelector('.menu-icone-actual-titre').innerHTML = getString('titre-jeu-' + e.dataset.jeu);
       e.setAttribute('aria-label', getString('bouton-start-jeu') + ' ' + getString('titre-jeu-' + e.dataset.jeu));
     });
 
@@ -51,13 +51,18 @@ class MainMenu extends HTMLElement {
     let minIcons = 5;
     const iconList = this.shadowRoot.querySelector('.menu-icones');
     for (const Jeu of jeux) {
-      const button = document.createElement('button');
-      button.classList.add('menu-icone-jeu');
-      button.id = `icone-jeu-${Jeu.id}`;
-      button.dataset.jeu = Jeu.id;
-      button.style.setProperty('--icone', `url('/csswitch/jeux/${Jeu.id}/icone.png')`);
+      const buttonTemplate = document.createElement('template');
+      buttonTemplate.innerHTML = /*html*/`
+        <button class="menu-icone-jeu" id="icone-jeu-${Jeu.id}" data-jeu="${Jeu.id}" style="--icone: url('/csswitch/jeux/${Jeu.id}/icone.png');">
+          <span class="menu-icone-titre">
+            <span class="menu-icone-actual-titre"></span>
+          </span>
+        </button>
+      `;
 
-      button.addEventListener('click', () => {
+      const contents = buttonTemplate.content.cloneNode(true);
+      const button = contents.querySelector('button');
+      button?.addEventListener('click', () => {
         new Jeu();
         window.dispatchEvent(new Event('gameopen'));
       });
