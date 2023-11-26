@@ -18,6 +18,8 @@ export default class Solaire extends Jeu {
   async start() {
     await super.start();
     this.element.dataset.jeu = Solaire.id;
+    const lang = document.documentElement.lang;
+    this.element.shadow.querySelector('iframe')?.setAttribute('src', `/solaire/?lang=${lang}`);
     this.element.setAttribute('open', '');
     console.log('Jeu démarré');
   }

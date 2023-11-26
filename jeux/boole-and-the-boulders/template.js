@@ -1,6 +1,6 @@
 const template = document.createElement('template');
 template.innerHTML = /*html*/`
-<iframe src="/games/boole-and-the-boulders/">
+<iframe>
 `;
 
 export default template;

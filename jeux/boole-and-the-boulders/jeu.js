@@ -18,6 +18,8 @@ export default class BooleAndTheBoulders extends Jeu {
   async start() {
     await super.start();
     this.element.dataset.jeu = BooleAndTheBoulders.id;
+    const lang = document.documentElement.lang;
+    this.element.shadow.querySelector('iframe')?.setAttribute('src', `/games/boole-and-the-boulders/?lang=${lang}`);
     this.element.setAttribute('open', '');
     console.log('Jeu démarré');
   }
