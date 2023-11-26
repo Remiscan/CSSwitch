@@ -51,9 +51,6 @@ $httpLanguage = $translation->getLanguage();
   </head>
 
   <body>
-
-    <p class="warning" data-string="warning"></p>
-
     <main id="conteneur">
       <div class="la-switch">
         <nintendo-switch width="inherit"></nintendo-switch>
