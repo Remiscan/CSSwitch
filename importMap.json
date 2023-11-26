@@ -33,6 +33,10 @@
     "boole-and-the-boulders-styles": "./jeux/boole-and-the-boulders/styles.css",
     "boole-and-the-boulders-template": "./jeux/boole-and-the-boulders/template.js",
 
-    "default-traduction": "/_common/js/traduction/mod.js"
+    "default-traduction": "/_common/js/traduction/mod.js",
+    "remiscan-logo": "/_common/components/remiscan-logo/remiscan-logo.js",
+    "remiscan-logo-svg": "/_common/components/remiscan-logo/logo.svg",
+    "remiscan-logo-svg-horizontal": "/_common/components/remiscan-logo/logo-horizontal.svg",
+    "remiscan-logo-svg-square": "/_common/components/remiscan-logo/logo-square.svg"
   }
 }

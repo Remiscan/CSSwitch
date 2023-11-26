@@ -75,11 +75,18 @@
   place-items: center;
   font-size: inherit;
 }
-button.menu-rond:hover,
-button.menu-rond:focus {
+button.menu-rond:is(:hover, :focus),
+.remi-link:is(:hover, :focus-within) {
   animation: focusRing 1s linear infinite;
   box-shadow: 0 0 0 .2em var(--highlight-medium);
   outline: none;
+}
+.menu-rond.remi-link {
+  overflow: hidden;
+}
+.menu-rond remiscan-logo {
+  width: 100%;
+  height: 100%;
 }
 .menu-verybottom {
   display: flex;

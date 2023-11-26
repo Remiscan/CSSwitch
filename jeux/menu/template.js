@@ -1,3 +1,5 @@
+import 'remiscan-logo';
+
 const template = document.createElement('template');
 template.innerHTML = /*html*/`
 <div class="menu-top">
@@ -11,6 +13,9 @@ template.innerHTML = /*html*/`
 </div>
 
 <div class="menu-bottom">
+  <div class="menu-rond remi-link">
+    <remiscan-logo type="square" background="#E60012" text-color="white"></remiscan-logo>
+  </div>
   <div class="menu-rond"></div>
   <div class="menu-rond"></div>
   <div class="menu-rond"></div>
