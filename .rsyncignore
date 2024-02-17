@@ -3,6 +3,6 @@
 .gitignore
 .vscode
 .rsyncignore
-.deploy
+deploy
 test
 README.md
