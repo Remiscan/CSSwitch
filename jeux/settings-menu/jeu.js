@@ -1,7 +1,7 @@
 import 'component-joyconIcon';
 import 'component-settingsIcon';
 import { Jeu } from 'jeu';
-import sheet from 'settings-menu-styles' assert { type: 'css' };
+import sheet from 'settings-menu-styles' with { type: 'css' };
 import { getString } from 'traduction';
 
 

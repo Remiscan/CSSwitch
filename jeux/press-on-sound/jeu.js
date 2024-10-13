@@ -1,5 +1,5 @@
 import { Jeu } from 'jeu';
-import sheet from 'press-on-sound-styles' assert { type: 'css' };
+import sheet from 'press-on-sound-styles' with { type: 'css' };
 import template from 'press-on-sound-template';
 
 

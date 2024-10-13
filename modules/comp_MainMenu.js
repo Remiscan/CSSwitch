@@ -3,7 +3,7 @@ import 'component-joyconIcon';
 import 'component-powerIcon';
 import 'component-settingsIcon';
 import ControllerMenu from 'controller-menu';
-import sheet from 'main-menu-styles' assert { type: 'css' };
+import sheet from 'main-menu-styles' with { type: 'css' };
 import template from 'main-menu-template';
 import PageSettingsMenu from 'page-settings-menu';
 import PressOnSound from 'press-on-sound';

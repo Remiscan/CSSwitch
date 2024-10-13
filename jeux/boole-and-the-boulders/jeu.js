@@ -1,4 +1,4 @@
-import sheet from 'boole-and-the-boulders-styles' assert { type: 'css' };
+import sheet from 'boole-and-the-boulders-styles' with { type: 'css' };
 import template from 'boole-and-the-boulders-template';
 import { Jeu } from 'jeu';
 

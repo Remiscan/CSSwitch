@@ -1,5 +1,5 @@
 import { Jeu } from 'jeu';
-import sheet from 'solaire-styles' assert { type: 'css' };
+import sheet from 'solaire-styles' with { type: 'css' };
 import template from 'solaire-template';
 
 

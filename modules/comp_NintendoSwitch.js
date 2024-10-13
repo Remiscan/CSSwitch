@@ -1,7 +1,7 @@
 import { Params } from 'Params';
 import { bounce, moveJoycon } from 'animateJoycons';
 import 'component-mainMenu';
-import sheet from 'component-nintendoSwitch-styles' assert { type: 'css' };
+import sheet from 'component-nintendoSwitch-styles' with { type: 'css' };
 import template from 'component-nintendoSwitch-template';
 import { Traduction } from 'traduction';
 
